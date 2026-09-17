@@ -3,10 +3,11 @@
 /* Unified National Institute for Orbital and Nuclear Research       */
 /* Государственный институт специальных исследований                 */
 /* Facility 04 — Terminal 7B-114                                     */
+/* Document: UN-04-ROF-001  |  Classification: RESTRICTED           */
 /* ═══════════════════════════════════════════════════════════════════ */
 
 configuration {
-    modi: "drun,run,window,filebrowser,calc";
+    modi: "drun,run,window,filebrowser,calc,ssh";
     show-icons: true;
     icon-theme: "Papirus";
     terminal: "kitty";
@@ -16,6 +17,11 @@ configuration {
     display-window: "WINDOWS";
     display-filebrowser: "ARCHIVE";
     display-calc: "CALCULATOR";
+    display-ssh: "REMOTE";
     drun-display-format: "{name}";
     click-to-exit: true;
+    sidebar-mode: false;
+    scroll-method: 0;
+    hide-hotkeys: false;
+    title: "UNION // APPLICATION DIRECTORY";
 }
