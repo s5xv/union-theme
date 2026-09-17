@@ -1,32 +1,29 @@
 {
     "layer": "top",
     "position": "bottom",
-    "height": 48,
+    "height": 52,
     "spacing": 0,
     "margin-top": 0,
-    "margin-bottom": 4,
-    "margin-left": 100,
-    "margin-right": 100,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    "exclusive": false,
+    "passthrough": false,
+    "fixed-center": true,
 
     "modules-left": [
-        "custom/union-logo-dock"
+        "hyprland/workspaces"
     ],
 
     "modules-center": [
-        "hyprland/workspaces"
+        "custom/union-volume-bar"
     ],
 
     "modules-right": [
         "custom/union-sys-info",
-        "tray"
+        "custom/union-tray-toggle"
     ],
-
-    "custom/union-logo-dock": {
-        "format": "â—‰âŠ•â—‰",
-        "tooltip": true,
-        "tooltip-format": "UNION // Click to open launcher",
-        "on-click": "rofi -show drun -show-icons"
-    },
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -57,15 +54,30 @@
         "tooltip": true
     },
 
-    "custom/union-sys-info": {
-        "format": "SYS",
+    "custom/union-volume-bar": {
+        "format": "VOL {volume}%",
         "tooltip": true,
-        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick to open btop",
-        "on-click": "kitty btop"
+        "tooltip-format": "Volume: {volume}%\nScroll: Â±5%\nShift+Scroll: Â±1%\nClick: Mute/Unmute",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && /usr/local/bin/union-sounds mute && /usr/local/bin/union-notify --audio \"MUTED\"",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && /usr/local/bin/union-sounds vol-up && /usr/local/bin/union-notify --audio \"OUTPUT: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}')%\"",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && /usr/local/bin/union-sounds vol-down && /usr/local/bin/union-notify --audio \"OUTPUT: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}')%\"",
+        "return-type": "json",
+        "exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print \"{\\\"volume\\\": \" int($2*100) \", \\\"muted\\\": \" ($3 == \"[MUTED]\" ? \"true\" : \"false\") \"}\"}'",
+        "interval": 1
     },
 
-    "tray": {
-        "icon-size": 18,
-        "spacing": 6
+    "custom/union-sys-info": {
+        "format": "â—‰âŠ•â—‰",
+        "tooltip": true,
+        "tooltip-format": "UNION // FACILITY 04\nClick: Toggle btop\nRight-click: Context menu",
+        "on-click": "/usr/local/bin/union-toggle btop",
+        "on-click-right": "rofi -show drun -show-icons"
+    },
+
+    "custom/union-tray-toggle": {
+        "format": " â–¸",
+        "tooltip": true,
+        "tooltip-format": "System Tray\nClick: Toggle visibility",
+        "on-click": "pkill -x waybar; sleep 0.5; waybar -c ~/.config/waybar/dock.jsonc -s ~/.config/waybar/dock-style.css &"
     }
 }
