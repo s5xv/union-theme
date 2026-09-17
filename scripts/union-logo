@@ -1,0 +1,92 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════
+# UNION — ASCII LOGO DISPLAY
+# Unified National Institute for Orbital and Nuclear Research
+# Государственный институт специальных исследований
+# Facility 04 — Terminal 7B-114
+# ═══════════════════════════════════════════════════════════════════
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+UNION_DIR="$(dirname "$SCRIPT_DIR")"
+
+# Colors
+C_RED='\033[0;31m'
+C_DIM='\033[2m'
+C_BOLD='\033[1m'
+C_RESET='\033[0m'
+C_FG='\033[38;5;252m'
+
+print_large() {
+    cat "${UNION_DIR}/ascii/union-large.txt"
+}
+
+print_medium() {
+    cat "${UNION_DIR}/ascii/union-medium.txt"
+}
+
+print_small() {
+    cat "${UNION_DIR}/ascii/union-small.txt"
+}
+
+print_boot() {
+    cat "${UNION_DIR}/ascii/union-boot.txt"
+}
+
+print_status() {
+    cat "${UNION_DIR}/ascii/union-status.txt"
+}
+
+print_classified() {
+    cat "${UNION_DIR}/ascii/union-classified.txt"
+}
+
+print_facility() {
+    cat "${UNION_DIR}/ascii/union-facility.txt"
+}
+
+print_fallback() {
+    echo ""
+    echo "     ╔═══════════════════════════════╗"
+    echo "     ║     ◉ ──⊕── ◉               ║"
+    echo "     ║     UNION // ГИСС             ║"
+    echo "     ║     FACILITY 04               ║"
+    echo "     ║     EST. 1963                 ║"
+    echo "     ╚═══════════════════════════════╝"
+    echo ""
+}
+
+usage() {
+    echo "Usage: union-logo [OPTION]"
+    echo ""
+    echo "Display UNION ASCII art"
+    echo ""
+    echo "Options:"
+    echo "  large       Large detailed terminal version (default)"
+    echo "  medium      Medium institutional version"
+    echo "  small       Tiny terminal icon"
+    echo "  boot        Boot/startup banner"
+    echo "  status      System status panel"
+    echo "  classified  Classification stamp"
+    echo "  facility    Facility identification panel"
+    echo "  fallback    Pure ASCII fallback"
+    echo "  --help      Show this help"
+}
+
+main() {
+    local size="${1:-large}"
+
+    case "$size" in
+        large)      print_large ;;
+        medium)     print_medium ;;
+        small)      print_small ;;
+        boot)       print_boot ;;
+        status)     print_status ;;
+        classified) print_classified ;;
+        facility)   print_facility ;;
+        fallback)   print_fallback ;;
+        --help|-h)  usage ;;
+        *)          print_large ;;
+    esac
+}
+
+main "$@"
