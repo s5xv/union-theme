@@ -208,9 +208,9 @@
     "custom/union-notif": {
         "format": "ðŸ””",
         "tooltip": true,
-        "tooltip-format": "NOTIFICATION CENTER\nClick: Open dunst/mako history\nRight-click: Clear all",
-        "on-click": "dunstctl history | rofi -dmenu -p 'Notifications' || makoctl restore",
-        "on-click-right": "dunstctl close-all || makoctl dismiss --all",
+        "tooltip-format": "NOTIFICATION CENTER\nClick: Open notification history\nRight-click: Clear all",
+        "on-click": "makoctl restore || dunstctl history | rofi -dmenu -p 'Notifications'",
+        "on-click-right": "makoctl dismiss --all || dunstctl close-all",
         "return-type": "json",
         "exec": "echo '{\"text\": \"ðŸ””\"}'",
         "interval": 5
