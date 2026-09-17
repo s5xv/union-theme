@@ -1,0 +1,82 @@
+# ═══════════════════════════════════════════════════════════════════
+# UNION THEME — MAKO NOTIFICATION DAEMON CONFIGURATION
+# Unified National Institute for Orbital and Nuclear Research
+# Государственный институт специальных исследований
+# Facility 04 — Terminal 7B-114
+# ═══════════════════════════════════════════════════════════════════
+
+# ─── DISPLAY ─────────────────────────────────────────────────────
+width=360
+height=150
+border-radius=4
+border-size=1
+border-color=#3d4250
+padding=12
+margin=8
+margin-top=8
+margin-right=8
+background-color=#1a1d23
+color=#c8cdd5
+font=JetBrains Mono 10
+max-visible=5
+default-timeout=5000
+anchor=top-right
+layer=overlay
+
+# ─── ICONS ───────────────────────────────────────────────────────
+max-icon-size=32
+
+# ─── PROGRESS BAR ────────────────────────────────────────────────
+progress-color=#5e81ac
+progress-radius=2
+progress-height=4
+progress-padding=0
+
+# ─── ACTIONS ─────────────────────────────────────────────────────
+actions=on
+action-border-color=#3d4250
+action-padding=8
+
+# ─── MOUSE ───────────────────────────────────────────────────────
+on-click=close
+on-button-right=close-all
+
+# ─── HIDDEN ──────────────────────────────────────────────────────
+hidden-color=#5c6370
+
+# ─── GROUPING ────────────────────────────────────────────────────
+group-by=app-name
+
+# ═══════════════════════════════════════════════════════════════════
+# UNION NOTIFICATION STYLES
+# ═══════════════════════════════════════════════════════════════════
+
+# ─── SYSTEM ──────────────────────────────────────────────────────
+[app-name="UNION // SYSTEM"]
+border-color=#5c6370
+
+[app-name="UNION // COMMUNICATIONS"]
+border-color=#5e9fb0
+
+[app-name="UNION // AUDIO SYSTEM"]
+border-color=#8b7bab
+
+[app-name="UNION // OPTICAL SYSTEM"]
+border-color=#d4a04a
+
+[app-name="UNION // APPLICATION CONTROL"]
+border-color=#6a9f78
+
+# ─── URGENCY LEVELS ─────────────────────────────────────────────
+[urgency=low]
+border-color=#3d4250
+
+[urgency=normal]
+border-color=#5e81ac
+
+[urgency=high]
+border-color=#d4a04a
+
+[urgency=critical]
+border-color=#b85450
+default-timeout=0
