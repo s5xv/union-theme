@@ -86,6 +86,22 @@ main() {
     remove_file "${CONFIG_DIR}/rofi"
     remove_file "${CONFIG_DIR}/mako"
     remove_file "${CONFIG_DIR}/union"
+    remove_file "${CONFIG_DIR}/btop"
+    remove_file "${CONFIG_DIR}/nvim"
+    remove_file "${CONFIG_DIR}/swaylock"
+    remove_file "${CONFIG_DIR}/swayidle"
+    remove_file "${CONFIG_DIR}/neofetch"
+    remove_file "${CONFIG_DIR}/fastfetch"
+    remove_file "${CONFIG_DIR}/dunst"
+    remove_file "${CONFIG_DIR}/shell"
+    remove_file "${HOME}/.tmux.conf"
+
+    # Remove systemd services
+    log_info "Removing systemd services..."
+    for service in union-waybar union-mako union-swayidle; do
+        systemctl --user disable "$service" 2>/dev/null || true
+        remove_file "${HOME}/.config/systemd/user/${service}.service"
+    done
 
     # Remove scripts
     log_info "Removing scripts..."
