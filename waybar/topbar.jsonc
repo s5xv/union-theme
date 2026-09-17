@@ -1,0 +1,178 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 0,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    "exclusive": true,
+    "fixed-center": true,
+
+    "modules-left": [
+        "custom/union-logo",
+        "custom/union-id",
+        "custom/union-status"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+        "tray",
+        "custom/union-notif",
+        "network",
+        "battery",
+        "pulseaudio",
+        "temperature",
+        "cpu",
+        "memory",
+        "clock#date",
+        "clock#time"
+    ],
+
+    "custom/union-logo": {
+        "format": "â—‰âŠ•â—‰",
+        "tooltip": false
+    },
+
+    "custom/union-id": {
+        "format": "FACILITY 04 // $USER",
+        "tooltip": true,
+        "tooltip-format": "FACILITY 04 â€” Unified National Institute\nfor Orbital and Nuclear Research\n\nOperator: $USER\nStatus: ACTIVE\nClearance: LEVEL 7"
+    },
+
+    "custom/union-status": {
+        "format": "CPU: {}%",
+        "return-type": "json",
+        "exec": "top -bn1 | grep 'Cpu(s)' | awk '{print int($2)}'",
+        "interval": 5,
+        "tooltip": true,
+        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick: Full system report\nRight-click: Quick CPU/MEM",
+        "on-click": "kitty btop",
+        "on-click-right": "kitty /usr/local/bin/union-status --full"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "â—‹",
+            "2": "â—‹",
+            "3": "â—",
+            "4": "â—‹",
+            "5": "â—‹",
+            "6": "â—‹"
+        },
+        "active_workspace": {
+            "format": "â—",
+            "default": "â—"
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": []
+        },
+        "all-outputs": false,
+        "sort-by-number": true,
+        "on-click": "activate",
+        "tooltip-format": "{id}: {name}\n\n1: ARCHIVE\n2: RESEARCH\n3: ORBITAL\n4: LUNAR\n5: DEEP SPACE\n6: CONTROL",
+        "tooltip": true
+    },
+
+    "network": {
+        "format-wifi": "W: {signalStrength}%",
+        "format-ethernet": "LAN",
+        "format-disconnected": "W: OFF",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGateway: {gateway}\nDNS: {dnsdomain}\nSignal: {signalStrength}%\nLink Speed: {bandwidthUpBytes}",
+        "tooltip": true,
+        "on-click": "nm-connection-editor"
+    },
+
+    "battery": {
+        "states": {
+            "full": 100,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "BAT: {capacity}%",
+        "format-charging": "BAT: {capacity}%+",
+        "format-full": "BAT: FULL",
+        "format-warning": "BAT: {capacity}%",
+        "format-critical": "BAT: {capacity}%",
+        "tooltip-format": "Battery: {capacity}%\n{timeTo}\nPower: {power}W\nHealth: {health}",
+        "tooltip": true,
+        "on-click": "kitty upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+    },
+
+    "pulseaudio": {
+        "format": "VOL: {volume}%",
+        "format-muted": "VOL: MUTED",
+        "tooltip-format": "Volume: {volume}%\nSource: {source}\nSink: {sink}\nClick: Mute/Unmute",
+        "tooltip": true,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && /usr/local/bin/union-sounds mute && /usr/local/bin/union-notify --audio \"MUTED\"",
+        "scroll-step": 5,
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && /usr/local/bin/union-sounds vol-up",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && /usr/local/bin/union-sounds vol-down"
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "TEMP: {temperatureC}Â°C",
+        "format-critical": "TEMP: {temperatureC}Â°C",
+        "tooltip-format": "CPU Temperature: {temperatureC}Â°C ({temperatureF}Â°F)\nCritical: 80Â°C",
+        "tooltip": true,
+        "on-click": "kitty sensors"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "CPU: {usage}%",
+        "tooltip-format": "CPU Usage: {usage}%\nCores: {num_cores}\nFreq: {avg_frequency}GHz\nLoad: {load}",
+        "tooltip": true,
+        "on-click": "kitty btop"
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "MEM: {percentage}%",
+        "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+        "tooltip": true,
+        "on-click": "kitty btop"
+    },
+
+    "clock#date": {
+        "format": "DAY: {:%a %d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "tooltip": true
+    },
+
+    "clock#time": {
+        "format": "TIME: {:%H:%M}",
+        "tooltip-format": "TIME: {:%H:%M:%S}\nDATE: {:%Y-%m-%d}\nUPTIME: {:%U weeks, %j days}",
+        "tooltip": true,
+        "on-click": "gnome-calendar"
+    },
+
+    "custom/union-notif": {
+        "format": "ðŸ””",
+        "tooltip": true,
+        "tooltip-format": "Notification Indicator\nClick: Toggle DND\nRight-click: Clear all",
+        "on-click": "makoctl mode -t 2>/dev/null || true",
+        "on-click-right": "makoctl dismiss --all 2>/dev/null || true",
+        "return-type": "json",
+        "exec": "echo '{\"text\": \"ðŸ””\"}'",
+        "interval": 5
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 6,
+        "tooltip": true
+    }
+}
