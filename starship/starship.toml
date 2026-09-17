@@ -3,16 +3,20 @@
 # Unified National Institute for Orbital and Nuclear Research
 # Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
 # Facility 04 â€” Terminal 7B-114
+# Document: UN-04-STR-001  |  Revision: 02
 # â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 format = """
 []($background)\
+$username\
+$hostname\
 $directory\
 $git_branch\
 $git_status\
 $nodejs\
 $rust\
 $python\
+$docker_context\
 $cmd_duration\
 $line_break\
 $prompt_character\
@@ -20,8 +24,21 @@ $prompt_character\
 
 # â”€â”€â”€ PROMPT CHARACTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 [character]
-success_symbol = "[>](bold #6a9f78)"
+success_symbol = "[â—‰âŠ•â—‰](bold #b85450)"
 error_symbol = "[âœ—](bold #b85450)"
+
+# â”€â”€â”€ USERNAME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+[username]
+show_always = false
+style_user = "bold #5c6370"
+style_root = "bold #b85450"
+format = "[$user]($style)@"
+
+# â”€â”€â”€ HOSTNAME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+[hostname]
+ssh_only = true
+style = "bold #5c6370"
+format = "[$hostname]($style) "
 
 # â”€â”€â”€ DIRECTORY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 [directory]
@@ -29,14 +46,14 @@ style = "bold #c8cdd5"
 format = "[$path]($style)"
 truncation_length = 4
 truncation_symbol = "â€¦/"
- substitutions = {
-     "RESEARCH" = "RESEARCH",
-     "ARCHIVE" = "ARCHIVE",
-     "ORBITAL" = "ORBITAL",
-     "LUNAR" = "LUNAR",
-     "DEEP SPACE" = "DEEP SPACE",
-     "CONTROL" = "CONTROL",
- }
+substitutions = {
+    "RESEARCH" = "RESEARCH",
+    "ARCHIVE" = "ARCHIVE",
+    "ORBITAL" = "ORBITAL",
+    "LUNAR" = "LUNAR",
+    "DEEP SPACE" = "DEEP SPACE",
+    "CONTROL" = "CONTROL",
+}
 
 # â”€â”€â”€ GIT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 [git_branch]
@@ -53,6 +70,8 @@ staged = "+"
 deleted = "D"
 stashed = "$"
 diverged = "!"
+ahead = "â‡¡${count}"
+behind = "â‡£${count}"
 
 # â”€â”€â”€ LANGUAGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 [nodejs]
@@ -69,6 +88,11 @@ format = "[$symbol($version)]($style)"
 symbol = " "
 style = "bold #5e81ac"
 format = "[$symbol($version)]($style)"
+
+[docker_context]
+symbol = "ðŸ³ "
+style = "bold #5e9fb0"
+format = "[$symbol($context)]($style)"
 
 # â”€â”€â”€ COMMAND DURATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 [cmd_duration]
