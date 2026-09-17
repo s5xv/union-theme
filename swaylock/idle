@@ -1,0 +1,19 @@
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION THEME â€” SWAYIDLE CONFIGURATION
+# Unified National Institute for Orbital and Nuclear Research
+# Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
+# Facility 04 â€” Terminal 7B-114
+# Document: UN-04-IDL-001  |  Classification: RESTRICTED
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+# Timeout actions (in seconds)
+timeout 300 'swaylock -f -c 1a1d23'
+timeout 600 'swaymsg "output * power off"'
+timeout 900 'swaymsg "output * power on"'
+
+# Idle behavior
+before-sleep 'swaylock -f -c 1a1d23'
+after-resume 'swaymsg "output * power on"'
+
+# Lock on lid close (laptops)
+lock 'swaylock -f -c 1a1d23'
