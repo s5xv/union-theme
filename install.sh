@@ -289,12 +289,6 @@ install_configs() {
     cp "${SCRIPT_DIR}/colors/palette.conf" "${CONFIG_DIR}/union/"
     log_success "UNION theme assets installed"
 
-    # Generate sound files if sox is available
-    if command -v sox &>/dev/null; then
-        /usr/local/bin/union-sounds 2>/dev/null || true
-        log_success "Sound effects generated"
-    fi
-
     echo ""
 }
 
@@ -312,6 +306,12 @@ install_scripts() {
             log_success "Installed: /usr/local/bin/union-${name#union-}"
         fi
     done
+
+    # Generate sound files if sox is available
+    if command -v sox &>/dev/null; then
+        /usr/local/bin/union-sounds 2>/dev/null || true
+        log_success "Sound effects generated"
+    fi
 
     echo ""
 }
