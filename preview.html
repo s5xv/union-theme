@@ -500,6 +500,31 @@ body {
     margin: 0 4px;
 }
 
+.dock-ws {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.dock-ws.active {
+    color: var(--red);
+    background: rgba(184,84,80,0.12);
+}
+
+.dock-ws:hover {
+    background: rgba(200,205,213,0.08);
+    color: var(--text);
+}
+
 .dock-tooltip {
     position: absolute;
     bottom: 42px;
@@ -774,6 +799,68 @@ body {
     </div>
 </div>
 
+<!-- FIREFOX WINDOW -->
+<div class="window" id="win-firefox" style="left:120px;top:70px;width:600px;height:400px;">
+    <div class="win-titlebar" data-window="win-firefox">
+        <div class="win-dots">
+            <button class="win-dot r" onclick="closeWindow('win-firefox');updateDockIndicators()"></button>
+            <button class="win-dot y" onclick="minimizeWindow('win-firefox')"></button>
+            <button class="win-dot g" onclick="maximizeWindow('win-firefox')"></button>
+        </div>
+        <span class="win-title">firefox â€” new tab</span>
+    </div>
+    <div class="win-body">
+        <div style="background:var(--bg);padding:12px;font-size:11px;height:100%;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 12px;flex:1;color:var(--text3);font-size:10px;">
+                    â”€â”€ Union Search Engine â”€â”€
+                </div>
+            </div>
+            <div style="color:var(--text2);line-height:1.8;">
+                <span style="color:var(--amber);">Welcome to UNION Browser</span><br>
+                <span style="color:var(--text3);">This is a preview. On real Hyprland, Firefox opens here.</span><br><br>
+                <span style="color:var(--text3);">New Tab | History | Bookmarks | Extensions</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEOVIM WINDOW -->
+<div class="window" id="win-neovim" style="left:300px;top:120px;width:500px;height:340px;">
+    <div class="win-titlebar" data-window="win-neovim">
+        <div class="win-dots">
+            <button class="win-dot r" onclick="closeWindow('win-neovim');updateDockIndicators()"></button>
+            <button class="win-dot y" onclick="minimizeWindow('win-neovim')"></button>
+            <button class="win-dot g" onclick="maximizeWindow('win-neovim')"></button>
+        </div>
+        <span class="win-title">nvim â€” init.lua</span>
+    </div>
+    <div class="win-body">
+        <div style="background:var(--bg);padding:10px;font-size:11px;line-height:1.6;min-height:100%;">
+            <span style="color:var(--text3);">  1</span>  <span style="color:var(--purple);">local</span> <span style="color:var(--text);">fn = vim.fn</span><br>
+            <span style="color:var(--text3);">  2</span>  <span style="color:var(--purple);">local</span> <span style="color:var(--text);">g = vim.g</span><br>
+            <span style="color:var(--text3);">  3</span><br>
+            <span style="color:var(--text3);">  4</span>  <span style="color:var(--text3);">-- UNION Theme</span><br>
+            <span style="color:var(--text3);">  5</span>  <span style="color:var(--blue);">vim.g</span><span style="color:var(--text);">.colors_name = </span><span style="color:var(--green);">"union"</span><br>
+            <span style="color:var(--text3);">  6</span><br>
+            <span style="color:var(--text3);">  7</span>  <span style="color:var(--text3);">-- Terminal</span><br>
+            <span style="color:var(--text3);">  8</span>  <span style="color:var(--blue);">vim.opt</span><span style="color:var(--text);">.number = </span><span style="color:var(--purple);">true</span><br>
+            <span style="color:var(--text3);">  9</span>  <span style="color:var(--blue);">vim.opt</span><span style="color:var(--text);">.relativenumber = </span><span style="color:var(--purple);">true</span><br>
+            <span style="color:var(--text3);"> 10</span>  <span style="color:var(--blue);">vim.opt</span><span style="color:var(--text);">.tabstop = </span><span style="color:var(--amber);">4</span><br>
+            <span style="color:var(--text3);"> 11</span><br>
+            <span style="color:var(--text3);"> 12</span>  <span style="color:var(--text3);">-- Statusline</span><br>
+            <span style="color:var(--text3);"> 13</span>  <span style="color:var(--blue);">vim.opt</span><span style="color:var(--text);">.statusline = </span><span style="color:var(--green);">" â—‰âŠ•â—‰ %f %m %r %=%l:%c "</span><br>
+            <span style="color:var(--text3);"> 14</span><br>
+            <span style="color:var(--text3);"> 15</span>  <span style="color:var(--text3);">-- Keybindings</span><br>
+            <span style="color:var(--text3);"> 16</span>  <span style="color:var(--blue);">vim.keymap.set</span><span style="color:var(--text);">(</span><span style="color:var(--green);">"n"</span><span style="color:var(--text);">, </span><span style="color:var(--green);">"&lt;leader&gt;w"</span><span style="color:var(--text);">, vim.cmd.w)</span><br>
+            <span style="color:var(--text3);"> 17</span>  <span style="color:var(--blue);">vim.keymap.set</span><span style="color:var(--text);">(</span><span style="color:var(--green);">"n"</span><span style="color:var(--text);">, </span><span style="color:var(--green);">"&lt;leader&gt;q"</span><span style="color:var(--text);">, vim.cmd.q)</span><br>
+            <span style="color:var(--red);">~</span><br>
+            <span style="color:var(--red);">~</span><br>
+            <span style="color:var(--amber);">"union-init.lua" [Modified] [+]    17L, 412C</span>
+        </div>
+    </div>
+</div>
+
 <!-- DOCK -->
 <div class="dock-wrapper">
     <div class="dock" id="dock">
@@ -782,23 +869,30 @@ body {
             <div class="dock-tooltip">Launcher</div>
         </div>
         <div class="dock-separator"></div>
-        <div class="dock-item active" onclick="focusWindow('win-terminal')" title="Terminal">
+        <div class="dock-ws active" data-ws="1">â—‹</div>
+        <div class="dock-ws" data-ws="2">â—‹</div>
+        <div class="dock-ws" data-ws="3">â—</div>
+        <div class="dock-ws" data-ws="4">â—‹</div>
+        <div class="dock-ws" data-ws="5">â—‹</div>
+        <div class="dock-ws" data-ws="6">â—‹</div>
+        <div class="dock-separator"></div>
+        <div class="dock-item active" data-app="win-terminal" onclick="launchApp('terminal')">
             <span>â–¸</span>
             <div class="dock-tooltip">kitty</div>
         </div>
-        <div class="dock-item" onclick="launchApp('thunar')" title="Files">
+        <div class="dock-item" data-app="win-thunar" onclick="launchApp('thunar')">
             <span>â—†</span>
             <div class="dock-tooltip">thunar</div>
         </div>
-        <div class="dock-item" onclick="launchApp('firefox')" title="Firefox">
+        <div class="dock-item" data-app="win-firefox" onclick="launchApp('firefox')">
             <span>â—Ž</span>
             <div class="dock-tooltip">firefox</div>
         </div>
-        <div class="dock-item" onclick="launchApp('btop')" title="btop">
+        <div class="dock-item" data-app="win-btop" onclick="launchApp('btop')">
             <span>â—Š</span>
             <div class="dock-tooltip">btop</div>
         </div>
-        <div class="dock-item" onclick="launchApp('neovim')" title="Neovim">
+        <div class="dock-item" data-app="win-neovim" onclick="launchApp('neovim')">
             <span>âŒˆ</span>
             <div class="dock-tooltip">nvim</div>
         </div>
@@ -848,6 +942,7 @@ function openWindow(id) {
 
 function closeWindow(id) {
     document.getElementById(id)?.classList.remove('open');
+    if (typeof updateDockIndicators === 'function') updateDockIndicators();
 }
 
 function minimizeWindow(id) {
@@ -925,17 +1020,29 @@ function launchApp(app) {
     if (app === 'terminal') openWindow('win-terminal');
     else if (app === 'btop') openWindow('win-btop');
     else if (app === 'thunar') openWindow('win-thunar');
-    else if (app === 'firefox') {
-        alert('Firefox would open here on real Hyprland.');
-    } else if (app === 'neovim') {
-        alert('Neovim would open here on real Hyprland.');
-    }
+    else if (app === 'firefox') openWindow('win-firefox');
+    else if (app === 'neovim') openWindow('win-neovim');
+    updateDockIndicators();
 }
 
 function toggleRofi() {
     const r = document.getElementById('win-rofi');
     if (r.classList.contains('open')) closeWindow('win-rofi');
     else { openWindow('win-rofi'); document.getElementById('rofi-input').focus(); }
+}
+
+function updateDockIndicators() {
+    const apps = { 'win-terminal': 0, 'win-thunar': 1, 'win-firefox': 2, 'win-btop': 3, 'win-neovim': 4 };
+    const dockItems = document.querySelectorAll('.dock-item[data-app]');
+    dockItems.forEach(item => {
+        const app = item.dataset.app;
+        const win = document.getElementById(app);
+        if (win && win.classList.contains('open')) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 }
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -957,6 +1064,7 @@ document.addEventListener('keydown', e => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault();
         openWindow('win-terminal');
+        updateDockIndicators();
     }
 });
 
@@ -964,12 +1072,37 @@ document.addEventListener('keydown', e => {
 // WORKSPACE SWITCHING
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 let currentWs = 3;
-document.querySelectorAll('.topbar-ws').forEach(ws => {
-    ws.addEventListener('click', () => {
-        document.querySelector('.topbar-ws.active')?.classList.remove('active');
-        ws.classList.add('active');
-        currentWs = parseInt(ws.dataset.ws);
+
+function switchWorkspace(wsNum) {
+    currentWs = wsNum;
+    // Update all workspace dots (top bar and dock)
+    document.querySelectorAll('.topbar-ws').forEach(ws => {
+        const num = parseInt(ws.dataset.ws);
+        if (num === wsNum) {
+            ws.classList.add('active');
+            ws.textContent = 'â—';
+        } else {
+            ws.classList.remove('active');
+            ws.textContent = 'â—‹';
+        }
     });
+    document.querySelectorAll('.dock-ws').forEach(ws => {
+        const num = parseInt(ws.dataset.ws);
+        if (num === wsNum) {
+            ws.classList.add('active');
+            ws.textContent = 'â—';
+        } else {
+            ws.classList.remove('active');
+            ws.textContent = 'â—‹';
+        }
+    });
+}
+
+document.querySelectorAll('.topbar-ws').forEach(ws => {
+    ws.addEventListener('click', () => switchWorkspace(parseInt(ws.dataset.ws)));
+});
+document.querySelectorAll('.dock-ws').forEach(ws => {
+    ws.addEventListener('click', () => switchWorkspace(parseInt(ws.dataset.ws)));
 });
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
