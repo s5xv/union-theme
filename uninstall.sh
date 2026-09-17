@@ -125,9 +125,9 @@ main() {
 
     # Remove shell integration
     for rc in "${HOME}/.bashrc" "${HOME}/.zshrc"; do
-        if [[ -f "$rc" ]] && grep -q "union-login" "$rc" 2>/dev/null; then
-            sed -i '/^# UNION Theme â€” Terminal Login Banner$/d' "$rc"
-            sed -i '/^# Remove the line below to disable startup banner$/d' "$rc"
+        if [[ -f "$rc" ]] && grep -q "union" "$rc" 2>/dev/null; then
+            sed -i '/^# UNION Theme/d' "$rc"
+            sed -i '/^source ~\/.config\/shell\/aliases.sh/d' "$rc"
             sed -i '/^# union-login$/d' "$rc"
             log_success "Removed shell integration from: $rc"
         fi
