@@ -1,0 +1,68 @@
+#!/bin/bash
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” CUSTOM WAYBAR MODULES
+# Unified National Institute for Orbital and Nuclear Research
+# Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
+# Facility 04 â€” Terminal 7B-114
+# Document: UN-04-WBM-001  |  Classification: RESTRICTED
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+# â”€â”€â”€ SYSTEM STATUS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+module_status() {
+    local cpu=$(grep -s "cpu " /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf "%.0f", usage}')
+    local mem=$(free | awk '/Mem:/ {printf "%.0f", $3/$2 * 100}')
+    
+    if [[ "$cpu" -gt 90 ]] || [[ "$mem" -gt 90 ]]; then
+        echo "CRIT"
+    elif [[ "$cpu" -gt 70 ]] || [[ "$mem" -gt 70 ]]; then
+        echo "WARN"
+    else
+        echo "NOM"
+    fi
+}
+
+# â”€â”€â”€ WEATHER (if wttr available) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+module_weather() {
+    if command -v curl &> /dev/null; then
+        curl -s "wttr.in/?format=%t" 2>/dev/null | head -1
+    else
+        echo "N/A"
+    fi
+}
+
+# â”€â”€â”€ PLAYER STATUS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+module_player() {
+    if command -v playerctl &> /dev/null; then
+        local status=$(playerctl status 2>/dev/null)
+        local title=$(playerctl metadata title 2>/dev/null)
+        local artist=$(playerctl metadata artist 2>/dev/null)
+        
+        if [[ "$status" == "Playing" ]]; then
+            echo "â–¶ ${artist} â€” ${title}"
+        elif [[ "$status" == "Paused" ]]; then
+            echo "â¸ ${artist} â€” ${title}"
+        else
+            echo ""
+        fi
+    fi
+}
+
+# â”€â”€â”€ DISK USAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+module_disk() {
+    df -h / | awk 'NR==2 {printf "%s/%s (%s)", $3, $2, $5}'
+}
+
+# â”€â”€â”€ UPTIME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+module_uptime() {
+    uptime -p 2>/dev/null | sed 's/up //'
+}
+
+# â”€â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+case "${1:-}" in
+    status)     module_status ;;
+    weather)    module_weather ;;
+    player)     module_player ;;
+    disk)       module_disk ;;
+    uptime)     module_uptime ;;
+    *)          echo "Usage: union-custom {status|weather|player|disk|uptime}" ;;
+esac
