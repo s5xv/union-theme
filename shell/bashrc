@@ -32,7 +32,7 @@ else
 fi
 
 # â”€â”€â”€ SOURCES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-[[ -f ~/.config/union/shell/aliases.sh ]] && source ~/.config/union/shell/aliases.sh
+[[ -f ~/.config/shell/aliases.sh ]] && source ~/.config/shell/aliases.sh
 [[ -f /usr/share/fzf/completion.bash ]] && source /usr/share/fzf/completion.bash
 [[ -f /usr/share/fzf/key-bindings.bash ]] && source /usr/share/fzf/key-bindings.bash
 
