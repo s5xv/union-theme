@@ -41,11 +41,18 @@ REQUIRED_PACKAGES=(
     "wireplumber"
     "xdg-desktop-portal-hyprland"
     "polkit-gnome"
+    "sox"
+    "playerctl"
+    "thunar"
+    "btop"
+    "neovim"
+    "tmux"
 )
 
 # Optional packages
 OPTIONAL_PACKAGES=(
     "fastfetch"
+    "neofetch"
     "papirus-icon-theme"
     "ttf-jetbrains-mono-nerd"
     "cliphist"
@@ -56,6 +63,15 @@ OPTIONAL_PACKAGES=(
     "wl-clipboard"
     "nm-applet"
     "blueman"
+    "fzf"
+    "fd"
+    "lazygit"
+    "lazydocker"
+    "ranger"
+    "dunst"
+    "wofi"
+    "libnotify"
+    "hyprpaper"
 )
 
 # â”€â”€â”€ FUNCTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -222,6 +238,62 @@ install_configs() {
     mkdir -p "${CONFIG_DIR}/mako"
     cp "${SCRIPT_DIR}/mako/"* "${CONFIG_DIR}/mako/"
     log_success "Mako notification configuration installed"
+
+    # btop
+    mkdir -p "${CONFIG_DIR}/btop"
+    cp "${SCRIPT_DIR}/btop/"* "${CONFIG_DIR}/btop/"
+    log_success "btop configuration installed"
+
+    # Neovim
+    mkdir -p "${CONFIG_DIR}/nvim"
+    cp "${SCRIPT_DIR}/nvim/"* "${CONFIG_DIR}/nvim/"
+    log_success "Neovim configuration installed"
+
+    # Tmux
+    cp "${SCRIPT_DIR}/tmux/tmux.conf" "${HOME}/.tmux.conf"
+    log_success "Tmux configuration installed"
+
+    # Swaylock
+    mkdir -p "${CONFIG_DIR}/swaylock"
+    cp "${SCRIPT_DIR}/swaylock/config" "${CONFIG_DIR}/swaylock/config"
+    log_success "Swaylock configuration installed"
+
+    # Swayidle
+    mkdir -p "${CONFIG_DIR}/swayidle"
+    cp "${SCRIPT_DIR}/swaylock/idle" "${CONFIG_DIR}/swayidle/config"
+    log_success "Swayidle configuration installed"
+
+    # Neofetch
+    mkdir -p "${CONFIG_DIR}/neofetch"
+    cp "${SCRIPT_DIR}/neofetch/"* "${CONFIG_DIR}/neofetch/"
+    log_success "Neofetch configuration installed"
+
+    # Fastfetch
+    mkdir -p "${CONFIG_DIR}/fastfetch"
+    cp "${SCRIPT_DIR}/fastfetch/"* "${CONFIG_DIR}/fastfetch/"
+    log_success "Fastfetch configuration installed"
+
+    # Shell
+    mkdir -p "${CONFIG_DIR}/shell"
+    cp "${SCRIPT_DIR}/shell/aliases.sh" "${CONFIG_DIR}/shell/aliases.sh"
+    log_success "Shell aliases installed"
+
+    # Dunst (if using dunst instead of mako)
+    mkdir -p "${CONFIG_DIR}/dunst"
+    cp "${SCRIPT_DIR}/dunst/"* "${CONFIG_DIR}/dunst/"
+    log_success "Dunst configuration installed"
+
+    # UNION theme directory (ASCII art, etc.)
+    mkdir -p "${CONFIG_DIR}/union"
+    cp -r "${SCRIPT_DIR}/ascii" "${CONFIG_DIR}/union/"
+    cp "${SCRIPT_DIR}/colors/palette.conf" "${CONFIG_DIR}/union/"
+    log_success "UNION theme assets installed"
+
+    # Generate sound files if sox is available
+    if command -v sox &>/dev/null; then
+        /usr/local/bin/union-sounds 2>/dev/null || true
+        log_success "Sound effects generated"
+    fi
 
     echo ""
 }
