@@ -1,5 +1,5 @@
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-/* UNION THEME â€” WAYBAR STYLESHEET                                   */
+/* UNION THEME â€” WAYBAR DOCK (DEFAULT TASKBAR)                        */
 /* Unified National Institute for Orbital and Nuclear Research       */
 /* Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹                 */
 /* Facility 04 â€” Terminal 7B-114                                     */
@@ -7,164 +7,148 @@
 
 * {
     font-family: "JetBrains Mono", "IBM Plex Mono", "Source Code Pro", monospace;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: #1a1d23;
+    background-color: #22262ecc;
     color: #c8cdd5;
-    border-bottom: 1px solid #3d4250;
+    border: 1px solid #3d4250;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    padding: 0 8px;
+}
+
+/* â”€â”€â”€ AUTO-HIDE: Hidden by default, show on hover â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+window#waybar {
+    opacity: 0.15;
+}
+
+window#waybar:hover {
+    opacity: 1;
 }
 
 tooltip {
     background: #22262e;
     border: 1px solid #3d4250;
     color: #c8cdd5;
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 8px 12px;
 }
 
 tooltip label {
     color: #c8cdd5;
-    font-family: "JetBrains Mono", "IBM Plex Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-size: 10px;
 }
 
-/* â”€â”€â”€ LEFT SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€â”€ LOGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-#custom-union-logo {
+#custom-union-logo-dock {
     color: #b85450;
-    font-size: 12px;
-    padding: 0 10px;
-    margin: 0;
+    font-size: 14px;
+    padding: 0 12px;
+    margin: 2px;
     font-weight: 700;
+    border-radius: 8px;
 }
 
-#custom-union-logo:hover {
-    background-color: #2a2e37;
+#custom-union-logo-dock:hover {
+    background-color: rgba(184, 84, 80, 0.15);
 }
 
-#custom-union-id {
-    color: #8891a0;
-    font-size: 9px;
-    padding: 0 6px;
-    margin: 0;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-/* â”€â”€â”€ CENTER SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€â”€ WORKSPACES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 #workspaces {
-    background-color: #1a1d23;
+    background-color: transparent;
     color: #5c6370;
     padding: 0 8px;
-    margin: 0;
+    margin: 2px 0;
 }
 
 #workspaces button {
-    padding: 0 4px;
-    margin: 0 1px;
+    padding: 2px 8px;
+    margin: 0 2px;
     color: #5c6370;
     background-color: transparent;
     border: none;
-    border-radius: 0;
-    min-width: 16px;
-    font-size: 11px;
+    border-radius: 6px;
+    min-width: 20px;
+    font-size: 14px;
     font-weight: 700;
 }
 
 #workspaces button.active {
     color: #b85450;
-    background-color: transparent;
-    border-bottom: 1px solid #b85450;
+    background-color: rgba(184, 84, 80, 0.15);
+    border-radius: 6px;
 }
 
 #workspaces button:hover {
-    background-color: #2a2e37;
+    background-color: rgba(200, 205, 213, 0.1);
     color: #c8cdd5;
 }
 
 #workspaces button.urgent {
     color: #d4a04a;
+    background-color: rgba(212, 160, 74, 0.15);
 }
 
-/* â”€â”€â”€ RIGHT SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€â”€ VOLUME BAR (CENTER) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-#cpu,
-#memory,
-#temperature,
-#network,
-#pulseaudio,
-#battery,
-#clock {
-    padding: 0 8px;
-    margin: 0;
-    color: #8891a0;
-}
-
-#cpu {
-    color: #6a9f78;
-}
-
-#memory {
-    color: #5e81ac;
-}
-
-#temperature {
-    color: #d4a04a;
-}
-
-#temperature.critical {
-    color: #b85450;
-    animation: blink 1s ease-in-out infinite;
-}
-
-#network {
-    color: #5e9fb0;
-}
-
-#network.disconnected {
-    color: #b85450;
-}
-
-#pulseaudio {
+#custom-union-volume-bar {
     color: #8b7bab;
+    font-size: 11px;
+    padding: 4px 16px;
+    margin: 2px 8px;
+    background-color: rgba(139, 123, 171, 0.08);
+    border-radius: 8px;
+    border: 1px solid rgba(139, 123, 171, 0.15);
 }
 
-#pulseaudio.muted {
-    color: #5c6370;
+#custom-union-volume-bar:hover {
+    background-color: rgba(139, 123, 171, 0.15);
+    border-color: rgba(139, 123, 171, 0.3);
+    color: #a595c5;
 }
 
-#battery {
-    color: #6a9f78;
-}
+/* â”€â”€â”€ SYS INFO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-#battery.warning {
-    color: #d4a04a;
-}
-
-#battery.critical {
+#custom-union-sys-info {
     color: #b85450;
-    animation: blink 1s ease-in-out infinite;
-}
-
-#battery.full {
-    color: #5c6370;
-}
-
-#clock {
-    color: #c8cdd5;
+    font-size: 11px;
+    padding: 4px 12px;
+    margin: 2px;
     font-weight: 600;
+    border-radius: 8px;
 }
 
-/* â”€â”€â”€ TRAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+#custom-union-sys-info:hover {
+    background-color: rgba(184, 84, 80, 0.15);
+}
+
+/* â”€â”€â”€ TRAY TOGGLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+#custom-union-tray-toggle {
+    color: #5c6370;
+    font-size: 12px;
+    padding: 2px 8px;
+    margin: 2px;
+    border-radius: 6px;
+}
+
+#custom-union-tray-toggle:hover {
+    color: #8891a0;
+    background-color: rgba(136, 145, 160, 0.1);
+}
+
+/* â”€â”€â”€ SYSTEM TRAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 #tray {
     padding: 0 6px;
-    margin: 0;
+    margin: 2px;
     color: #8891a0;
 }
 
@@ -175,22 +159,4 @@ tooltip label {
 #tray > needs-attention {
     -gtk-icon-effect: highlight;
     color: #d4a04a;
-}
-
-/* â”€â”€â”€ SEPARATORS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-
-#custom-separator-1,
-#custom-separator-2 {
-    color: #3d4250;
-    padding: 0 2px;
-    margin: 0;
-    font-weight: 400;
-}
-
-/* â”€â”€â”€ ANIMATIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-
-@keyframes blink {
-    to {
-        opacity: 0.5;
-    }
 }
