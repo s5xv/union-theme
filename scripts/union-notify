@@ -1,0 +1,198 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════
+# UNION — NOTIFICATION SYSTEM
+# Unified National Institute for Orbital and Nuclear Research
+# Государственный институт специальных исследований
+# Facility 04 — Terminal 7B-114
+# ═══════════════════════════════════════════════════════════════════
+
+# ─── CONFIGURATION ───────────────────────────────────────────────
+UNION_NOTIFY_ENABLED="${UNION_NOTIFY_ENABLED:-1}"
+UNION_NOTIFY_APP_NAME="UNION // SYSTEM"
+UNION_NOTIFY_TIMEOUT=5000
+
+# ─── MESSAGES ────────────────────────────────────────────────────
+send_notification() {
+    local app_name="$1"
+    local summary="$2"
+    local body="$3"
+    local urgency="${4:-normal}"
+    local icon="${5:-}"
+
+    if [[ "$UNION_NOTIFY_ENABLED" != "1" ]]; then
+        return 0
+    fi
+
+    if command -v makoctl &> /dev/null; then
+        makoctl invoke --app-name "$app_name" --summary "$summary" --body "$body" --urgency "$urgency" 2>/dev/null
+    elif command -v notify-send &> /dev/null; then
+        notify-send -u "$urgency" -a "$app_name" "$summary" "$body" 2>/dev/null
+    fi
+}
+
+# ─── SYSTEM NOTIFICATIONS ────────────────────────────────────────
+notify_system() {
+    local message="$1"
+    local body="${2:-}"
+    send_notification "UNION // SYSTEM" "$message" "$body" "normal"
+}
+
+notify_communications() {
+    local message="$1"
+    local body="${2:-}"
+    send_notification "UNION // COMMUNICATIONS" "$message" "$body" "normal"
+}
+
+notify_audio() {
+    local message="$1"
+    local body="${2:-}"
+    send_notification "UNION // AUDIO SYSTEM" "$message" "$body" "normal"
+}
+
+notify_optical() {
+    local message="$1"
+    local body="${2:-}"
+    send_notification "UNION // OPTICAL SYSTEM" "$message" "$body" "normal"
+}
+
+notify_application() {
+    local message="$1"
+    local body="${2:-}"
+    send_notification "UNION // APPLICATION CONTROL" "$message" "$body" "normal"
+}
+
+notify_warning() {
+    local message="$1"
+    local body="${2:-}"
+    send_notification "UNION // WARNING" "$message" "$body" "critical"
+}
+
+notify_transfer() {
+    local message="$1"
+    local body="${2:-}"
+    send_notification "UNION // DATA TRANSFER" "$message" "$body" "low"
+}
+
+# ─── PRESET NOTIFICATIONS ────────────────────────────────────────
+preset_startup() {
+    notify_system "SYSTEM INITIALIZED" "UNION workstation online. Facility 04, Terminal 7B-114."
+}
+
+preset_headphones_connected() {
+    notify_communications "WIRELESS LINK ESTABLISHED" "Device: Headphones\nStatus: Connected"
+}
+
+preset_headphones_disconnected() {
+    notify_communications "WIRELESS LINK TERMINATED" "Device: Headphones\nStatus: Disconnected"
+}
+
+preset_volume_change() {
+    local vol="${1:-0}"
+    notify_audio "OUTPUT: ${vol}%"
+}
+
+preset_brightness_change() {
+    local bright="${1:-0}"
+    notify_optical "INTENSITY: ${bright}%"
+}
+
+preset_app_launch() {
+    local app="${1:-unknown}"
+    notify_application "PROCESS INITIALIZED" "Application: ${app}"
+}
+
+preset_screenshot() {
+    notify_transfer "CAPTURE COMPLETE" "Screenshot saved to archive."
+}
+
+preset_workspace_change() {
+    local ws="${1:-1}"
+    local name="${2:-UNKNOWN}"
+    notify_system "WORKSPACE ACTIVE" "Sector: ${ws} — ${name}"
+}
+
+# ─── MAIN ────────────────────────────────────────────────────────
+main() {
+    case "${1:-}" in
+        --system)
+            shift
+            notify_system "$@"
+            ;;
+        --communications)
+            shift
+            notify_communications "$@"
+            ;;
+        --audio)
+            shift
+            notify_audio "$@"
+            ;;
+        --optical)
+            shift
+            notify_optical "$@"
+            ;;
+        --application)
+            shift
+            notify_application "$@"
+            ;;
+        --warning)
+            shift
+            notify_warning "$@"
+            ;;
+        --transfer)
+            shift
+            notify_transfer "$@"
+            ;;
+        --preset-startup)
+            preset_startup
+            ;;
+        --preset-headphones)
+            preset_headphones_connected
+            ;;
+        --preset-volume)
+            preset_volume_change "${2:-0}"
+            ;;
+        --preset-brightness)
+            preset_brightness_change "${2:-0}"
+            ;;
+        --preset-app)
+            preset_app_launch "${2:-unknown}"
+            ;;
+        --preset-screenshot)
+            preset_screenshot
+            ;;
+        --preset-workspace)
+            preset_workspace_change "${2:-1}" "${3:-UNKNOWN}"
+            ;;
+        --help|-h)
+            echo "Usage: union-notify [OPTION] [MESSAGE] [BODY]"
+            echo ""
+            echo "UNION Notification System"
+            echo ""
+            echo "Options:"
+            echo "  --system MSG BODY           System notification"
+            echo "  --communications MSG BODY   Communications notification"
+            echo "  --audio MSG BODY            Audio system notification"
+            echo "  --optical MSG BODY          Optical system notification"
+            echo "  --application MSG BODY      Application control notification"
+            echo "  --warning MSG BODY          Warning notification"
+            echo "  --transfer MSG BODY         Data transfer notification"
+            echo ""
+            echo "Presets:"
+            echo "  --preset-startup            Startup notification"
+            echo "  --preset-headphones         Headphones connected"
+            echo "  --preset-volume VOL         Volume change"
+            echo "  --preset-brightness VAL     Brightness change"
+            echo "  --preset-app NAME           App launch"
+            echo "  --preset-screenshot         Screenshot taken"
+            echo "  --preset-workspace NUM NAME Workspace change"
+            echo ""
+            echo "Configuration:"
+            echo "  Set UNION_NOTIFY_ENABLED=0 to disable all notifications"
+            ;;
+        *)
+            echo "Use --help for usage information"
+            ;;
+    esac
+}
+
+main "$@"
