@@ -35,18 +35,27 @@ REQUIRED_PACKAGES=(
     "mako"
     "swww"
     "starship"
-    "fastfetch"
     "jq"
     "grimblast-git"
     "brightnessctl"
     "wireplumber"
+    "xdg-desktop-portal-hyprland"
+    "polkit-gnome"
 )
 
 # Optional packages
 OPTIONAL_PACKAGES=(
+    "fastfetch"
     "papirus-icon-theme"
     "ttf-jetbrains-mono-nerd"
     "cliphist"
+    "swaylock"
+    "swayidle"
+    "grim"
+    "slurp"
+    "wl-clipboard"
+    "nm-applet"
+    "blueman"
 )
 
 # ─── FUNCTIONS ───────────────────────────────────────────────────
