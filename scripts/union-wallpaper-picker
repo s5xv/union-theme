@@ -1,0 +1,56 @@
+#!/bin/bash
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” WALLPAPER SWITCHER (ROFI)
+# Unified National Institute for Orbital and Nuclear Research
+# Facility 04 â€” Terminal 7B-114
+# Document: UN-04-WLS-001  |  Classification: RESTRICTED
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+WALLPAPER_DIR="$HOME/Pictures/union"
+SWWW_DIR="$HOME/.cache/swww"
+
+# â”€â”€â”€ FIND WALLPAPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+find_wallpapers() {
+    find "$WALLPAPER_DIR" -type f \( \
+        -name "*.jpg" -o \
+        -name "*.jpeg" -o \
+        -name "*.png" -o \
+        -name "*.webp" \
+    \) 2>/dev/null | sort
+}
+
+# â”€â”€â”€ SHOW MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+WALLPAPERS=$(find_wallpapers)
+
+if [[ -z "$WALLPAPERS" ]]; then
+    notify-send "UNION // WALLPAPER" "No wallpapers found in $WALLPAPER_DIR"
+    exit 1
+fi
+
+CHOICE=$(echo "$WALLPAPERS" | while read -r f; do
+    basename "$f"
+done | rofi -dmenu -config ~/.config/rofi/config.rasi -p "SELECT WALLPAPER:")
+
+if [[ -z "$CHOICE" ]]; then
+    exit 0
+fi
+
+# â”€â”€â”€ APPLY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+SELECTED=$(find "$WALLPAPER_DIR" -name "$CHOICE" -type f | head -1)
+
+if [[ -n "$SELECTED" ]] && command -v swww &>/dev/null; then
+    swww img "$SELECTED" \
+        --transition-type grow \
+        --transition-duration 1 \
+        --transition-fps 60
+elif [[ -n "$SELECTED" ]] && command -v hyprpaper &>/dev/null; then
+    hyprctl hyprpaper preload "$SELECTED"
+    hyprctl hyprpaper wallpaper "eDP-1,$SELECTED"
+elif [[ -n "$SELECTED" ]]; then
+    feh --bg-fill "$SELECTED"
+fi
+
+# Save last wallpaper
+echo "$SELECTED" > "$HOME/.cache/union-wallpaper"
+
+notify-send "UNION // WALLPAPER" "Applied: $CHOICE"
