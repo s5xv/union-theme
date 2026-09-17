@@ -48,8 +48,8 @@ This interactive wizard will:
 | What | Where it goes |
 |------|---------------|
 | Hyprland config (70+ keybindings) | `~/.config/hypr/` |
-| Waybar top bar (CPU/MEM/TEMP/DISK/NET/VOL/BAT/CLOCK) | `~/.config/waybar/` |
-| Waybar dock (macOS auto-hide, volume bar) | `~/.config/waybar/` |
+| Waybar dock (default, macOS auto-hide, volume bar) | `~/.config/waybar/` |
+| Waybar top bar (alternative, CPU/MEM/TEMP/DISK/NET/VOL/BAT/CLOCK) | `~/.config/waybar/` |
 | Kitty terminal (CRT effects, UNION colors) | `~/.config/kitty/` |
 | Starship prompt (git, docker, UNION symbol) | `~/.config/starship.toml` |
 | Rofi launcher (app search, power menu, wallpaper picker) | `~/.config/rofi/` |
