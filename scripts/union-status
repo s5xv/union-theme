@@ -1,10 +1,10 @@
 #!/bin/bash
-# ═══════════════════════════════════════════════════════════════════
-# UNION — SYSTEM STATUS DISPLAY
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” SYSTEM STATUS DISPLAY
 # Unified National Institute for Orbital and Nuclear Research
-# Государственный институт специальных исследований
-# Facility 04 — Terminal 7B-114
-# ═══════════════════════════════════════════════════════════════════
+# Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
+# Facility 04 â€” Terminal 7B-114
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 C_RED='\033[0;31m'
 C_BLUE='\033[0;34m'
@@ -99,30 +99,30 @@ print_status_panel() {
     local date=$(date '+%Y-%m-%d')
     local time=$(date '+%H:%M:%S')
 
-    echo -e "${C_DIM}╔═══════════════════════════════════════════════════════════════╗${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_RED}${C_BOLD}UNION${C_RESET} ${C_DIM}// SYSTEM STATUS${C_RESET}                                      ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}╠═══════════════════════════════════════════════════════════════╣${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}                                                             ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}SYSTEM STATUS${C_RESET} .............. ${C_GREEN}NOMINAL${C_RESET}                      ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}ARCHIVE${C_RESET} .................... ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}COMMUNICATIONS${C_RESET} ............. ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}RESEARCH NETWORK${C_RESET} ........... ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}ORBITAL RELAY${C_RESET} .............. ${C_AMBER}STANDBY${C_RESET}                       ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}NUCLEAR MONITOR${C_RESET} ............ ${C_GREEN}ACTIVE${C_RESET}                        ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}                                                             ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}╠═══════════════════════════════════════════════════════════════╣${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}CPU USAGE${C_RESET} ........... ${C_AMBER}${cpu}%${C_RESET}                                ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}MEMORY${C_RESET} ............. ${C_BLUE}${mem}%${C_RESET}  ${C_DIM}(${mem_detail})${C_RESET}                  ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}DISK${C_RESET} ............... ${C_CYAN}${disk}${C_RESET}                             ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}TEMPERATURE${C_RESET} ......... ${C_RED}${temp}°C${C_RESET}                                ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}NETWORK${C_RESET} ............. ${C_GREEN}${net}${C_RESET}                           ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}BATTERY${C_RESET} ............. ${C_VIOLET}${bat}${C_RESET}                        ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}UPTIME${C_RESET} .............. ${C_DIM}${uptime}${C_RESET}                    ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}                                                             ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}╠═══════════════════════════════════════════════════════════════╣${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FACILITY:=$C_FG}FACILITY${C_RESET}: 04  │  ${C_FG}TERMINAL${C_RESET}: 7B-114  │  ${C_FG}DATE${C_RESET}: ${date}     ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}║${C_RESET}  ${C_FG}TIME${C_RESET}: ${time}  │  ${C_FG}KERNEL${C_RESET}: ${kernel}        ${C_DIM}║${C_RESET}"
-    echo -e "${C_DIM}╚═══════════════════════════════════════════════════════════════╝${C_RESET}"
+    echo -e "${C_DIM}â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_RED}${C_BOLD}UNION${C_RESET} ${C_DIM}// SYSTEM STATUS${C_RESET}                                      ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}                                                             ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}SYSTEM STATUS${C_RESET} .............. ${C_GREEN}NOMINAL${C_RESET}                      ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}ARCHIVE${C_RESET} .................... ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}COMMUNICATIONS${C_RESET} ............. ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}RESEARCH NETWORK${C_RESET} ........... ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}ORBITAL RELAY${C_RESET} .............. ${C_AMBER}STANDBY${C_RESET}                       ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}NUCLEAR MONITOR${C_RESET} ............ ${C_GREEN}ACTIVE${C_RESET}                        ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}                                                             ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}CPU USAGE${C_RESET} ........... ${C_AMBER}${cpu}%${C_RESET}                                ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}MEMORY${C_RESET} ............. ${C_BLUE}${mem}%${C_RESET}  ${C_DIM}(${mem_detail})${C_RESET}                  ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}DISK${C_RESET} ............... ${C_CYAN}${disk}${C_RESET}                             ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}TEMPERATURE${C_RESET} ......... ${C_RED}${temp}Â°C${C_RESET}                                ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}NETWORK${C_RESET} ............. ${C_GREEN}${net}${C_RESET}                           ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}BATTERY${C_RESET} ............. ${C_VIOLET}${bat}${C_RESET}                        ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}UPTIME${C_RESET} .............. ${C_DIM}${uptime}${C_RESET}                    ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}                                                             ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FACILITY:=$C_FG}FACILITY${C_RESET}: 04  â”‚  ${C_FG}TERMINAL${C_RESET}: 7B-114  â”‚  ${C_FG}DATE${C_RESET}: ${date}     ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}TIME${C_RESET}: ${time}  â”‚  ${C_FG}KERNEL${C_RESET}: ${kernel}        ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${C_RESET}"
 }
 
 print_compact_status() {
@@ -131,7 +131,7 @@ print_compact_status() {
     local net=$(get_network_status)
     local time=$(date '+%H:%M')
 
-    echo -e "CPU ${cpu}% · MEM ${mem}% · NET ${net} · ${time}"
+    echo -e "CPU ${cpu}% Â· MEM ${mem}% Â· NET ${net} Â· ${time}"
 }
 
 usage() {
