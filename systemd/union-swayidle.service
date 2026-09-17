@@ -1,0 +1,13 @@
+# UNION â€” Swayidle Service
+[Unit]
+Description=UNION Swayidle Screen Management
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swayidle -w
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=graphical-session.target
