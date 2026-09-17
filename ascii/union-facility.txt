@@ -1,0 +1,31 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║  FACILITY IDENTIFICATION                                      ║
+║  ═══════════════════════                                       ║
+║                                                               ║
+║  DESIGNATION:    FACILITY 04                                  ║
+║  DIRECTORATE:    ORBITAL RESEARCH                             ║
+║  DIVISION:       DEEP-SPACE COMMUNICATIONS                    ║
+║  LOCATION:       COORDINATES REDACTED                         ║
+║                                                               ║
+║  ─────────────────────────────────────────────────────────    ║
+║                                                               ║
+║  PERSONNEL:                                                   ║
+║  DIRECTOR .............. DR. ██████████                       ║
+║  CHIEF SCIENTIST ....... DR. ██████████                       ║
+║  SECURITY OFFICER ...... COL. ██████████                       ║
+║                                                               ║
+║  ─────────────────────────────────────────────────────────    ║
+║                                                               ║
+║  ACTIVE PROJECTS:                                             ║
+║  ├─ PROJECT-014  ORBITAL LABORATORY                           ║
+║  ├─ PROJECT-027  LUNAR SURVEY                                 ║
+║  ├─ PROJECT-041  DEEP-SPACE PROBE                             ║
+║  ├─ PROJECT-073  NUCLEAR PROPULSION                           ║
+║  └─ PROJECT-███  CLASSIFIED                                   ║
+║                                                               ║
+║  ─────────────────────────────────────────────────────────    ║
+║                                                               ║
+║  SERIAL: UN-04-7B-114          STATUS: OPERATIONAL            ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
