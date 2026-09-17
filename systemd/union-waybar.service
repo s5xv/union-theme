@@ -1,0 +1,25 @@
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” SYSTEMD SERVICE FILES
+# Unified National Institute for Orbital and Nuclear Research
+# Facility 04 â€” Terminal 7B-114
+# Document: UN-04-SYS-001  |  Classification: RESTRICTED
+#
+# Install:
+#   cp systemd/* ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable union-waybar union-mako union-swayidle
+#   systemctl --user start union-waybar union-mako union-swayidle
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+[Unit]
+Description=UNION Waybar
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/waybar
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target
