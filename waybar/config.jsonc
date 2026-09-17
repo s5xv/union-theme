@@ -58,8 +58,8 @@
     "custom/union-status": {
         "format": "SYS",
         "tooltip": true,
-        "tooltip-format": "SYSTEM STATUS: NOMINAL\nCPU: {cpu}%\nRAM: {memory}%",
-        "on-click": "kitty union-status --full"
+        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick to open btop\nCPU: {cpu}%\nRAM: {memory}%",
+        "on-click": "kitty btop"
     },
 
     "custom/separator-1": {
@@ -110,8 +110,9 @@
     "cpu": {
         "format": "CPU {usage}%",
         "tooltip": true,
-        "tooltip-format": "CPU: {usage}%\nFrequency: {avg_frequency} GHz\nCore count: {num_cores}",
+        "tooltip-format": "CPU: {usage}%\nFrequency: {avg_frequency} GHz\nCore count: {num_cores}\nClick to open btop",
         "interval": 2,
+        "on-click": "kitty btop",
         "states": {
             "warning": 70,
             "critical": 90
@@ -121,8 +122,9 @@
     "memory": {
         "format": "MEM {percentage}%",
         "tooltip": true,
-        "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G\nPercentage: {percentage}%",
+        "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G\nPercentage: {percentage}%\nClick to open btop",
         "interval": 3,
+        "on-click": "kitty btop",
         "states": {
             "warning": 70,
             "critical": 90
@@ -132,8 +134,9 @@
     "temperature": {
         "format": "TEMP {temperatureC}Â°",
         "tooltip": true,
-        "tooltip-format": "Temperature: {temperatureC}Â°C / {temperatureF}Â°F\nCritical: {temperature_crt}Â°C",
+        "tooltip-format": "Temperature: {temperatureC}Â°C / {temperatureF}Â°F\nCritical: {temperature_crt}Â°C\nClick to open btop",
         "interval": 5,
+        "on-click": "kitty btop",
         "critical-threshold": 80,
         "format-critical": "TEMP {temperatureC}Â°"
     },
@@ -141,9 +144,10 @@
     "disk": {
         "format": "DISK {percentage_used}%",
         "tooltip": true,
-        "tooltip-format": "Disk: {used} / {total}\nPercentage: {percentage_used}%\nPath: /",
+        "tooltip-format": "Disk: {used} / {total}\nPercentage: {percentage_used}%\nPath: /\nClick to open file manager",
         "path": "/",
         "interval": 30,
+        "on-click": "thunar",
         "states": {
             "warning": 80,
             "critical": 95
