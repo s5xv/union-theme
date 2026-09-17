@@ -160,6 +160,23 @@ tooltip label {
     font-weight: 600;
 }
 
+/* ─── TRAY ─────────────────────────────────────────────────────── */
+
+#tray {
+    padding: 0 6px;
+    margin: 0;
+    color: #8891a0;
+}
+
+#tray > passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > needs-attention {
+    -gtk-icon-effect: highlight;
+    color: #d4a04a;
+}
+
 /* ─── SEPARATORS ────────────────────────────────────────────────── */
 
 #custom-separator-1,
