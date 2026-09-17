@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UNION Theme Preview â€” FACILITY 04</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "JetBrains Mono", "Cascadia Mono", "Fira Code", "Consolas", monospace;
+    background: #12141a;
+    color: #c8cdd5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    user-select: none;
+}
+
+/* â”€â”€â”€ TOP BAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.topbar {
+    height: 32px;
+    background: #1a1d23ee;
+    border-bottom: 1px solid #2d3140;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    z-index: 100;
+    flex-shrink: 0;
+}
+
+.topbar .logo { color: #b85450; font-weight: 700; font-size: 13px; margin-right: 8px; }
+.topbar .id { color: #8891a0; font-size: 11px; margin-right: 12px; }
+.topbar .status { color: #8891a0; font-size: 11px; margin-right: auto; }
+
+.topbar .workspaces {
+    display: flex;
+    gap: 4px;
+    background: #1a1d23;
+    border: 1px solid #2d3140;
+    border-radius: 8px;
+    padding: 2px 8px;
+    margin: 0 auto;
+}
+
+.topbar .ws {
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    color: #5c6370;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.topbar .ws.active { color: #b85450; background: rgba(184,84,80,0.15); }
+.topbar .ws:hover { background: rgba(200,205,213,0.1); color: #c8cdd5; }
+
+.topbar .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+}
+.topbar .right .notif { color: #d4a04a; font-size: 12px; }
+.topbar .right .net { color: #6a9f78; }
+.topbar .right .bat { color: #5e81ac; }
+.topbar .right .vol { color: #8b7bab; }
+.topbar .right .temp { color: #8891a0; }
+.topbar .right .cpu { color: #8891a0; }
+.topbar .right .mem { color: #8891a0; }
+.topbar .right .date { color: #8891a0; }
+.topbar .right .time { color: #b85450; font-weight: 600; }
+
+/* â”€â”€â”€ DESKTOP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.desktop {
+    flex: 1;
+    background: #12141a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-gradient {
+    position: absolute;
+    width: 100%; height: 100%;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(184,84,80,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(94,129,172,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(139,123,171,0.03) 0%, transparent 50%);
+}
+
+.terminal-window {
+    width: 680px;
+    background: #1a1d23;
+    border: 1px solid #2d3140;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 10;
+}
+
+.terminal-titlebar {
+    height: 28px;
+    background: #22262e;
+    border-bottom: 1px solid #2d3140;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 6px;
+}
+.terminal-titlebar .dot { width: 10px; height: 10px; border-radius: 50%; }
+.terminal-titlebar .dot.r { background: #b85450; }
+.terminal-titlebar .dot.y { background: #d4a04a; }
+.terminal-titlebar .dot.g { background: #6a9f78; }
+.terminal-titlebar .title { margin-left: 8px; font-size: 10px; color: #5c6370; }
+
+.terminal-body {
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 320px;
+}
+
+.prompt { color: #b85450; }
+.user { color: #c8cdd5; }
+.path { color: #5e81ac; }
+.symbol { color: #b85450; }
+.text { color: #c8cdd5; }
+.comment { color: #5c6370; }
+.ascii { color: #b85450; font-size: 11px; line-height: 1.2; }
+.accent { color: #d4a04a; }
+.muted { color: #5c6370; }
+
+/* â”€â”€â”€ BOTTOM DOCK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.dock {
+    height: 44px;
+    background: #22262e;
+    border-top: 1px solid #3d4250;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 100;
+    flex-shrink: 0;
+    opacity: 0.2;
+    transition: opacity 0.25s ease;
+}
+.dock:hover { opacity: 1; }
+
+.dock .logo { color: #b85450; font-weight: 700; font-size: 14px; margin-right: 16px; }
+
+.dock .workspaces {
+    display: flex;
+    gap: 4px;
+    margin-right: auto;
+}
+.dock .ws {
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    color: #5c6370;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.dock .ws.active { color: #b85450; background: rgba(184,84,80,0.15); }
+
+.dock .volume {
+    color: #8b7bab;
+    font-size: 11px;
+    padding: 4px 16px;
+    background: rgba(139,123,171,0.08);
+    border: 1px solid rgba(139,123,171,0.15);
+    border-radius: 8px;
+    margin: 0 24px;
+}
+
+.dock .sys {
+    color: #b85450;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    background: rgba(184,84,80,0.08);
+    border-radius: 8px;
+}
+
+.dock .tray {
+    display: flex;
+    gap: 6px;
+    margin-left: 12px;
+    color: #8891a0;
+    font-size: 12px;
+}
+
+/* â”€â”€â”€ HINTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.hint {
+    position: fixed;
+    bottom: 52px;
+    right: 16px;
+    background: #22262eee;
+    border: 1px solid #3d4250;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 10px;
+    color: #5c6370;
+    z-index: 200;
+    line-height: 1.8;
+}
+.hint kbd {
+    background: #2d3140;
+    color: #8891a0;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: inherit;
+}
+.hint .key { color: #b85450; }
+
+/* â”€â”€â”€ FLOATING APPS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.float-app {
+    position: absolute;
+    background: #1a1d23;
+    border: 1px solid #2d3140;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.float-app .header {
+    height: 24px;
+    background: #22262e;
+    border-bottom: 1px solid #2d3140;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 9px;
+    color: #5c6370;
+}
+
+.btop { top: 60px; right: 40px; width: 260px; height: 180px; }
+.btop .content { padding: 8px; font-size: 9px; color: #5e81ac; }
+.btop .bar { display: inline-block; height: 8px; margin: 1px 2px; border-radius: 2px; }
+
+.rofi { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 380px; z-index: 50; }
+.rofi .search {
+    padding: 10px 14px;
+    border-bottom: 1px solid #2d3140;
+    font-size: 12px;
+    color: #5c6370;
+}
+.rofi .search .cursor { color: #b85450; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.rofi .items { max-height: 200px; overflow: hidden; }
+.rofi .item {
+    padding: 8px 14px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.rofi .item.selected { background: rgba(184,84,80,0.12); color: #b85450; }
+.rofi .item .icon { width: 16px; text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <span class="logo">â—‰âŠ•â—‰</span>
+    <span class="id">FACILITY 04 // operator</span>
+    <span class="status">CPU: 3%</span>
+
+    <div class="workspaces">
+        <div class="ws">â—‹</div>
+        <div class="ws">â—‹</div>
+        <div class="ws active">â—</div>
+        <div class="ws">â—‹</div>
+        <div class="ws">â—‹</div>
+        <div class="ws">â—‹</div>
+    </div>
+
+    <div class="right">
+        <span class="notif">ðŸ””</span>
+        <span class="net">W: 87%</span>
+        <span class="bat">BAT: 94%</span>
+        <span class="vol">VOL: 75%</span>
+        <span class="temp">TEMP: 42Â°C</span>
+        <span class="cpu">CPU: 3%</span>
+        <span class="mem">MEM: 38%</span>
+        <span class="date">DAY: Wed 17</span>
+        <span class="time">TIME: 14:23</span>
+    </div>
+</div>
+
+<!-- DESKTOP -->
+<div class="desktop">
+    <div class="bg-gradient"></div>
+
+    <!-- TERMINAL -->
+    <div class="terminal-window">
+        <div class="terminal-titlebar">
+            <div class="dot r"></div>
+            <div class="dot y"></div>
+            <div class="dot g"></div>
+            <span class="title">kitty â€” bash â€” union@facility-04</span>
+        </div>
+        <div class="terminal-body">
+            <pre class="ascii">
+    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—
+    â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘â•šâ•â•â–ˆâ–ˆâ•”â•â•â•â–ˆâ–ˆâ•‘
+    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•”â–ˆâ–ˆâ•— â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘
+    â•šâ•â•â•â•â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•  â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â•šâ•â•
+    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•—
+    â•šâ•â•â•â•â•â•â• â•šâ•â•â•â•â•â• â•šâ•â•â•â•â•â•â•â•šâ•â•  â•šâ•â•â•â•   â•šâ•â•   â•šâ•â•</pre>
+            <br>
+            <span class="ascii">  â—‰âŠ•â—‰  UNIFIED NATIONAL INSTITUTE FOR</span><br>
+            <span class="ascii">       ORBITAL AND NUCLEAR RESEARCH</span><br><br>
+            <span class="comment">  â”€â”€â”€ SYSTEM STATUS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€</span><br>
+            <span class="text">  </span><span class="accent">FACILITY:</span><span class="text">  04</span><br>
+            <span class="text">  </span><span class="accent">TERMINAL:</span><span class="text">  7B-114</span><br>
+            <span class="text">  </span><span class="accent">OPERATOR:</span><span class="text">  [CLASSIFIED]</span><br>
+            <span class="text">  </span><span class="accent">STATUS:</span><span class="text">    </span><span class="muted" style="color:#6a9f78;">ACTIVE</span><br><br>
+            <span class="comment">  â”€â”€â”€ QUICK START â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€</span><br>
+            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+Return    â†’ Terminal</span><br>
+            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+D         â†’ App launcher</span><br>
+            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+V         â†’ Clipboard</span><br>
+            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+SHIFT+W   â†’ Wallpaper</span><br>
+            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+SHIFT+P   â†’ Power menu</span><br>
+            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+Space      â†’ Arabic/English</span><br>
+            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> Insert           â†’ Screenshot</span><br><br>
+            <span class="prompt">union@facility-04</span><span class="text">:</span><span class="path">~</span><span class="symbol">$</span><span class="text"> <span class="cursor">â–ˆ</span></span>
+        </div>
+    </div>
+
+    <!-- BTOP FLOAT -->
+    <div class="float-app btop">
+        <div class="header">btop â€” union@facility-04</div>
+        <div class="content">
+            <span style="color:#b85450;">CPU</span> <span style="color:#5c6370;">â”œâ”€</span>
+            <span class="bar" style="width:12px;background:#b85450;"></span>
+            <span class="bar" style="width:8px;background:#b85450;"></span>
+            <span class="bar" style="width:20px;background:#b85450;"></span>
+            <span class="bar" style="width:6px;background:#2d3140;"></span>
+            <span class="bar" style="width:14px;background:#2d3140;"></span>
+            <span style="color:#5c6370;"> 3.2%</span><br>
+            <span style="color:#5e81ac;">MEM</span> <span style="color:#5c6370;">â”œâ”€</span>
+            <span class="bar" style="width:40px;background:#5e81ac;"></span>
+            <span class="bar" style="width:24px;background:#2d3140;"></span>
+            <span style="color:#5c6370;"> 2.8G / 7.6G</span><br>
+            <span style="color:#6a9f78;">DSK</span> <span style="color:#5c6370;">â”œâ”€</span>
+            <span class="bar" style="width:30px;background:#6a9f78;"></span>
+            <span class="bar" style="width:34px;background:#2d3140;"></span>
+            <span style="color:#5c6370;"> 142G / 512G</span><br>
+            <span style="color:#8b7bab;">NET</span> <span style="color:#5c6370;">â””â”€</span>
+            <span style="color:#5c6370;"> wlan0: 87% â†‘ 2.1MB â†“ 15.4MB</span>
+        </div>
+    </div>
+</div>
+
+<!-- BOTTOM DOCK -->
+<div class="dock" id="dock">
+    <span class="logo">â—‰âŠ•â—‰</span>
+
+    <div class="workspaces">
+        <div class="ws">â—‹</div>
+        <div class="ws">â—‹</div>
+        <div class="ws active">â—</div>
+        <div class="ws">â—‹</div>
+        <div class="ws">â—‹</div>
+        <div class="ws">â—‹</div>
+    </div>
+
+    <div class="volume">VOL 75%</div>
+
+    <div class="sys">SYS</div>
+
+    <div class="tray">
+        <span>ðŸ“¶</span>
+        <span>ðŸ”Š</span>
+        <span>ðŸ”‹</span>
+    </div>
+</div>
+
+<!-- KEYBIND HINTS -->
+<div class="hint">
+    <span class="key">SUPER</span>+Return  Terminal<br>
+    <span class="key">SUPER</span>+D       Launcher<br>
+    <span class="key">SUPER</span>+V       Clipboard<br>
+    <span class="key">SUPER</span>+Shift+P Power<br>
+    <span class="key">SUPER</span>+Shift+W Wallpaper<br>
+    <span class="key">Insert</span>        Screenshot<br>
+    <span class="key">SUPER</span>+Space   Ara/Eng
+</div>
+
+</body>
+</html>
