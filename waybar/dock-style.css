@@ -19,7 +19,6 @@ window#waybar {
     border-radius: 12px;
     margin-bottom: 4px;
     padding: 0 8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* â”€â”€â”€ AUTO-HIDE: Hidden by default, show on hover â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -74,7 +73,6 @@ tooltip label {
     min-width: 20px;
     font-size: 14px;
     font-weight: 700;
-    transition: all 0.2s ease;
 }
 
 #workspaces button.active {
@@ -103,7 +101,6 @@ tooltip label {
     background-color: rgba(139, 123, 171, 0.08);
     border-radius: 8px;
     border: 1px solid rgba(139, 123, 171, 0.15);
-    transition: all 0.2s ease;
 }
 
 #custom-union-volume-bar:hover {
@@ -121,7 +118,6 @@ tooltip label {
     margin: 2px;
     font-weight: 700;
     border-radius: 8px;
-    transition: all 0.2s ease;
 }
 
 #custom-union-sys-info:hover {
@@ -136,7 +132,6 @@ tooltip label {
     padding: 2px 8px;
     margin: 2px;
     border-radius: 6px;
-    transition: all 0.2s ease;
 }
 
 #custom-union-tray-toggle:hover {
