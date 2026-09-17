@@ -3,11 +3,13 @@
 /* Unified National Institute for Orbital and Nuclear Research       */
 /* Государственный институт специальных исследований                 */
 /* Facility 04 — Terminal 7B-114                                     */
+/* Document: UN-04-ROF-002  |  Classification: RESTRICTED           */
 /* ═══════════════════════════════════════════════════════════════════ */
 
 * {
     bg:         #1a1d23;
     bg-alt:     #22262e;
+    bg-alt2:    #2a2e37;
     fg:         #c8cdd5;
     fg-dim:     #8891a0;
     fg-muted:   #5c6370;
@@ -49,7 +51,7 @@ prompt {
 
 entry {
     text-color: @fg;
-    placeholder: "SEARCH...";
+    placeholder: "SEARCH ARCHIVES...";
     placeholder-color: @fg-muted;
     font: "JetBrains Mono 11";
 }
