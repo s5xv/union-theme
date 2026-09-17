@@ -1,9 +1,9 @@
 # UNION THEME
 
 ## Unified National Institute for Orbital and Nuclear Research
-### Государственный институт специальных исследований
+### Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
 
-A complete Hyprland desktop environment theme for Arch Linux, designed to look like a classified Soviet scientific workstation from 1978–1988 that survived into the modern era and is now running Arch Linux + Hyprland.
+A complete Hyprland desktop environment theme for Arch Linux, designed to look like a classified Soviet scientific workstation from 1978â€“1988 that survived into the modern era and is now running Arch Linux + Hyprland.
 
 **This is a fictional organization for aesthetic purposes only. No real government agency is represented.**
 
@@ -52,7 +52,7 @@ The desktop should feel like an actual organization has existed for decades.
 
 ### Hyprland
 - 6 workspaces: ARCHIVE, RESEARCH, ORBITAL, LUNAR, DEEP SPACE, CONTROL
-- Workspace dot indicators (○○●○○○)
+- Workspace dot indicators (â—‹â—‹â—â—‹â—‹â—‹)
 - Smooth window open/close animations
 - Workspace switch animations
 - Gaps in: 4px, Gaps out: 8px
@@ -88,13 +88,13 @@ The desktop should feel like an actual organization has existed for decades.
 | `SUPER + SHIFT + M` | Exit Hyprland |
 
 ### Waybar
-- UNION logo (◉⊕◉) with facility tooltip
-- "UNION // ГИСС" identifier
+- UNION logo (â—‰âŠ•â—‰) with facility tooltip
+- "UNION // Ð“Ð˜Ð¡Ð¡" identifier
 - Workspace dots in center with name tooltips
 - CPU, RAM, Temperature, Network, Audio, Battery, Clock, Tray
 - Warning/critical color states
 - Blink animation on critical alerts
-- Technical separators (│, ·)
+- Technical separators (â”‚, Â·)
 
 ### Terminal
 - Dark blue-gray background (#1a1d23)
@@ -136,12 +136,12 @@ The desktop should feel like an actual organization has existed for decades.
 - Action border styling
 
 ### Scripts
-- `union-login` — Terminal startup banner with animated status
-- `union-logo` — 7 ASCII art sizes (large, medium, small, boot, status, classified, facility)
-- `union-wallpaper` — Workspace auto-switch wallpaper system
-- `union-workspace` — Dot indicator display
-- `union-status` — System status panel
-- `union-notify` — Themed notifications with 17+ presets:
+- `union-login` â€” Terminal startup banner with animated status
+- `union-logo` â€” 7 ASCII art sizes (large, medium, small, boot, status, classified, facility)
+- `union-wallpaper` â€” Workspace auto-switch wallpaper system
+- `union-workspace` â€” Dot indicator display
+- `union-status` â€” System status panel
+- `union-notify` â€” Themed notifications with 17+ presets:
   - Startup/Shutdown
   - Headphones connected/disconnected
   - Volume/Brightness changes
@@ -226,9 +226,9 @@ The theme uses 6 workspaces, each with its own name and wallpaper:
 | 6 | CONTROL | Cyan | control.jpg |
 
 Workspace indicators appear as dots in Waybar:
-- `●` Active workspace
-- `◉` Workspace with windows
-- `○` Empty workspace
+- `â—` Active workspace
+- `â—‰` Workspace with windows
+- `â—‹` Empty workspace
 
 ---
 
@@ -271,9 +271,9 @@ Edit `colors/palette.conf` to modify the color scheme.
 ### Change Workspace Names
 
 Edit the workspace names in:
-- `hypr/hyprland.conf` — Workspace comments
-- `waybar/config.jsonc` — Tooltip format
-- `scripts/union-workspace` — `WS_NAMES` array
+- `hypr/hyprland.conf` â€” Workspace comments
+- `waybar/config.jsonc` â€” Tooltip format
+- `scripts/union-workspace` â€” `WS_NAMES` array
 
 ### Disable Startup ASCII
 
@@ -294,8 +294,8 @@ export UNION_NOTIFY_ENABLED=0
 ### Change Terminal Appearance
 
 Edit `kitty/kitty.conf`:
-- `background_opacity` — Transparency level
-- `font_size` — Text size
+- `background_opacity` â€” Transparency level
+- `font_size` â€” Text size
 - Color values in the color scheme section
 
 ### Change Keyboard Layout
@@ -324,11 +324,11 @@ The theme defaults to US layout with Arabic toggle via `SUPER+Space`. To change:
 
 ### Active Projects
 
-- **PROJECT-014** — Orbital Laboratory
-- **PROJECT-027** — Lunar Survey
-- **PROJECT-041** — Deep-Space Probe
-- **PROJECT-073** — Nuclear Propulsion
-- **PROJECT-███** — Classified
+- **PROJECT-014** â€” Orbital Laboratory
+- **PROJECT-027** â€” Lunar Survey
+- **PROJECT-041** â€” Deep-Space Probe
+- **PROJECT-073** â€” Nuclear Propulsion
+- **PROJECT-â–ˆâ–ˆâ–ˆ** â€” Classified
 
 ### Facility Details
 
@@ -385,47 +385,47 @@ setxkbmap -layout us,ara -option grp:alt_shift_toggle
 
 ```
 union-theme/
-├── README.md
-├── install.sh
-├── uninstall.sh
-├── hypr/
-│   └── hyprland.conf
-├── waybar/
-│   ├── config.jsonc
-│   └── style.css
-├── kitty/
-│   └── kitty.conf
-├── starship/
-│   └── starship.toml
-├── rofi/
-│   ├── config.rasi
-│   └── union.rasi
-├── mako/
-│   └── config
-├── scripts/
-│   ├── union-login
-│   ├── union-logo
-│   ├── union-wallpaper
-│   ├── union-workspace
-│   ├── union-status
-│   └── union-notify
-├── ascii/
-│   ├── union-large.txt
-│   ├── union-medium.txt
-│   ├── union-small.txt
-│   ├── union-boot.txt
-│   ├── union-status.txt
-│   ├── union-classified.txt
-│   └── union-facility.txt
-├── colors/
-│   └── palette.conf
-├── fastfetch/
-│   ├── config.jsonc
-│   └── README.md
-├── wallpapers/
-│   └── README.md
-└── assets/
-    └── README.md
+â”œâ”€â”€ README.md
+â”œâ”€â”€ install.sh
+â”œâ”€â”€ uninstall.sh
+â”œâ”€â”€ hypr/
+â”‚   â””â”€â”€ hyprland.conf
+â”œâ”€â”€ waybar/
+â”‚   â”œâ”€â”€ config.jsonc
+â”‚   â””â”€â”€ style.css
+â”œâ”€â”€ kitty/
+â”‚   â””â”€â”€ kitty.conf
+â”œâ”€â”€ starship/
+â”‚   â””â”€â”€ starship.toml
+â”œâ”€â”€ rofi/
+â”‚   â”œâ”€â”€ config.rasi
+â”‚   â””â”€â”€ union.rasi
+â”œâ”€â”€ mako/
+â”‚   â””â”€â”€ config
+â”œâ”€â”€ scripts/
+â”‚   â”œâ”€â”€ union-login
+â”‚   â”œâ”€â”€ union-logo
+â”‚   â”œâ”€â”€ union-wallpaper
+â”‚   â”œâ”€â”€ union-workspace
+â”‚   â”œâ”€â”€ union-status
+â”‚   â””â”€â”€ union-notify
+â”œâ”€â”€ ascii/
+â”‚   â”œâ”€â”€ union-large.txt
+â”‚   â”œâ”€â”€ union-medium.txt
+â”‚   â”œâ”€â”€ union-small.txt
+â”‚   â”œâ”€â”€ union-boot.txt
+â”‚   â”œâ”€â”€ union-status.txt
+â”‚   â”œâ”€â”€ union-classified.txt
+â”‚   â””â”€â”€ union-facility.txt
+â”œâ”€â”€ colors/
+â”‚   â””â”€â”€ palette.conf
+â”œâ”€â”€ fastfetch/
+â”‚   â”œâ”€â”€ config.jsonc
+â”‚   â””â”€â”€ README.md
+â”œâ”€â”€ wallpapers/
+â”‚   â””â”€â”€ README.md
+â””â”€â”€ assets/
+    â””â”€â”€ README.md
 ```
 
 ---
@@ -453,12 +453,12 @@ rm -f /usr/local/bin/union-*
 
 ## CREDITS
 
-- **Hyprland** — https://hyprland.org
-- **Waybar** — https://github.com/Alexays/Waybar
-- **Kitty** — https://sw.kovidgoyal.net/kitty/
-- **Starship** — https://starship.rs
-- **Rofi** — https://github.com/DaveDavenport/rofi
-- **Mako** — https://github.com/emersion/mako
+- **Hyprland** â€” https://hyprland.org
+- **Waybar** â€” https://github.com/Alexays/Waybar
+- **Kitty** â€” https://sw.kovidgoyal.net/kitty/
+- **Starship** â€” https://starship.rs
+- **Rofi** â€” https://github.com/DaveDavenport/rofi
+- **Mako** â€” https://github.com/emersion/mako
 
 ---
 
