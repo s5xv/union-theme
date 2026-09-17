@@ -1,0 +1,62 @@
+#!/bin/bash
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” TOGGLE SCRIPT
+# Toggles apps: if open â†’ close, if closed â†’ open
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+APP="$1"
+shift
+ARGS="$@"
+
+case "$APP" in
+    btop)
+        if pgrep -x "btop" > /dev/null; then
+            pkill -x "btop"
+        else
+            kitty btop &
+        fi
+        ;;
+    htop)
+        if pgrep -x "htop" > /dev/null; then
+            pkill -x "htop"
+        else
+            kitty htop &
+        fi
+        ;;
+    ranger)
+        if pgrep -f "ranger" > /dev/null; then
+            pkill -f "ranger"
+        else
+            kitty ranger &
+        fi
+        ;;
+    ncmpcpp)
+        if pgrep -f "ncmpcpp" > /dev/null; then
+            pkill -f "ncmpcpp"
+        else
+            kitty ncmpcpp &
+        fi
+        ;;
+    thunar)
+        if pgrep -x "Thunar" > /dev/null; then
+            pkill -x "Thunar"
+        else
+            thunar &
+        fi
+        ;;
+    firefox)
+        if pgrep -x "firefox" > /dev/null; then
+            pkill -x "firefox"
+        else
+            firefox &
+        fi
+        ;;
+    *)
+        # Generic: try killing by name, else launch
+        if pgrep -x "$APP" > /dev/null; then
+            pkill -x "$APP"
+        else
+            $APP $ARGS &
+        fi
+        ;;
+esac
