@@ -1,0 +1,178 @@
+#!/bin/bash
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” SPLASH SCREEN (runs on Hyprland startup)
+# Unified National Institute for Orbital and Nuclear Research
+# Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
+# Facility 04 â€” Terminal 7B-114
+# Document: UN-04-SPL-001  |  Classification: RESTRICTED
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+# â”€â”€â”€ REQUIREMENTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# Requires: wofi, notify-send, or yad (optional)
+# Falls back to terminal if no display tool is available
+
+# â”€â”€â”€ CONFIGURATION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+DURATION=3          # How long splash stays visible (seconds)
+FADE_IN=0.5         # Fade in duration
+FADE_OUT=0.5        # Fade out duration
+BACKGROUND="#1a1d23"
+ACCENT="#b85450"
+TEXT_COLOR="#c8cdd5"
+DIM_COLOR="#5c6370"
+
+# â”€â”€â”€ ASCII LOGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+SPLASH_LOGO="
+         â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
+         â•‘                                   â•‘
+         â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘
+         â•‘        â”‚ â•²     â˜…   â•± â”‚           â•‘
+         â•‘        â”‚   â•²  â”‚  â•±   â”‚           â•‘
+         â•‘   â—‰ â”€â”€â”€â”‚â”€â”€â”€â”€â”€âŠ•â”€â”€â”€â”€â”€â”€â”‚â”€â”€â”€ â—‰       â•‘
+         â•‘        â”‚   â•±  â”‚  â•²   â”‚           â•‘
+         â•‘        â”‚ â•±         â•² â”‚           â•‘
+         â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘
+         â•‘                                   â•‘
+         â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£
+         â•‘     UNION // Ð“Ð˜Ð¡Ð¡ // FACILITY 04  â•‘
+         â•‘     EST. 1963                     â•‘
+         â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+"
+
+# â”€â”€â”€ STATUS MESSAGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+STATUS_MESSAGES=(
+    "INITIALIZING UNION WORKSTATION..."
+    "LOADING CORE MODULES..."
+    "ESTABLISHING SECURE CONNECTION..."
+    "VERIFYING CLEARANCE LEVEL..."
+    "LOADING RESEARCH ENVIRONMENT..."
+    "ACTIVATING ORBITAL RELAY..."
+    "SYSTEM READY"
+)
+
+# â”€â”€â”€ METHOD 1: WOFI POPUP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+show_wofi() {
+    local logo="$SPLASH_LOGO"
+    local msg="${STATUS_MESSAGES[0]}"
+
+    # Build the content
+    local content=""
+    content+="<span color='${ACCENT}' font_family='JetBrains Mono' font_size='12'>"
+    content+="<pre>${logo}</pre>"
+    content+="</span>"
+    content+="<br/>"
+    content+="<span color='${TEXT_COLOR}' font_family='JetBrains Mono' font_size='10'>"
+    content+="${msg}"
+    content+="</span>"
+
+    # Show via wofi
+    echo "$content" | wofi --dmenu \
+        --width 500 \
+        --height 400 \
+        --style "/dev/null" \
+        --no-actions \
+        --prompt "" 2>/dev/null &
+    
+    WOFI_PID=$!
+    sleep "$DURATION"
+    kill $WOFI_PID 2>/dev/null
+}
+
+# â”€â”€â”€ METHOD 2: YAD DIALOG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+show_yad() {
+    local msg="${STATUS_MESSAGES[0]}"
+    
+    yad --center \
+        --title="UNION // Ð“Ð˜Ð¡Ð¡" \
+        --text="<b><tt>${SPLASH_LOGO}</tt></b>\n\n<tt>${msg}</tt>" \
+        --width=550 \
+        --height=400 \
+        --button=none \
+        --timeout="$DURATION" \
+        --on-top \
+        --undecorated \
+        --image="" 2>/dev/null
+}
+
+# â”€â”€â”€ METHOD 3: TERMINAL SPLASH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+show_terminal() {
+    clear
+    echo ""
+    echo -e "\033[0;31m${SPLASH_LOGO}\033[0m"
+    echo ""
+    
+    for msg in "${STATUS_MESSAGES[@]}"; do
+        echo -ne "\r  \033[0;37m${msg}\033[0m"
+        sleep 0.3
+    done
+    echo ""
+    echo ""
+    echo -e "  \033[2mPress any key to continue...\033[0m"
+    read -n 1 -s
+}
+
+# â”€â”€â”€ METHOD 4: HYPRLAND POPUP (via hyprctl) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+show_hyprpopup() {
+    # Create a temporary floating window with the splash
+    # This uses kitty as a splash window
+    local splash_cmd="kitty --title 'UNION SPLASH' --override background_color=#1a1d23 --override foreground_color=#c8cdd5 --override font_size=11 -e bash -c '"
+    splash_cmd+="echo -e \"\033[0;31m${SPLASH_LOGO}\033[0m\";"
+    splash_cmd+="echo \"\";"
+    splash_cmd+="for msg in ${STATUS_MESSAGES[*]}; do"
+    splash_cmd+="  echo -ne \"\r  \$msg\";"
+    splash_cmd+="  sleep 0.4;"
+    splash_cmd+="done;"
+    splash_cmd+="echo \"\";"
+    splash_cmd+="sleep 1"
+    splash_cmd+="'"
+    
+    eval "$splash_cmd" &
+    SPLASH_PID=$!
+    
+    # Center the splash window
+    hyprctl dispatch movewindow floating 2>/dev/null
+    hyprctl dispatch centerwindow 2>/dev/null
+    
+    sleep "$DURATION"
+    kill $SPLASH_PID 2>/dev/null
+}
+
+# â”€â”€â”€ METHOD 5: WALLPAPER OVERLAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+show_overlay() {
+    # Use swaybg for a quick fullscreen splash overlay
+    # Create a temporary splash image with ffmpeg/imagemagick if available
+    if command -v convert &>/dev/null; then
+        convert -size 1920x1080 xc:"#1a1d23" \
+            -fill "#b85450" -gravity Center -font "JetBrains-Mono" -pointsize 24 \
+            -annotate 0 "UNION // Ð“Ð˜Ð¡Ð¡ // FACILITY 04\nEST. 1963" \
+            /tmp/union-splash.png
+        
+        swaybg -i /tmp/union-splash.png -m fill &
+        SWAYBG_PID=$!
+        sleep "$DURATION"
+        kill $SWAYBG_PID 2>/dev/null
+        rm -f /tmp/union-splash.png
+    fi
+}
+
+# â”€â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+main() {
+    # Try methods in order of preference
+    if command -v wofi &>/dev/null; then
+        show_wofi
+    elif command -v yad &>/dev/null; then
+        show_yad
+    elif command -v convert &>/dev/null && command -v swaybg &>/dev/null; then
+        show_overlay
+    elif [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
+        show_hyprpopup
+    else
+        show_terminal
+    fi
+}
+
+# Only run if not already running
+if [[ ! -f /tmp/union-splash.lock ]]; then
+    touch /tmp/union-splash.lock
+    main
+    rm -f /tmp/union-splash.lock
+fi
