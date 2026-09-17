@@ -72,7 +72,7 @@ print_status() {
     local terminal=$(tty | sed 's|/dev/||')
     local user=$(whoami)
 
-    echo -e "  ${C_FACILITY:=$C_FG}FACILITY:${C_RESET}        04"
+    echo -e "  ${C_FG}FACILITY:${C_RESET}        04"
     echo -e "  ${C_FG}TERMINAL:${C_RESET}        ${terminal:-7B-114}"
     echo -e "  ${C_FG}ACCESS LEVEL:${C_RESET}    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ"
     echo -e "  ${C_FG}OPERATOR:${C_RESET}        ${user}"
