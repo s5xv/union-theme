@@ -3,6 +3,7 @@
 # Unified National Institute for Orbital and Nuclear Research
 # Государственный институт специальных исследований
 # Facility 04 — Terminal 7B-114
+# Document: UN-04-MAK-001  |  Classification: RESTRICTED
 # ═══════════════════════════════════════════════════════════════════
 
 # ─── DISPLAY ─────────────────────────────────────────────────────
@@ -15,7 +16,7 @@ padding=12
 margin=8
 margin-top=8
 margin-right=8
-background-color=#1a1d23
+background-color=#1a1d23e6
 color=#c8cdd5
 font=JetBrains Mono 10
 max-visible=5
@@ -40,32 +41,49 @@ action-padding=8
 # ─── MOUSE ───────────────────────────────────────────────────────
 on-click=close
 on-button-right=close-all
+on-middle-click=do nothing
 
 # ─── HIDDEN ──────────────────────────────────────────────────────
 hidden-color=#5c6370
 
 # ─── GROUPING ────────────────────────────────────────────────────
 group-by=app-name
+layer-rule=blur
+layer-rule=ignorealpha 0.5
 
 # ═══════════════════════════════════════════════════════════════════
 # UNION NOTIFICATION STYLES
+# Each notification type gets a distinct border color
 # ═══════════════════════════════════════════════════════════════════
 
 # ─── SYSTEM ──────────────────────────────────────────────────────
 [app-name="UNION // SYSTEM"]
 border-color=#5c6370
 
+# ─── COMMUNICATIONS ──────────────────────────────────────────────
 [app-name="UNION // COMMUNICATIONS"]
 border-color=#5e9fb0
 
+# ─── AUDIO SYSTEM ────────────────────────────────────────────────
 [app-name="UNION // AUDIO SYSTEM"]
 border-color=#8b7bab
 
+# ─── OPTICAL SYSTEM ──────────────────────────────────────────────
 [app-name="UNION // OPTICAL SYSTEM"]
 border-color=#d4a04a
 
+# ─── APPLICATION CONTROL ─────────────────────────────────────────
 [app-name="UNION // APPLICATION CONTROL"]
 border-color=#6a9f78
+
+# ─── DATA TRANSFER ───────────────────────────────────────────────
+[app-name="UNION // DATA TRANSFER"]
+border-color=#5e81ac
+
+# ─── WARNING ─────────────────────────────────────────────────────
+[app-name="UNION // WARNING"]
+border-color=#b85450
+default-timeout=0
 
 # ─── URGENCY LEVELS ─────────────────────────────────────────────
 [urgency=low]
