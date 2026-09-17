@@ -37,7 +37,7 @@ desktop-color: "#1a1d23"
 
     menu_pixmap_style = "menu_*.png"
 
-    item_color = "#c8dd5"
+    item_color = "#c8cdd5"
     item_selected_color = "#b85450"
     item_height = 40
     item_spacing = 4
