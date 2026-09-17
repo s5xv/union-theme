@@ -11,7 +11,9 @@
     "modules-left": [
         "custom/union-logo",
         "custom/separator-1",
-        "custom/union-id"
+        "custom/union-id",
+        "custom/separator-1",
+        "hyprland/window"
     ],
 
     "modules-center": [
@@ -19,11 +21,15 @@
     ],
 
     "modules-right": [
+        "custom/union-status",
+        "custom/separator-2",
         "cpu",
         "custom/separator-2",
         "memory",
         "custom/separator-2",
         "temperature",
+        "custom/separator-2",
+        "disk",
         "custom/separator-2",
         "network",
         "custom/separator-2",
@@ -37,41 +43,48 @@
     ],
 
     "custom/union-logo": {
-        "format": "◉⊕◉",
+        "format": "â—‰âŠ•â—‰",
         "tooltip": true,
-        "tooltip-format": "UNIFIED NATIONAL INSTITUTE\nFOR ORBITAL AND NUCLEAR RESEARCH\n\nГИСС — FACILITY 04\nEST. 1963\nCLEARANCE: RESTRICTED\n\nPROJECT-014 │ PROJECT-027 │ PROJECT-041",
+        "tooltip-format": "UNIFIED NATIONAL INSTITUTE\nFOR ORBITAL AND NUCLEAR RESEARCH\n\nÐ“Ð˜Ð¡Ð¡ â€” FACILITY 04\nEST. 1963\nCLEARANCE: RESTRICTED\n\nPROJECT-014 â”‚ PROJECT-027 â”‚ PROJECT-041\nPROJECT-073 â”‚ PROJECT-â–ˆâ–ˆâ–ˆ",
         "on-click": "rofi -show drun -show-icons"
     },
 
     "custom/union-id": {
-        "format": "UNION // ГИСС",
+        "format": "UNION // Ð“Ð˜Ð¡Ð¡",
         "tooltip": true,
-        "tooltip-format": "FACILITY 04 — TERMINAL 7B-114\nDIRECTORATE: ORBITAL RESEARCH\nSTATUS: OPERATIONAL"
+        "tooltip-format": "FACILITY 04 â€” TERMINAL 7B-114\nDIRECTORATE: ORBITAL RESEARCH\nSTATUS: OPERATIONAL\n\nSerial: UN-04-7B-114\nDate: 1986-11-04"
+    },
+
+    "custom/union-status": {
+        "format": "SYS",
+        "tooltip": true,
+        "tooltip-format": "SYSTEM STATUS: NOMINAL\nCPU: {cpu}%\nRAM: {memory}%",
+        "on-click": "kitty union-status --full"
     },
 
     "custom/separator-1": {
-        "format": "│",
+        "format": "â”‚",
         "tooltip": false
     },
 
     "custom/separator-2": {
-        "format": "·",
+        "format": "Â·",
         "tooltip": false
     },
 
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "○",
-            "2": "○",
-            "3": "●",
-            "4": "○",
-            "5": "○",
-            "6": "○"
+            "1": "â—‹",
+            "2": "â—‹",
+            "3": "â—",
+            "4": "â—‹",
+            "5": "â—‹",
+            "6": "â—‹"
         },
         "active_workspace": {
-            "format": "●",
-            "default": "●"
+            "format": "â—",
+            "default": "â—"
         },
         "persistent-workspaces": {
             "1": [],
@@ -88,10 +101,16 @@
         "tooltip": true
     },
 
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "tooltip": false
+    },
+
     "cpu": {
         "format": "CPU {usage}%",
         "tooltip": true,
-        "tooltip-format": "CPU: {usage}%\nFrequency: {avg_frequency} GHz",
+        "tooltip-format": "CPU: {usage}%\nFrequency: {avg_frequency} GHz\nCore count: {num_cores}",
         "interval": 2,
         "states": {
             "warning": 70,
@@ -102,7 +121,7 @@
     "memory": {
         "format": "MEM {percentage}%",
         "tooltip": true,
-        "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+        "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G\nPercentage: {percentage}%",
         "interval": 3,
         "states": {
             "warning": 70,
@@ -111,21 +130,34 @@
     },
 
     "temperature": {
-        "format": "TEMP {temperatureC}°",
+        "format": "TEMP {temperatureC}Â°",
         "tooltip": true,
-        "tooltip-format": "Temperature: {temperatureC}°C / {temperatureF}°F\nCritical: {temperature_crt}°C",
+        "tooltip-format": "Temperature: {temperatureC}Â°C / {temperatureF}Â°F\nCritical: {temperature_crt}Â°C",
         "interval": 5,
         "critical-threshold": 80,
-        "format-critical": "TEMP {temperatureC}°"
+        "format-critical": "TEMP {temperatureC}Â°"
+    },
+
+    "disk": {
+        "format": "DISK {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "Disk: {used} / {total}\nPercentage: {percentage_used}%\nPath: /",
+        "path": "/",
+        "interval": 30,
+        "states": {
+            "warning": 80,
+            "critical": 95
+        }
     },
 
     "network": {
-        "format-wifi": "NET ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
-        "format-ethernet": "NET ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+        "format-wifi": "NET â†‘{bandwidthUpBytes} â†“{bandwidthDownBytes}",
+        "format-ethernet": "NET â†‘{bandwidthUpBytes} â†“{bandwidthDownBytes}",
         "format-disconnected": "NET OFFLINE",
         "tooltip": true,
-        "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\nGateway: {gwaddr}",
+        "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\nGateway: {gwaddr}\nFrequency: {frequency}MHz",
         "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}\nSpeed: {bandwidthUpBytes}/s",
+        "tooltip-format-disconnected": "Status: DISCONNECTED\nNo active connection",
         "interval": 5
     },
 
@@ -140,12 +172,12 @@
 
     "battery": {
         "format": "BAT {capacity}%",
-        "format-charging": "BAT {capacity}% ↑",
-        "format-plugged": "BAT {capacity}% ⚡",
+        "format-charging": "BAT {capacity}% â†‘",
+        "format-plugged": "BAT {capacity}% âš¡",
         "format-full": "BAT FULL",
         "format-icons": ["", "", "", "", "", "", "", "", "", ""],
         "tooltip": true,
-        "tooltip-format": "Battery: {capacity}%\nTime {time_to}\nHealth: {health}",
+        "tooltip-format": "Battery: {capacity}%\nTime: {time_to}\nHealth: {health}\nStatus: {time}",
         "states": {
             "warning": 30,
             "critical": 15
@@ -157,7 +189,7 @@
         "format": "{:%H:%M}",
         "format-alt": "{:%Y-%m-%d %H:%M:%S}",
         "tooltip": true,
-        "tooltip-format": "<tt>{calendar}</tt>",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
         "interval": 1
     },
 
