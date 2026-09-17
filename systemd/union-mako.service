@@ -1,0 +1,13 @@
+# UNION â€” Mako Notification Daemon Service
+[Unit]
+Description=UNION Mako Notifications
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mako
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target
