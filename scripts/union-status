@@ -1,0 +1,165 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════
+# UNION — SYSTEM STATUS DISPLAY
+# Unified National Institute for Orbital and Nuclear Research
+# Государственный институт специальных исследований
+# Facility 04 — Terminal 7B-114
+# ═══════════════════════════════════════════════════════════════════
+
+C_RED='\033[0;31m'
+C_BLUE='\033[0;34m'
+C_GREEN='\033[0;32m'
+C_AMBER='\033[0;33m'
+C_CYAN='\033[0;36m'
+C_VIOLET='\033[0;35m'
+C_DIM='\033[2m'
+C_BOLD='\033[1m'
+C_RESET='\033[0m'
+C_FG='\033[38;5;252m'
+
+get_cpu_usage() {
+    if command -v top &> /dev/null; then
+        top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1
+    else
+        echo "0"
+    fi
+}
+
+get_memory_usage() {
+    free | awk '/Mem:/ {printf "%.0f", $3/$2 * 100}'
+}
+
+get_memory_detail() {
+    free -h | awk '/Mem:/ {printf "%s / %s", $3, $2}'
+}
+
+get_disk_usage() {
+    df -h / | awk 'NR==2 {printf "%s / %s (%s)", $3, $2, $5}'
+}
+
+get_temperature() {
+    if [[ -f /sys/class/thermal/thermal_zone0/temp ]]; then
+        local temp=$(cat /sys/class/thermal/thermal_zone0/temp)
+        echo "$((temp / 1000))"
+    else
+        echo "N/A"
+    fi
+}
+
+get_network_status() {
+    if command -v nmcli &> /dev/null; then
+        local status=$(nmcli -t -f STATE general)
+        if [[ "$status" == "connected" ]]; then
+            echo "ONLINE"
+        else
+            echo "OFFLINE"
+        fi
+    elif [[ -d /sys/class/net/ ]]; then
+        local iface=$(ls /sys/class/net/ | grep -v lo | head -1)
+        if [[ -f "/sys/class/net/${iface}/operstate" ]]; then
+            local state=$(cat "/sys/class/net/${iface}/operstate")
+            if [[ "$state" == "up" ]]; then
+                echo "ONLINE"
+            else
+                echo "OFFLINE"
+            fi
+        else
+            echo "UNKNOWN"
+        fi
+    else
+        echo "UNKNOWN"
+    fi
+}
+
+get_battery() {
+    if [[ -f /sys/class/power_supply/BAT0/capacity ]]; then
+        local capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+        local status=$(cat /sys/class/power_supply/BAT0/status)
+        echo "${capacity}% (${status})"
+    else
+        echo "NO BATTERY"
+    fi
+}
+
+get_uptime() {
+    uptime -p 2>/dev/null || uptime | sed 's/.*up /up /' | sed 's/,.*load.*//'
+}
+
+print_status_panel() {
+    local cpu=$(get_cpu_usage)
+    local mem=$(get_memory_usage)
+    local mem_detail=$(get_memory_detail)
+    local disk=$(get_disk_usage)
+    local temp=$(get_temperature)
+    local net=$(get_network_status)
+    local bat=$(get_battery)
+    local uptime=$(get_uptime)
+    local hostname=$(hostname)
+    local kernel=$(uname -r)
+    local date=$(date '+%Y-%m-%d')
+    local time=$(date '+%H:%M:%S')
+
+    echo -e "${C_DIM}╔═══════════════════════════════════════════════════════════════╗${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_RED}${C_BOLD}UNION${C_RESET} ${C_DIM}// SYSTEM STATUS${C_RESET}                                      ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}╠═══════════════════════════════════════════════════════════════╣${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}                                                             ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}SYSTEM STATUS${C_RESET} .............. ${C_GREEN}NOMINAL${C_RESET}                      ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}ARCHIVE${C_RESET} .................... ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}COMMUNICATIONS${C_RESET} ............. ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}RESEARCH NETWORK${C_RESET} ........... ${C_GREEN}ONLINE${C_RESET}                       ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}ORBITAL RELAY${C_RESET} .............. ${C_AMBER}STANDBY${C_RESET}                       ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}NUCLEAR MONITOR${C_RESET} ............ ${C_GREEN}ACTIVE${C_RESET}                        ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}                                                             ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}╠═══════════════════════════════════════════════════════════════╣${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}CPU USAGE${C_RESET} ........... ${C_AMBER}${cpu}%${C_RESET}                                ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}MEMORY${C_RESET} ............. ${C_BLUE}${mem}%${C_RESET}  ${C_DIM}(${mem_detail})${C_RESET}                  ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}DISK${C_RESET} ............... ${C_CYAN}${disk}${C_RESET}                             ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}TEMPERATURE${C_RESET} ......... ${C_RED}${temp}°C${C_RESET}                                ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}NETWORK${C_RESET} ............. ${C_GREEN}${net}${C_RESET}                           ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}BATTERY${C_RESET} ............. ${C_VIOLET}${bat}${C_RESET}                        ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}UPTIME${C_RESET} .............. ${C_DIM}${uptime}${C_RESET}                    ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}                                                             ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}╠═══════════════════════════════════════════════════════════════╣${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FACILITY:=$C_FG}FACILITY${C_RESET}: 04  │  ${C_FG}TERMINAL${C_RESET}: 7B-114  │  ${C_FG}DATE${C_RESET}: ${date}     ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}║${C_RESET}  ${C_FG}TIME${C_RESET}: ${time}  │  ${C_FG}KERNEL${C_RESET}: ${kernel}        ${C_DIM}║${C_RESET}"
+    echo -e "${C_DIM}╚═══════════════════════════════════════════════════════════════╝${C_RESET}"
+}
+
+print_compact_status() {
+    local cpu=$(get_cpu_usage)
+    local mem=$(get_memory_usage)
+    local net=$(get_network_status)
+    local time=$(date '+%H:%M')
+
+    echo -e "CPU ${cpu}% · MEM ${mem}% · NET ${net} · ${time}"
+}
+
+usage() {
+    echo "Usage: union-status [OPTION]"
+    echo ""
+    echo "UNION System Status Display"
+    echo ""
+    echo "Options:"
+    echo "  --full       Full status panel (default)"
+    echo "  --compact    Compact one-line status"
+    echo "  --help       Show this help"
+}
+
+main() {
+    case "${1:-}" in
+        --full)
+            print_status_panel
+            ;;
+        --compact)
+            print_compact_status
+            ;;
+        --help|-h)
+            usage
+            ;;
+        *)
+            print_status_panel
+            ;;
+    esac
+}
+
+main "$@"
