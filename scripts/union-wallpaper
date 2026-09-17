@@ -1,0 +1,177 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════
+# UNION — WALLPAPER MANAGEMENT
+# Unified National Institute for Orbital and Nuclear Research
+# Государственный институт специальных исследований
+# Facility 04 — Terminal 7B-114
+# ═══════════════════════════════════════════════════════════════════
+
+UNION_WALLPAPER_DIR="${HOME}/Pictures/union"
+UNION_CURRENT_WS=""
+
+# ─── WORKSPACE → WALLPAPER MAPPING ──────────────────────────────
+declare -A WS_WALLPAPERS=(
+    [1]="archive.jpg"
+    [2]="research.jpg"
+    [3]="orbital.jpg"
+    [4]="lunar.jpg"
+    [5]="deep-space.jpg"
+    [6]="control.jpg"
+)
+
+declare -A WS_NAMES=(
+    [1]="ARCHIVE"
+    [2]="RESEARCH"
+    [3]="ORBITAL"
+    [4]="LUNAR"
+    [5]="DEEP SPACE"
+    [6]="CONTROL"
+)
+
+# ─── FUNCTIONS ───────────────────────────────────────────────────
+
+set_wallpaper() {
+    local wallpaper="$1"
+    local full_path="${UNION_WALLPAPER_DIR}/${wallpaper}"
+
+    if [[ ! -f "$full_path" ]]; then
+        echo "WARNING: Wallpaper not found: ${full_path}"
+        echo "Creating placeholder..."
+        create_placeholder "$wallpaper"
+    fi
+
+    if command -v swww &> /dev/null; then
+        swww img "$full_path" --transition-type simple --transition-duration 1
+    elif command -v swaybg &> /dev/null; then
+        swaybg -i "$full_path" -m fill &
+    else
+        echo "No wallpaper daemon found (swww or swaybg)"
+        return 1
+    fi
+}
+
+create_placeholder() {
+    local filename="$1"
+    local full_path="${UNION_WALLPAPER_DIR}/${filename}"
+    local name="${filename%.jpg}"
+
+    # Create a simple dark gradient placeholder using ImageMagick if available
+    if command -v convert &> /dev/null; then
+        convert -size 1920x1080 \
+            -define gradient:angle=135 \
+            gradient:'#1a1d23-#2a2e37' \
+            -gravity center \
+            -fill '#5c6370' \
+            -pointsize 72 \
+            -annotate 0 "${name^^}" \
+            "$full_path"
+    else
+        # Create a minimal PPM placeholder
+        echo "Creating minimal placeholder: ${full_path}"
+        echo "Add your own wallpaper to: ${full_path}"
+        touch "$full_path"
+    fi
+}
+
+init_wallpapers() {
+    mkdir -p "$UNION_WALLPAPER_DIR"
+
+    for key in "${!WS_WALLPAPERS[@]}"; do
+        local wp="${WS_WALLPAPERS[$key]}"
+        if [[ ! -f "${UNION_WALLPAPER_DIR}/${wp}" ]]; then
+            create_placeholder "$wp"
+        fi
+    done
+}
+
+change_wallpaper() {
+    local ws="$1"
+
+    if [[ -z "${WS_WALLPAPERS[$ws]}" ]]; then
+        echo "Invalid workspace: $ws"
+        return 1
+    fi
+
+    local wp="${WS_WALLPAPERS[$ws]}"
+    echo "Setting wallpaper for workspace ${ws} (${WS_NAMES[$ws]}): ${wp}"
+    set_wallpaper "$wp"
+}
+
+cycle_wallpapers() {
+    local dir="$UNION_WALLPAPER_DIR"
+    local current=$(hyprctl activeworkspace -j | jq -r '.id')
+
+    if [[ -z "$UNION_CURRENT_WS" ]] || [[ "$UNION_CURRENT_WS" != "$current" ]]; then
+        UNION_CURRENT_WS="$current"
+        change_wallpaper "$current"
+    fi
+}
+
+list_wallpapers() {
+    echo "UNION WALLPAPER SYSTEM"
+    echo "======================"
+    echo ""
+    echo "Directory: ${UNION_WALLPAPER_DIR}"
+    echo ""
+    echo "Expected files:"
+    for key in $(echo "${!WS_WALLPAPERS[@]}" | tr ' ' '\n' | sort -n); do
+        local wp="${WS_WALLPAPERS[$key]}"
+        local name="${WS_NAMES[$key]}"
+        local status="MISSING"
+        if [[ -f "${UNION_WALLPAPER_DIR}/${wp}" ]]; then
+            status="FOUND"
+        fi
+        echo -e "  [${key}] ${name}: ${wp} (${status})"
+    done
+    echo ""
+    echo "Usage:"
+    echo "  union-wallpaper --init          Initialize wallpaper directory"
+    echo "  union-wallpaper --set <1-6>     Set wallpaper by workspace"
+    echo "  union-wallpaper --list          List wallpaper status"
+    echo "  union-wallpaper --cycle         Cycle wallpapers (for hyprctl)"
+    echo "  union-wallpaper --help          Show this help"
+}
+
+usage() {
+    echo "Usage: union-wallpaper [OPTION]"
+    echo ""
+    echo "UNION Wallpaper Management System"
+    echo ""
+    echo "Options:"
+    echo "  --init      Initialize wallpaper directory with placeholders"
+    echo "  --set NUM   Set wallpaper by workspace number (1-6)"
+    echo "  --cycle     Cycle wallpapers based on active workspace"
+    echo "  --list      List wallpaper status and paths"
+    echo "  --help      Show this help"
+}
+
+# ─── MAIN ────────────────────────────────────────────────────────
+main() {
+    case "${1:-}" in
+        --init)
+            init_wallpapers
+            echo "Wallpaper directory initialized at: ${UNION_WALLPAPER_DIR}"
+            ;;
+        --set)
+            if [[ -z "${2:-}" ]]; then
+                echo "Error: Workspace number required (1-6)"
+                exit 1
+            fi
+            change_wallpaper "$2"
+            ;;
+        --cycle)
+            cycle_wallpapers
+            ;;
+        --list)
+            list_wallpapers
+            ;;
+        --help|-h)
+            usage
+            ;;
+        *)
+            usage
+            ;;
+    esac
+}
+
+main "$@"
