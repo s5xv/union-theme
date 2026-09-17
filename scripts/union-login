@@ -1,0 +1,133 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════
+# UNION — TERMINAL LOGIN BANNER
+# Unified National Institute for Orbital and Nuclear Research
+# Государственный институт специальных исследований
+# Facility 04 — Terminal 7B-114
+# ═══════════════════════════════════════════════════════════════════
+
+# ─── CONFIGURATION ───────────────────────────────────────────────
+# Set to 0 to disable startup banner
+UNION_LOGIN_BANNER="${UNION_LOGIN_BANNER:-1}"
+
+# Set to 0 to disable animations
+UNION_LOGIN_ANIMATE="${UNION_LOGIN_ANIMATE:-1}"
+
+# Colors
+C_RED='\033[0;31m'
+C_BLUE='\033[0;34m'
+C_GREEN='\033[0;32m'
+C_AMBER='\033[0;33m'
+C_CYAN='\033[0;36m'
+C_VIOLET='\033[0;35m'
+C_DIM='\033[2m'
+C_BOLD='\033[1m'
+C_RESET='\033[0m'
+C_BG='\033[48;5;234m'
+C_FG='\033[38;5;252m'
+
+# ─── ASCII LOGO ──────────────────────────────────────────────────
+print_logo() {
+    echo ""
+    echo -e "${C_RED}${C_BOLD}"
+    echo "         ╔═══════════════════════════════════╗"
+    echo "         ║                                   ║"
+    echo "         ║        ◉ ─────────── ◉           ║"
+    echo "         ║        │ ╲     ★   ╱ │           ║"
+    echo "         ║        │   ╲  │  ╱   │           ║"
+    echo "         ║   ◉ ───│─────⊕──────│─── ◉       ║"
+    echo "         ║        │   ╱  │  ╲   │           ║"
+    echo "         ║        │ ╱         ╲ │           ║"
+    echo "         ║        ◉ ─────────── ◉           ║"
+    echo "         ║                                   ║"
+    echo "         ╠═══════════════════════════════════╣"
+    echo "         ║     UNION // ГИСС // FACILITY 04  ║"
+    echo "         ║     EST. 1963                     ║"
+    echo "         ╚═══════════════════════════════════╝"
+    echo -e "${C_RESET}"
+}
+
+# ─── BANNER TEXT ─────────────────────────────────────────────────
+print_banner() {
+    echo -e "${C_FG}${C_BOLD}"
+    echo "  UNION SCIENTIFIC COMPUTING SYSTEM"
+    echo -e "${C_DIM}  ═══════════════════════════════════${C_RESET}"
+    echo ""
+    echo -e "${C_FG}  ГОСУДАРСТВЕННЫЙ ИНСТИТУТ"
+    echo "  СПЕЦИАЛЬНЫХ ИССЛЕДОВАНИЙ"
+    echo ""
+    echo -e "${C_DIM}  UNIFIED NATIONAL INSTITUTE"
+    echo "  FOR ORBITAL AND NUCLEAR RESEARCH${C_RESET}"
+    echo ""
+    echo -e "${C_DIM}  ─────────────────────────────────────────────────${C_RESET}"
+}
+
+# ─── SYSTEM STATUS ───────────────────────────────────────────────
+print_status() {
+    local hostname=$(hostname)
+    local kernel=$(uname -r)
+    local uptime=$(uptime -p 2>/dev/null || uptime | sed 's/.*up /up /' | sed 's/,.*//')
+    local date=$(date '+%Y-%m-%d')
+    local time=$(date '+%H:%M:%S')
+    local terminal=$(tty | sed 's|/dev/||')
+    local user=$(whoami)
+
+    echo -e "  ${C_FACILITY:=$C_FG}FACILITY:${C_RESET}        04"
+    echo -e "  ${C_FG}TERMINAL:${C_RESET}        ${terminal:-7B-114}"
+    echo -e "  ${C_FG}ACCESS LEVEL:${C_RESET}    ████████"
+    echo -e "  ${C_FG}OPERATOR:${C_RESET}        ${user}"
+    echo ""
+    echo -e "  ${C_DIM}────────────────────────────────────────────────${C_RESET}"
+    echo ""
+    echo -e "  ${C_GREEN}SYSTEM STATUS${C_RESET} ............ NOMINAL"
+    echo -e "  ${C_GREEN}ARCHIVE${C_RESET} .................. ONLINE"
+    echo -e "  ${C_GREEN}COMMUNICATIONS${C_RESET} ........... ONLINE"
+    echo -e "  ${C_GREEN}RESEARCH NETWORK${C_RESET} ......... ONLINE"
+    echo -e "  ${C_AMBER}ORBITAL RELAY${C_RESET} ............ STANDBY"
+    echo -e "  ${C_GREEN}NUCLEAR MONITOR${C_RESET} .......... ACTIVE"
+    echo ""
+    echo -e "  ${C_DIM}────────────────────────────────────────────────${C_RESET}"
+    echo ""
+    echo -e "  ${C_DIM}${date} ${time}  │  ${hostname}  │  kernel ${kernel}${C_RESET}"
+    echo ""
+}
+
+# ─── ANIMATED LOADING ────────────────────────────────────────────
+animate_status() {
+    if [[ "$UNION_LOGIN_ANIMATE" == "1" ]]; then
+        local items=(
+            "SYSTEM STATUS"
+            "ARCHIVE"
+            "COMMUNICATIONS"
+            "RESEARCH NETWORK"
+            "ORBITAL RELAY"
+            "NUCLEAR MONITOR"
+        )
+        local statuses=("ONLINE" "ONLINE" "ONLINE" "STANDBY" "ACTIVE")
+
+        echo ""
+        for item in "${items[@]}"; do
+            echo -ne "\r  ${C_FG}${item}${C_RESET} ..."
+            sleep 0.1
+            echo -ne "\r  ${C_GREEN}${item}${C_RESET} ............ DONE "
+            sleep 0.05
+            echo ""
+        done
+        echo ""
+    fi
+}
+
+# ─── MAIN ────────────────────────────────────────────────────────
+main() {
+    if [[ "$UNION_LOGIN_BANNER" == "0" ]]; then
+        return 0
+    fi
+
+    clear
+    print_logo
+    print_banner
+    animate_status
+    print_status
+}
+
+main "$@"
