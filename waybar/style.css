@@ -1,7 +1,6 @@
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 /* UNION THEME â€” WAYBAR DOCK (BOTTOM TASKBAR, AUTO-HIDE)              */
-/* Unified National Institute for Orbital and Nuclear Research       */
-/* Always visible â€” shows open apps, workspaces, volume, system     */
+/* Launcher + Running Apps only â€” no workspace dots                   */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 * {
@@ -44,7 +43,7 @@ tooltip label {
 
 #custom-union-logo-dock {
     color: #b85450;
-    font-size: 14px;
+    font-size: 16px;
     padding: 0 12px;
     margin: 2px;
     font-weight: 700;
@@ -55,123 +54,41 @@ tooltip label {
     background-color: rgba(184, 84, 80, 0.15);
 }
 
-/* â”€â”€â”€ WORKSPACES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€â”€ TASKBAR (RUNNING APPS) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-#workspaces {
-    background-color: transparent;
-    color: #5c6370;
-    padding: 0 8px;
-    margin: 2px 0;
-}
-
-#workspaces button {
-    padding: 2px 8px;
-    margin: 0 2px;
-    color: #5c6370;
-    background-color: transparent;
-    border: none;
-    border-radius: 6px;
-    min-width: 20px;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-#workspaces button.active {
-    color: #b85450;
-    background-color: rgba(184, 84, 80, 0.15);
-    border-radius: 6px;
-}
-
-#workspaces button:hover {
-    background-color: rgba(200, 205, 213, 0.1);
-    color: #c8cdd5;
-}
-
-#workspaces button.urgent {
-    color: #d4a04a;
-    background-color: rgba(212, 160, 74, 0.15);
-}
-
-/* â”€â”€â”€ VOLUME BAR (CENTER) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-
-#custom-union-volume-bar {
-    color: #8b7bab;
-    font-size: 11px;
-    padding: 4px 16px;
-    margin: 2px 8px;
-    background-color: rgba(139, 123, 171, 0.08);
-    border-radius: 8px;
-    border: 1px solid rgba(139, 123, 171, 0.15);
-}
-
-#custom-union-volume-bar:hover {
-    background-color: rgba(139, 123, 171, 0.15);
-    border-color: rgba(139, 123, 171, 0.3);
-    color: #a595c5;
-}
-
-/* â”€â”€â”€ SYS INFO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-
-#custom-union-sys-info {
-    color: #b85450;
-    font-size: 11px;
-    padding: 4px 12px;
-    margin: 2px;
-    font-weight: 600;
-    border-radius: 8px;
-}
-
-#custom-union-sys-info:hover {
-    background-color: rgba(184, 84, 80, 0.15);
-}
-
-/* â”€â”€â”€ OPEN APPS (TASKBAR) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-
-#tasklist {
+#taskbar {
     background-color: transparent;
     padding: 0 4px;
     margin: 2px;
 }
 
-#tasklist button {
-    padding: 2px 8px;
+#taskbar button {
+    padding: 4px 10px;
     margin: 0 2px;
     color: #8891a0;
     background-color: transparent;
     border: none;
-    border-radius: 6px;
-    min-width: 20px;
+    border-radius: 8px;
+    min-width: 32px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
 }
 
-#tasklist button.active {
+#taskbar button.active {
     color: #b85450;
     background-color: rgba(184, 84, 80, 0.12);
 }
 
-#tasklist button:hover {
+#taskbar button:hover {
     background-color: rgba(200, 205, 213, 0.08);
     color: #c8cdd5;
-}
-
-/* â”€â”€â”€ TRAY TOGGLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-
-#custom-union-tray-toggle {
-    color: #5c6370;
-    font-size: 12px;
-    padding: 2px 8px;
-    margin: 2px;
-    border-radius: 6px;
-}
-
-#custom-union-tray-toggle:hover {
-    color: #8891a0;
-    background-color: rgba(136, 145, 160, 0.1);
 }
 
 /* â”€â”€â”€ SYSTEM TRAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 #tray {
-    padding: 0 6px;
+    padding: 0 8px;
     margin: 2px;
     color: #8891a0;
 }
