@@ -1,14 +1,14 @@
 #!/bin/bash
-# ═══════════════════════════════════════════════════════════════════
-# UNION THEME — INSTALLER
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION THEME â€” INSTALLER
 # Unified National Institute for Orbital and Nuclear Research
-# Государственный институт специальных исследований
-# Facility 04 — Terminal 7B-114
-# ═══════════════════════════════════════════════════════════════════
+# Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
+# Facility 04 â€” Terminal 7B-114
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 set -euo pipefail
 
-# ─── COLORS ──────────────────────────────────────────────────────
+# â”€â”€â”€ COLORS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 C_RED='\033[0;31m'
 C_GREEN='\033[0;32m'
 C_AMBER='\033[0;33m'
@@ -19,7 +19,7 @@ C_BOLD='\033[1m'
 C_RESET='\033[0m'
 C_FG='\033[38;5;252m'
 
-# ─── VARIABLES ───────────────────────────────────────────────────
+# â”€â”€â”€ VARIABLES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="${HOME}/.config"
 BACKUP_DIR="${HOME}/.config/union-backups"
@@ -58,25 +58,25 @@ OPTIONAL_PACKAGES=(
     "blueman"
 )
 
-# ─── FUNCTIONS ───────────────────────────────────────────────────
+# â”€â”€â”€ FUNCTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 print_header() {
     echo ""
     echo -e "${C_RED}${C_BOLD}"
-    echo "         ╔═══════════════════════════════════╗"
-    echo "         ║                                   ║"
-    echo "         ║        ◉ ─────────── ◉           ║"
-    echo "         ║        │ ╲     ★   ╱ │           ║"
-    echo "         ║        │   ╲  │  ╱   │           ║"
-    echo "         ║   ◉ ───│─────⊕──────│─── ◉       ║"
-    echo "         ║        │   ╱  │  ╲   │           ║"
-    echo "         ║        │ ╱         ╲ │           ║"
-    echo "         ║        ◉ ─────────── ◉           ║"
-    echo "         ║                                   ║"
-    echo "         ╠═══════════════════════════════════╣"
-    echo "         ║     UNION THEME INSTALLER         ║"
-    echo "         ║     FACILITY 04                   ║"
-    echo "         ╚═══════════════════════════════════╝"
+    echo "         â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—"
+    echo "         â•‘                                   â•‘"
+    echo "         â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘"
+    echo "         â•‘        â”‚ â•²     â˜…   â•± â”‚           â•‘"
+    echo "         â•‘        â”‚   â•²  â”‚  â•±   â”‚           â•‘"
+    echo "         â•‘   â—‰ â”€â”€â”€â”‚â”€â”€â”€â”€â”€âŠ•â”€â”€â”€â”€â”€â”€â”‚â”€â”€â”€ â—‰       â•‘"
+    echo "         â•‘        â”‚   â•±  â”‚  â•²   â”‚           â•‘"
+    echo "         â•‘        â”‚ â•±         â•² â”‚           â•‘"
+    echo "         â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘"
+    echo "         â•‘                                   â•‘"
+    echo "         â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£"
+    echo "         â•‘     UNION THEME INSTALLER         â•‘"
+    echo "         â•‘     FACILITY 04                   â•‘"
+    echo "         â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•"
     echo -e "${C_RESET}"
     echo ""
 }
@@ -286,7 +286,7 @@ enable_shell_integration() {
     if [[ -n "$shell_rc" ]]; then
         if ! grep -q "union-login" "$shell_rc" 2>/dev/null; then
             echo "" >> "$shell_rc"
-            echo "# UNION Theme — Terminal Login Banner" >> "$shell_rc"
+            echo "# UNION Theme â€” Terminal Login Banner" >> "$shell_rc"
             echo "# Remove the line below to disable startup banner" >> "$shell_rc"
             echo "# union-login" >> "$shell_rc"
             log_success "Shell integration added to: $shell_rc"
@@ -300,18 +300,18 @@ enable_shell_integration() {
 
 print_post_install() {
     echo -e "${C_GREEN}${C_BOLD}"
-    echo "╔═══════════════════════════════════════════════════════════════╗"
-    echo "║                                                             ║"
-    echo "║              UNION THEME INSTALLED SUCCESSFULLY              ║"
-    echo "║                                                             ║"
-    echo "║  FACILITY 04 — TERMINAL 7B-114                              ║"
-    echo "║  STATUS: OPERATIONAL                                        ║"
-    echo "║                                                             ║"
-    echo "╚═══════════════════════════════════════════════════════════════╝"
+    echo "â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—"
+    echo "â•‘                                                             â•‘"
+    echo "â•‘              UNION THEME INSTALLED SUCCESSFULLY              â•‘"
+    echo "â•‘                                                             â•‘"
+    echo "â•‘  FACILITY 04 â€” TERMINAL 7B-114                              â•‘"
+    echo "â•‘  STATUS: OPERATIONAL                                        â•‘"
+    echo "â•‘                                                             â•‘"
+    echo "â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•"
     echo -e "${C_RESET}"
     echo ""
     echo "  Next steps:"
-    echo "  ───────────"
+    echo "  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€"
     echo "  1. Add wallpapers to: ~/Pictures/union/"
     echo "     Expected files: archive.jpg, research.jpg, orbital.jpg,"
     echo "                     lunar.jpg, deep-space.jpg, control.jpg"
@@ -332,15 +332,15 @@ print_post_install() {
     echo "  Backups: ${BACKUP_PATH}"
     echo ""
     echo "  Commands:"
-    echo "    union-status     — System status display"
-    echo "    union-logo       — ASCII logo display"
-    echo "    union-wallpaper  — Wallpaper management"
-    echo "    union-notify     — Notification system"
-    echo "    union-workspace  — Workspace indicator"
+    echo "    union-status     â€” System status display"
+    echo "    union-logo       â€” ASCII logo display"
+    echo "    union-wallpaper  â€” Wallpaper management"
+    echo "    union-notify     â€” Notification system"
+    echo "    union-workspace  â€” Workspace indicator"
     echo ""
 }
 
-# ─── MAIN ────────────────────────────────────────────────────────
+# â”€â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 main() {
     local mode="${1:-install}"
 
