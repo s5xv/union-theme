@@ -75,15 +75,19 @@ notify_transfer() {
 
 # ─── PRESET NOTIFICATIONS ────────────────────────────────────────
 preset_startup() {
-    notify_system "SYSTEM INITIALIZED" "UNION workstation online. Facility 04, Terminal 7B-114."
+    notify_system "SYSTEM INITIALIZED" "UNION workstation online.\nFacility: 04\nTerminal: 7B-114\nStatus: NOMINAL"
+}
+
+preset_shutdown() {
+    notify_system "SYSTEM SHUTDOWN" "UNION workstation powering down.\nFacility: 04\nStatus: SECURED"
 }
 
 preset_headphones_connected() {
-    notify_communications "WIRELESS LINK ESTABLISHED" "Device: Headphones\nStatus: Connected"
+    notify_communications "WIRELESS LINK ESTABLISHED" "Device: Headphones\nStatus: Connected\nChannel: ACTIVE"
 }
 
 preset_headphones_disconnected() {
-    notify_communications "WIRELESS LINK TERMINATED" "Device: Headphones\nStatus: Disconnected"
+    notify_communications "WIRELESS LINK TERMINATED" "Device: Headphones\nStatus: Disconnected\nChannel: STANDBY"
 }
 
 preset_volume_change() {
@@ -98,17 +102,60 @@ preset_brightness_change() {
 
 preset_app_launch() {
     local app="${1:-unknown}"
-    notify_application "PROCESS INITIALIZED" "Application: ${app}"
+    notify_application "PROCESS INITIALIZED" "Application: ${app}\nStatus: LOADED"
+}
+
+preset_app_close() {
+    local app="${1:-unknown}"
+    notify_application "PROCESS TERMINATED" "Application: ${app}\nStatus: CLOSED"
 }
 
 preset_screenshot() {
-    notify_transfer "CAPTURE COMPLETE" "Screenshot saved to archive."
+    notify_transfer "CAPTURE COMPLETE" "Screenshot archived.\nLocation: ~/Pictures/union/\nStatus: SAVED"
 }
 
 preset_workspace_change() {
     local ws="${1:-1}"
     local name="${2:-UNKNOWN}"
-    notify_system "WORKSPACE ACTIVE" "Sector: ${ws} — ${name}"
+    notify_system "WORKSPACE ACTIVE" "Sector: ${ws}\nDesignation: ${name}"
+}
+
+preset_lock_screen() {
+    notify_system "SCREEN LOCKED" "Security protocol activated.\nFacility: 04\nStatus: LOCKED"
+}
+
+preset_battery_low() {
+    local pct="${1:-0}"
+    notify_warning "POWER CRITICAL" "Battery: ${pct}%\nStatus: CRITICAL\nConnect power immediately."
+}
+
+preset_battery_warning() {
+    local pct="${1:-0}"
+    notify_warning "POWER WARNING" "Battery: ${pct}%\nStatus: LOW\nConsider connecting power."
+}
+
+preset_network_connected() {
+    notify_communications "NETWORK LINK ESTABLISHED" "Connection: ACTIVE\nStatus: ONLINE"
+}
+
+preset_network_disconnected() {
+    notify_communications "NETWORK LINK TERMINATED" "Connection: LOST\nStatus: OFFLINE"
+}
+
+preset_bluetooth_connected() {
+    notify_communications "BLUETOOTH LINK ESTABLISHED" "Device: ${1:-unknown}\nStatus: CONNECTED"
+}
+
+preset_bluetooth_disconnected() {
+    notify_communications "BLUETOOTH LINK TERMINATED" "Device: ${1:-unknown}\nStatus: DISCONNECTED"
+}
+
+preset_mirror_open() {
+    notify_system "DISPLAY MIRROR ACTIVATED" "External display detected.\nStatus: MIRROR MODE"
+}
+
+preset_mirror_off() {
+    notify_system "DISPLAY MIRROR DEACTIVATED" "External display disconnected.\nStatus: SINGLE MODE"
 }
 
 # ─── MAIN ────────────────────────────────────────────────────────
@@ -148,6 +195,9 @@ main() {
         --preset-headphones)
             preset_headphones_connected
             ;;
+        --preset-headphones-off)
+            preset_headphones_disconnected
+            ;;
         --preset-volume)
             preset_volume_change "${2:-0}"
             ;;
@@ -157,11 +207,38 @@ main() {
         --preset-app)
             preset_app_launch "${2:-unknown}"
             ;;
+        --preset-app-close)
+            preset_app_close "${2:-unknown}"
+            ;;
         --preset-screenshot)
             preset_screenshot
             ;;
         --preset-workspace)
             preset_workspace_change "${2:-1}" "${3:-UNKNOWN}"
+            ;;
+        --preset-lock)
+            preset_lock_screen
+            ;;
+        --preset-battery-low)
+            preset_battery_low "${2:-0}"
+            ;;
+        --preset-battery-warning)
+            preset_battery_warning "${2:-0}"
+            ;;
+        --preset-network)
+            preset_network_connected
+            ;;
+        --preset-network-off)
+            preset_network_disconnected
+            ;;
+        --preset-bluetooth)
+            preset_bluetooth_connected "${2:-unknown}"
+            ;;
+        --preset-bluetooth-off)
+            preset_bluetooth_disconnected "${2:-unknown}"
+            ;;
+        --preset-shutdown)
+            preset_shutdown
             ;;
         --help|-h)
             echo "Usage: union-notify [OPTION] [MESSAGE] [BODY]"
@@ -179,12 +256,22 @@ main() {
             echo ""
             echo "Presets:"
             echo "  --preset-startup            Startup notification"
+            echo "  --preset-shutdown           Shutdown notification"
             echo "  --preset-headphones         Headphones connected"
+            echo "  --preset-headphones-off     Headphones disconnected"
             echo "  --preset-volume VOL         Volume change"
             echo "  --preset-brightness VAL     Brightness change"
             echo "  --preset-app NAME           App launch"
+            echo "  --preset-app-close NAME     App close"
             echo "  --preset-screenshot         Screenshot taken"
             echo "  --preset-workspace NUM NAME Workspace change"
+            echo "  --preset-lock               Screen locked"
+            echo "  --preset-battery-low PCT    Battery critical"
+            echo "  --preset-battery-warning PCT Battery low"
+            echo "  --preset-network            Network connected"
+            echo "  --preset-network-off        Network disconnected"
+            echo "  --preset-bluetooth DEVICE   Bluetooth connected"
+            echo "  --preset-bluetooth-off DEVICE Bluetooth disconnected"
             echo ""
             echo "Configuration:"
             echo "  Set UNION_NOTIFY_ENABLED=0 to disable all notifications"
