@@ -1,78 +1,37 @@
 {
     "layer": "top",
-    "position": "top",
-    "height": 28,
+    "position": "bottom",
+    "height": 52,
     "spacing": 0,
     "margin-top": 0,
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
 
-    "modules-left": [
-        "custom/union-logo",
-        "custom/separator-1",
-        "custom/union-id",
-        "custom/separator-1",
-        "hyprland/window"
-    ],
+    "exclusive": false,
+    "passthrough": false,
+    "fixed-center": true,
 
-    "modules-center": [
+    "modules-left": [
+        "custom/union-logo-dock",
         "hyprland/workspaces"
     ],
 
-    "modules-right": [
-        "custom/union-status",
-        "custom/separator-2",
-        "cpu",
-        "custom/separator-2",
-        "memory",
-        "custom/separator-2",
-        "temperature",
-        "custom/separator-2",
-        "disk",
-        "custom/separator-2",
-        "network",
-        "custom/separator-2",
-        "pulseaudio",
-        "custom/separator-2",
-        "battery",
-        "custom/separator-2",
-        "clock",
-        "custom/separator-2",
-        "tray",
-        "custom/separator-2",
-        "custom/union-notif"
+    "modules-center": [
+        "custom/union-volume-bar"
     ],
 
-    "custom/union-logo": {
+    "modules-right": [
+        "custom/union-sys-info",
+        "custom/union-tray-toggle"
+    ],
+
+    "custom/union-logo-dock": {
         "format": "â—‰âŠ•â—‰",
         "tooltip": true,
-        "tooltip-format": "UNIFIED NATIONAL INSTITUTE\nFOR ORBITAL AND NUCLEAR RESEARCH\n\nÐ“Ð˜Ð¡Ð¡ â€” FACILITY 04\nEST. 1963\nCLEARANCE: RESTRICTED\n\nPROJECT-014 â”‚ PROJECT-027 â”‚ PROJECT-041\nPROJECT-073 â”‚ PROJECT-â–ˆâ–ˆâ–ˆ",
-        "on-click": "rofi -show drun -show-icons"
-    },
-
-    "custom/union-id": {
-        "format": "UNION // Ð“Ð˜Ð¡Ð¡",
-        "tooltip": true,
-        "tooltip-format": "FACILITY 04 â€” TERMINAL 7B-114\nDIRECTORATE: ORBITAL RESEARCH\nSTATUS: OPERATIONAL\n\nSerial: UN-04-7B-114\nDate: 1986-11-04"
-    },
-
-    "custom/union-status": {
-        "format": "SYS",
-        "tooltip": true,
-        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick: Toggle btop\nRight-click: Full status",
-        "on-click": "/usr/local/bin/union-toggle btop",
-        "on-click-right": "kitty /usr/local/bin/union-status --full"
-    },
-
-    "custom/separator-1": {
-        "format": "â”‚",
-        "tooltip": false
-    },
-
-    "custom/separator-2": {
-        "format": "Â·",
-        "tooltip": false
+        "tooltip-format": "UNION // FACILITY 04\nClick: App launcher\nRight-click: Power menu",
+        "on-click": "rofi -show drun -show-icons",
+        "on-click-right": "/usr/local/bin/union-power"
     },
 
     "hyprland/workspaces": {
@@ -104,115 +63,30 @@
         "tooltip": true
     },
 
-    "hyprland/window": {
-        "format": "{}",
-        "max-length": 50,
-        "tooltip": false
-    },
-
-    "cpu": {
-        "format": "CPU {usage}%",
-        "tooltip": true,
-        "tooltip-format": "CPU: {usage}%\nFrequency: {avg_frequency} GHz\nCore count: {num_cores}\nClick to open btop",
-        "interval": 2,
-        "on-click": "kitty btop",
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
-    },
-
-    "memory": {
-        "format": "MEM {percentage}%",
-        "tooltip": true,
-        "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G\nPercentage: {percentage}%\nClick to open btop",
-        "interval": 3,
-        "on-click": "kitty btop",
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
-    },
-
-    "temperature": {
-        "format": "TEMP {temperatureC}Â°",
-        "tooltip": true,
-        "tooltip-format": "Temperature: {temperatureC}Â°C / {temperatureF}Â°F\nCritical: {temperature_crt}Â°C\nClick to open btop",
-        "interval": 5,
-        "on-click": "kitty btop",
-        "critical-threshold": 80,
-        "format-critical": "TEMP {temperatureC}Â°"
-    },
-
-    "disk": {
-        "format": "DISK {percentage_used}%",
-        "tooltip": true,
-        "tooltip-format": "Disk: {used} / {total}\nPercentage: {percentage_used}%\nPath: /\nClick to open file manager",
-        "path": "/",
-        "interval": 30,
-        "on-click": "thunar",
-        "states": {
-            "warning": 80,
-            "critical": 95
-        }
-    },
-
-    "network": {
-        "format-wifi": "NET â†‘{bandwidthUpBytes} â†“{bandwidthDownBytes}",
-        "format-ethernet": "NET â†‘{bandwidthUpBytes} â†“{bandwidthDownBytes}",
-        "format-disconnected": "NET OFFLINE",
-        "tooltip": true,
-        "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\nGateway: {gwaddr}\nFrequency: {frequency}MHz",
-        "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}\nSpeed: {bandwidthUpBytes}/s",
-        "tooltip-format-disconnected": "Status: DISCONNECTED\nNo active connection",
-        "interval": 5
-    },
-
-    "pulseaudio": {
+    "custom/union-volume-bar": {
         "format": "VOL {volume}%",
-        "format-muted": "VOL MUTE",
         "tooltip": true,
-        "tooltip-format": "Volume: {volume}%\nDevice: {desc}\nSource: {source_desc}",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "scroll-step": 5
-    },
-
-    "battery": {
-        "format": "BAT {capacity}%",
-        "format-charging": "BAT {capacity}% â†‘",
-        "format-plugged": "BAT {capacity}% âš¡",
-        "format-full": "BAT FULL",
-        "format-icons": ["", "", "", "", "", "", "", "", "", ""],
-        "tooltip": true,
-        "tooltip-format": "Battery: {capacity}%\nTime: {time_to}\nHealth: {health}\nStatus: {time}",
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "interval": 30
-    },
-
-    "clock": {
-        "format": "{:%H:%M}",
-        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
-        "tooltip": true,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "tooltip-format": "Volume: {volume}%\nScroll: Â±5%\nShift+Scroll: Â±1%\nClick: Mute/Unmute",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && /usr/local/bin/union-sounds mute && /usr/local/bin/union-notify --audio \"MUTED\"",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && /usr/local/bin/union-sounds vol-up && /usr/local/bin/union-notify --audio \"OUTPUT: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}')%\"",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && /usr/local/bin/union-sounds vol-down && /usr/local/bin/union-notify --audio \"OUTPUT: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}')%\"",
+        "return-type": "json",
+        "exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print \"{\\\"volume\\\": \" int($2*100) \", \\\"muted\\\": \" ($3 == \"[MUTED]\" ? \"true\" : \"false\") \"}\"}'",
         "interval": 1
     },
 
-    "tray": {
-        "icon-size": 14,
-        "spacing": 4
+    "custom/union-sys-info": {
+        "format": "SYS",
+        "tooltip": true,
+        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick: Toggle btop\nRight-click: Full status",
+        "on-click": "/usr/local/bin/union-toggle btop",
+        "on-click-right": "kitty /usr/local/bin/union-status --full"
     },
 
-    "custom/union-notif": {
-        "format": "ðŸ””",
+    "custom/union-tray-toggle": {
+        "format": " â–¸",
         "tooltip": true,
-        "tooltip-format": "NOTIFICATION CENTER\nClick: Open notification history\nRight-click: Clear all",
-        "on-click": "makoctl restore || dunstctl history | rofi -dmenu -p 'Notifications'",
-        "on-click-right": "makoctl dismiss --all || dunstctl close-all",
-        "return-type": "json",
-        "exec": "echo '{\"text\": \"ðŸ””\"}'",
-        "interval": 5
+        "tooltip-format": "System Tray\nClick: Toggle visibility",
+        "on-click": "pkill -x waybar; sleep 0.5; waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css &"
     }
 }
