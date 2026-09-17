@@ -1,14 +1,14 @@
 {
     "layer": "top",
     "position": "bottom",
-    "height": 52,
+    "height": 40,
     "spacing": 0,
     "margin-top": 0,
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
 
-    "exclusive": false,
+    "exclusive": true,
     "passthrough": false,
     "fixed-center": true,
 
@@ -23,7 +23,7 @@
 
     "modules-right": [
         "custom/union-sys-info",
-        "custom/union-tray-toggle"
+        "tray"
     ],
 
     "custom/union-logo-dock": {
@@ -83,10 +83,9 @@
         "on-click-right": "kitty /usr/local/bin/union-status --full"
     },
 
-    "custom/union-tray-toggle": {
-        "format": " â–¸",
-        "tooltip": true,
-        "tooltip-format": "System Tray\nClick: Toggle visibility",
-        "on-click": "pkill -x waybar; sleep 0.5; waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css &"
+    "tray": {
+        "icon-size": 14,
+        "spacing": 6,
+        "tooltip": true
     }
 }
