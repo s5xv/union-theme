@@ -1,0 +1,125 @@
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION THEME â€” GRUB BOOTLOADER THEME
+# Unified National Institute for Orbital and Nuclear Research
+# Facility 04 â€” Terminal 7B-114
+# Document: UN-04-GRB-001  |  Classification: RESTRICTED
+#
+# Install:
+#   sudo cp -r grub/* /boot/grub/themes/union/
+#   Add to /etc/default/grub: GRUB_THEME="/boot/grub/themes/union/theme.txt"
+#   sudo grub-mkconfig -o /boot/grub/grub.cfg
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+# â”€â”€â”€ GLOBAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+title-color: "#c8cdd5"
+title-text: "UNION // Ð“Ð˜Ð¡Ð¡ // FACILITY 04"
+title-font: "JetBrains Mono Bold 16"
+title-bg-color: "#1a1d23"
+
+message-color: "#8891a0"
+message-font: "JetBrains Mono Regular 10"
+message-bg-color: "#1a1d23"
+
+terminal-color: "#c8cdd5"
+terminal-font: "JetBrains Mono Regular 12"
+terminal-bg-color: "#1a1d23"
+terminal-border-color: "#3d4250"
+
+desktop-image: "background.png"
+desktop-color: "#1a1d23"
+
+# â”€â”€â”€ BOOT MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
++ boot_menu {
+    left = 15%
+    top = 30%
+    width = 70%
+    height = 40%
+
+    menu_pixmap_style = "menu_*.png"
+
+    item_color = "#c8dd5"
+    item_selected_color = "#b85450"
+    item_height = 40
+    item_spacing = 4
+    item_padding = 8
+
+    selected_item_color = "#b85450"
+    selected_item_height = 40
+    selected_item_pixmap_style = "select_*.png"
+
+    scrollbar = false
+}
+
+# â”€â”€â”€ ENTRIES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
++ label {
+    left = 15%
+    top = 25%
+    width = 70%
+    height = 40
+
+    text = "â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—"
+    color = "#b85450"
+    font = "JetBrains Mono Regular 12"
+    align = "center"
+}
+
++ label {
+    left = 15%
+    top = 26.5%
+    width = 70%
+    height = 40
+
+    text = "â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘"
+    color = "#b85450"
+    font = "JetBrains Mono Regular 12"
+    align = "center"
+}
+
++ label {
+    left = 15%
+    top = 28%
+    width = 70%
+    height = 40
+
+    text = "â•‘   â—‰ â”€â”€â”€â”‚â”€â”€â”€â”€â”€âŠ•â”€â”€â”€â”€â”€â”€â”‚â”€â”€â”€ â—‰       â•‘"
+    color = "#b85450"
+    font = "JetBrains Mono Regular 12"
+    align = "center"
+}
+
++ label {
+    left = 15%
+    top = 29.5%
+    width = 70%
+    height = 40
+
+    text = "â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘"
+    color = "#b85450"
+    font = "JetBrains Mono Regular 12"
+    align = "center"
+}
+
++ label {
+    left = 15%
+    top = 31%
+    width = 70%
+    height = 40
+
+    text = "â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•"
+    color = "#b85450"
+    font = "JetBrains Mono Regular 12"
+    align = "center"
+}
+
+# â”€â”€â”€ BOTTOM BAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
++ label {
+    left = 15%
+    top = 85%
+    width = 70%
+    height = 20
+
+    text = "EST. 1963  â”‚  FACILITY 04  â”‚  CLEARANCE: RESTRICTED"
+    color = "#3d4250"
+    font = "JetBrains Mono Regular 8"
+    align = "center"
+}
