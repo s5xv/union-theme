@@ -2,393 +2,995 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>UNION Theme Preview â€” FACILITY 04</title>
+<title>UNION Theme â€” FACILITY 04</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+:root {
+    --bg: #12141a;
+    --surface: #1a1d23;
+    --surface2: #22262e;
+    --border: #2d3140;
+    --border2: #3d4250;
+    --text: #c8cdd5;
+    --text2: #8891a0;
+    --text3: #5c6370;
+    --red: #b85450;
+    --blue: #5e81ac;
+    --amber: #d4a04a;
+    --green: #6a9f78;
+    --purple: #8b7bab;
+    --cyan: #5e9fb0;
+}
+
 body {
-    font-family: "JetBrains Mono", "Cascadia Mono", "Fira Code", "Consolas", monospace;
-    background: #12141a;
-    color: #c8cdd5;
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
     height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     user-select: none;
+    cursor: default;
 }
 
-/* â”€â”€â”€ TOP BAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* TOP BAR                                                             */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
 .topbar {
-    height: 32px;
-    background: #1a1d23ee;
-    border-bottom: 1px solid #2d3140;
+    height: 30px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     padding: 0 12px;
-    z-index: 100;
+    z-index: 1000;
     flex-shrink: 0;
+    font-size: 11px;
 }
 
-.topbar .logo { color: #b85450; font-weight: 700; font-size: 13px; margin-right: 8px; }
-.topbar .id { color: #8891a0; font-size: 11px; margin-right: 12px; }
-.topbar .status { color: #8891a0; font-size: 11px; margin-right: auto; }
-
-.topbar .workspaces {
-    display: flex;
-    gap: 4px;
-    background: #1a1d23;
-    border: 1px solid #2d3140;
-    border-radius: 8px;
-    padding: 2px 8px;
-    margin: 0 auto;
-}
-
-.topbar .ws {
-    width: 20px; height: 20px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700;
-    color: #5c6370;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.topbar .ws.active { color: #b85450; background: rgba(184,84,80,0.15); }
-.topbar .ws:hover { background: rgba(200,205,213,0.1); color: #c8cdd5; }
-
-.topbar .right {
+.topbar-left {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 11px;
 }
-.topbar .right .notif { color: #d4a04a; font-size: 12px; }
-.topbar .right .net { color: #6a9f78; }
-.topbar .right .bat { color: #5e81ac; }
-.topbar .right .vol { color: #8b7bab; }
-.topbar .right .temp { color: #8891a0; }
-.topbar .right .cpu { color: #8891a0; }
-.topbar .right .mem { color: #8891a0; }
-.topbar .right .date { color: #8891a0; }
-.topbar .right .time { color: #b85450; font-weight: 600; }
 
-/* â”€â”€â”€ DESKTOP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-.desktop {
-    flex: 1;
-    background: #12141a;
+.topbar-logo {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.topbar-logo:hover { opacity: 0.8; }
+
+.topbar-id {
+    color: var(--text2);
+    font-size: 10px;
+}
+
+.topbar-workspaces {
+    display: flex;
+    gap: 2px;
+    margin-left: 12px;
+}
+
+.topbar-ws {
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text3);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
 }
 
-.bg-gradient {
+.topbar-ws.active {
+    color: var(--red);
+    background: rgba(184,84,80,0.12);
+}
+
+.topbar-ws:hover {
+    background: rgba(200,205,213,0.08);
+    color: var(--text);
+}
+
+.topbar-center {
     position: absolute;
-    width: 100%; height: 100%;
-    background:
-        radial-gradient(ellipse at 20% 50%, rgba(184,84,80,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 30%, rgba(94,129,172,0.04) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(139,123,171,0.03) 0%, transparent 50%);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.terminal-window {
-    width: 680px;
-    background: #1a1d23;
-    border: 1px solid #2d3140;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+.topbar-clock {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topbar-stat {
+    color: var(--text2);
+    font-size: 10px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.topbar-stat:hover {
+    background: rgba(200,205,213,0.08);
+    color: var(--text);
+}
+
+.topbar-stat.alert { color: var(--amber); }
+.topbar-stat.good { color: var(--green); }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* DESKTOP                                                             */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.desktop {
+    flex: 1;
+    background: var(--bg);
     position: relative;
-    z-index: 10;
+    overflow: hidden;
 }
 
-.terminal-titlebar {
+.desktop-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 15% 50%, rgba(184,84,80,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 30%, rgba(94,129,172,0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(139,123,171,0.02) 0%, transparent 50%);
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* WINDOWS                                                             */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.window {
+    position: absolute;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    overflow: hidden;
+    display: none;
+    min-width: 200px;
+    min-height: 120px;
+}
+
+.window.open { display: flex; flex-direction: column; }
+.window.focused { z-index: 500; border-color: var(--border2); }
+.window.focused .win-titlebar { background: var(--surface2); }
+
+.win-titlebar {
     height: 28px;
-    background: #22262e;
-    border-bottom: 1px solid #2d3140;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     padding: 0 10px;
-    gap: 6px;
-}
-.terminal-titlebar .dot { width: 10px; height: 10px; border-radius: 50%; }
-.terminal-titlebar .dot.r { background: #b85450; }
-.terminal-titlebar .dot.y { background: #d4a04a; }
-.terminal-titlebar .dot.g { background: #6a9f78; }
-.terminal-titlebar .title { margin-left: 8px; font-size: 10px; color: #5c6370; }
-
-.terminal-body {
-    padding: 16px;
-    font-size: 13px;
-    line-height: 1.6;
-    min-height: 320px;
-}
-
-.prompt { color: #b85450; }
-.user { color: #c8cdd5; }
-.path { color: #5e81ac; }
-.symbol { color: #b85450; }
-.text { color: #c8cdd5; }
-.comment { color: #5c6370; }
-.ascii { color: #b85450; font-size: 11px; line-height: 1.2; }
-.accent { color: #d4a04a; }
-.muted { color: #5c6370; }
-
-/* â”€â”€â”€ BOTTOM DOCK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-.dock {
-    height: 44px;
-    background: #22262e;
-    border-top: 1px solid #3d4250;
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    z-index: 100;
+    cursor: grab;
     flex-shrink: 0;
-    opacity: 0.2;
-    transition: opacity 0.25s ease;
 }
-.dock:hover { opacity: 1; }
 
-.dock .logo { color: #b85450; font-weight: 700; font-size: 14px; margin-right: 16px; }
+.win-titlebar:active { cursor: grabbing; }
 
-.dock .workspaces {
+.win-dots {
     display: flex;
-    gap: 4px;
-    margin-right: auto;
+    gap: 5px;
+    margin-right: 8px;
 }
-.dock .ws {
-    width: 20px; height: 20px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700;
-    color: #5c6370;
-    border-radius: 6px;
+
+.win-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     cursor: pointer;
-}
-.dock .ws.active { color: #b85450; background: rgba(184,84,80,0.15); }
-
-.dock .volume {
-    color: #8b7bab;
-    font-size: 11px;
-    padding: 4px 16px;
-    background: rgba(139,123,171,0.08);
-    border: 1px solid rgba(139,123,171,0.15);
-    border-radius: 8px;
-    margin: 0 24px;
+    border: none;
 }
 
-.dock .sys {
-    color: #b85450;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 12px;
-    background: rgba(184,84,80,0.08);
-    border-radius: 8px;
-}
+.win-dot.r { background: var(--red); }
+.win-dot.y { background: var(--amber); }
+.win-dot.g { background: var(--green); }
+.win-dot:hover { filter: brightness(1.2); }
 
-.dock .tray {
-    display: flex;
-    gap: 6px;
-    margin-left: 12px;
-    color: #8891a0;
-    font-size: 12px;
-}
-
-/* â”€â”€â”€ HINTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-.hint {
-    position: fixed;
-    bottom: 52px;
-    right: 16px;
-    background: #22262eee;
-    border: 1px solid #3d4250;
-    border-radius: 8px;
-    padding: 12px 16px;
+.win-title {
     font-size: 10px;
-    color: #5c6370;
-    z-index: 200;
-    line-height: 1.8;
-}
-.hint kbd {
-    background: #2d3140;
-    color: #8891a0;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-family: inherit;
-}
-.hint .key { color: #b85450; }
-
-/* â”€â”€â”€ FLOATING APPS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-.float-app {
-    position: absolute;
-    background: #1a1d23;
-    border: 1px solid #2d3140;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    overflow: hidden;
-}
-.float-app .header {
-    height: 24px;
-    background: #22262e;
-    border-bottom: 1px solid #2d3140;
-    display: flex;
-    align-items: center;
-    padding: 0 8px;
-    font-size: 9px;
-    color: #5c6370;
+    color: var(--text2);
+    flex: 1;
+    text-align: center;
+    margin-right: 28px;
 }
 
-.btop { top: 60px; right: 40px; width: 260px; height: 180px; }
-.btop .content { padding: 8px; font-size: 9px; color: #5e81ac; }
-.btop .bar { display: inline-block; height: 8px; margin: 1px 2px; border-radius: 2px; }
+.win-body {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
 
-.rofi { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 380px; z-index: 50; }
-.rofi .search {
-    padding: 10px 14px;
-    border-bottom: 1px solid #2d3140;
+/* â”€â”€â”€ TERMINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.term-body {
+    padding: 12px 14px;
     font-size: 12px;
-    color: #5c6370;
+    line-height: 1.5;
+    background: var(--bg);
+    min-height: 300px;
 }
-.rofi .search .cursor { color: #b85450; animation: blink 1s step-end infinite; }
+
+.term-prompt { color: var(--red); font-weight: 600; }
+.term-path { color: var(--blue); }
+.term-text { color: var(--text); }
+.term-dim { color: var(--text3); }
+.term-accent { color: var(--amber); }
+.term-green { color: var(--green); }
+.term-input-line { display: flex; align-items: center; }
+.term-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 14px;
+    background: var(--red);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+}
 @keyframes blink { 50% { opacity: 0; } }
-.rofi .items { max-height: 200px; overflow: hidden; }
-.rofi .item {
-    padding: 8px 14px;
-    font-size: 11px;
+
+/* â”€â”€â”€ ROFI LAUNCHER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.rofi-body {
+    padding: 0;
+}
+
+.rofi-search {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.rofi .item.selected { background: rgba(184,84,80,0.12); color: #b85450; }
-.rofi .item .icon { width: 16px; text-align: center; }
+
+.rofi-search-icon {
+    color: var(--text3);
+    font-size: 12px;
+}
+
+.rofi-search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.rofi-search-input::placeholder { color: var(--text3); }
+
+.rofi-items { max-height: 240px; overflow-y: auto; }
+
+.rofi-item {
+    padding: 7px 14px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.rofi-item:hover, .rofi-item.selected {
+    background: rgba(184,84,80,0.1);
+    color: var(--red);
+}
+
+.rofi-item-icon {
+    width: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text3);
+}
+
+.rofi-item:hover .rofi-item-icon { color: var(--red); }
+
+/* â”€â”€â”€ FILE MANAGER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.thunar-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.thunar-toolbar {
+    height: 28px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 4px;
+    font-size: 10px;
+}
+
+.thunar-btn {
+    padding: 2px 8px;
+    color: var(--text2);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.thunar-btn:hover { background: rgba(200,205,213,0.08); color: var(--text); }
+
+.thunar-path {
+    flex: 1;
+    padding: 2px 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text2);
+    font-size: 10px;
+    margin: 0 4px;
+}
+
+.thunar-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.thunar-sidebar {
+    width: 140px;
+    border-right: 1px solid var(--border);
+    padding: 8px 0;
+    font-size: 10px;
+}
+
+.thunar-sidebar-item {
+    padding: 4px 12px;
+    color: var(--text2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.thunar-sidebar-item:hover { background: rgba(200,205,213,0.05); color: var(--text); }
+.thunar-sidebar-item.active { color: var(--red); background: rgba(184,84,80,0.08); }
+
+.thunar-files {
+    flex: 1;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 4px;
+    align-content: start;
+}
+
+.thunar-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 9px;
+    color: var(--text2);
+    text-align: center;
+    word-break: break-all;
+}
+
+.thunar-file:hover { background: rgba(200,205,213,0.05); color: var(--text); }
+.thunar-file-icon { font-size: 24px; margin-bottom: 4px; }
+.thunar-file-icon.folder { color: var(--amber); }
+.thunar-file-icon.file { color: var(--text3); }
+.thunar-file-icon.image { color: var(--green); }
+.thunar-file-icon.code { color: var(--blue); }
+
+/* â”€â”€â”€ BTOP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.btop-body {
+    padding: 10px;
+    font-size: 10px;
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+.btop-section { margin-bottom: 8px; }
+.btop-label { font-weight: 600; }
+.btop-bar {
+    display: inline-block;
+    height: 10px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin: 0 1px;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* DOCK                                                                */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.dock-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4px;
+    z-index: 900;
+    pointer-events: none;
+}
+
+.dock {
+    height: 44px;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 2px;
+    pointer-events: all;
+    opacity: 0.15;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.dock:hover { opacity: 1; }
+
+.dock-item {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text2);
+    transition: all 0.15s;
+    position: relative;
+}
+
+.dock-item:hover {
+    background: rgba(200,205,213,0.1);
+    color: var(--text);
+    transform: translateY(-2px);
+}
+
+.dock-item.active {
+    color: var(--red);
+}
+
+.dock-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 4px;
+    height: 4px;
+    background: var(--red);
+    border-radius: 50%;
+}
+
+.dock-separator {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+    margin: 0 4px;
+}
+
+.dock-tooltip {
+    position: absolute;
+    bottom: 42px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--text);
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.dock-item:hover .dock-tooltip { opacity: 1; }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* KEYBIND HINTS                                                      */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+.hints {
+    position: absolute;
+    bottom: 56px;
+    right: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 9px;
+    color: var(--text3);
+    z-index: 800;
+    line-height: 2;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.hints.show { opacity: 1; }
+
+.hints kbd {
+    background: var(--border);
+    color: var(--text2);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 9px;
+}
+
+.hints .key { color: var(--red); font-weight: 600; }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* SCROLLBAR                                                          */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border2); }
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div class="topbar">
-    <span class="logo">â—‰âŠ•â—‰</span>
-    <span class="id">FACILITY 04 // operator</span>
-    <span class="status">CPU: 3%</span>
-
-    <div class="workspaces">
-        <div class="ws">â—‹</div>
-        <div class="ws">â—‹</div>
-        <div class="ws active">â—</div>
-        <div class="ws">â—‹</div>
-        <div class="ws">â—‹</div>
-        <div class="ws">â—‹</div>
+    <div class="topbar-left">
+        <span class="topbar-logo" title="UNION // Click for launcher">âŠ•</span>
+        <span class="topbar-id">FACILITY 04</span>
+        <div class="topbar-workspaces">
+            <div class="topbar-ws" data-ws="1" title="1: ARCHIVE">â—‹</div>
+            <div class="topbar-ws" data-ws="2" title="2: RESEARCH">â—‹</div>
+            <div class="topbar-ws active" data-ws="3" title="3: ORBITAL">â—</div>
+            <div class="topbar-ws" data-ws="4" title="4: LUNAR">â—‹</div>
+            <div class="topbar-ws" data-ws="5" title="5: DEEP SPACE">â—‹</div>
+            <div class="topbar-ws" data-ws="6" title="6: CONTROL">â—‹</div>
+        </div>
     </div>
 
-    <div class="right">
-        <span class="notif">ðŸ””</span>
-        <span class="net">W: 87%</span>
-        <span class="bat">BAT: 94%</span>
-        <span class="vol">VOL: 75%</span>
-        <span class="temp">TEMP: 42Â°C</span>
-        <span class="cpu">CPU: 3%</span>
-        <span class="mem">MEM: 38%</span>
-        <span class="date">DAY: Wed 17</span>
-        <span class="time">TIME: 14:23</span>
+    <div class="topbar-center">
+        <span class="topbar-clock" id="topbar-clock">WED 17 SEP â€” 14:23:07</span>
+    </div>
+
+    <div class="topbar-right">
+        <span class="topbar-stat" title="Network: wlan0">NET 87%</span>
+        <span class="topbar-stat good" title="Battery: 94%">BAT 94%</span>
+        <span class="topbar-stat" title="Volume: click to mute">VOL 75%</span>
+        <span class="topbar-stat" title="Temperature">TMP 42Â°C</span>
+        <span class="topbar-stat" title="CPU usage">CPU 3%</span>
+        <span class="topbar-stat" title="Memory usage">MEM 38%</span>
     </div>
 </div>
 
 <!-- DESKTOP -->
-<div class="desktop">
-    <div class="bg-gradient"></div>
+<div class="desktop" id="desktop">
+    <div class="desktop-bg"></div>
 
-    <!-- TERMINAL -->
-    <div class="terminal-window">
-        <div class="terminal-titlebar">
-            <div class="dot r"></div>
-            <div class="dot y"></div>
-            <div class="dot g"></div>
-            <span class="title">kitty â€” bash â€” union@facility-04</span>
+    <!-- TERMINAL WINDOW -->
+    <div class="window focused" id="win-terminal" style="left:80px;top:50px;width:640px;height:380px;">
+        <div class="win-titlebar" data-window="win-terminal">
+            <div class="win-dots">
+                <button class="win-dot r" onclick="closeWindow('win-terminal')"></button>
+                <button class="win-dot y" onclick="minimizeWindow('win-terminal')"></button>
+                <button class="win-dot g" onclick="maximizeWindow('win-terminal')"></button>
+            </div>
+            <span class="win-title">union@facility-04 â€” kitty</span>
         </div>
-        <div class="terminal-body">
-            <pre class="ascii">
-    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ•—   â–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•—
-    â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘â•šâ•â•â–ˆâ–ˆâ•”â•â•â•â–ˆâ–ˆâ•‘
-    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•”â–ˆâ–ˆâ•— â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘
-    â•šâ•â•â•â•â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•  â–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â•šâ•â•
-    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ•‘ â•šâ–ˆâ–ˆâ–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•‘   â–ˆâ–ˆâ•—
-    â•šâ•â•â•â•â•â•â• â•šâ•â•â•â•â•â• â•šâ•â•â•â•â•â•â•â•šâ•â•  â•šâ•â•â•â•   â•šâ•â•   â•šâ•â•</pre>
-            <br>
-            <span class="ascii">  â—‰âŠ•â—‰  UNIFIED NATIONAL INSTITUTE FOR</span><br>
-            <span class="ascii">       ORBITAL AND NUCLEAR RESEARCH</span><br><br>
-            <span class="comment">  â”€â”€â”€ SYSTEM STATUS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€</span><br>
-            <span class="text">  </span><span class="accent">FACILITY:</span><span class="text">  04</span><br>
-            <span class="text">  </span><span class="accent">TERMINAL:</span><span class="text">  7B-114</span><br>
-            <span class="text">  </span><span class="accent">OPERATOR:</span><span class="text">  [CLASSIFIED]</span><br>
-            <span class="text">  </span><span class="accent">STATUS:</span><span class="text">    </span><span class="muted" style="color:#6a9f78;">ACTIVE</span><br><br>
-            <span class="comment">  â”€â”€â”€ QUICK START â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€</span><br>
-            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+Return    â†’ Terminal</span><br>
-            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+D         â†’ App launcher</span><br>
-            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+V         â†’ Clipboard</span><br>
-            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+SHIFT+W   â†’ Wallpaper</span><br>
-            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+SHIFT+P   â†’ Power menu</span><br>
-            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> SUPER+Space      â†’ Arabic/English</span><br>
-            <span class="text">  </span><span class="prompt">â—‰</span><span class="symbol">âŠ•</span><span class="prompt">â—‰</span><span class="text"> Insert           â†’ Screenshot</span><br><br>
-            <span class="prompt">union@facility-04</span><span class="text">:</span><span class="path">~</span><span class="symbol">$</span><span class="text"> <span class="cursor">â–ˆ</span></span>
+        <div class="win-body">
+            <div class="term-body" id="term-body">
+                <div class="term-dim">â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”</div>
+                <div class="term-dim">â”‚</div><span class="term-red" style="color:var(--red);">  â—‰âŠ•â—‰</span><span class="term-dim">  UNIFIED NATIONAL INSTITUTE FOR      </span><span class="term-dim">â”‚</span>
+                <div class="term-dim">â”‚</div><span class="term-dim">       ORBITAL AND NUCLEAR RESEARCH         </span><span class="term-dim">â”‚</span>
+                <div class="term-dim">â”‚</div><span class="term-dim">       â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€            </span><span class="term-dim">â”‚</span>
+                <div class="term-dim">â”‚</div><span class="term-dim">       FACILITY 04 // TERMINAL 7B-114       </span><span class="term-dim">â”‚</span>
+                <div class="term-dim">â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜</div>
+                <br>
+                <span class="term-dim">  SYSTEM STATUS:</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span class="term-accent">FACILITY:</span> <span class="term-text">04</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span class="term-accent">TERMINAL:</span> <span class="term-text">7B-114</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span class="term-accent">OPERATOR:</span> <span class="term-text">[CLASSIFIED]</span><br>
+                <span class="term-dim">  â””â”€â”€</span> <span class="term-accent">STATUS:</span> <span class="term-green">ACTIVE</span><br>
+                <br>
+                <span class="term-dim">  QUICK START:</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span style="color:var(--red);">âŠ•</span><span class="term-text"> SUPER+Return    Terminal</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span style="color:var(--red);">âŠ•</span><span class="term-text"> SUPER+D         Launcher</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span style="color:var(--red);">âŠ•</span><span class="term-text"> SUPER+V         Clipboard</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span style="color:var(--red);">âŠ•</span><span class="term-text"> SUPER+Shift+W   Wallpaper</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span style="color:var(--red);">âŠ•</span><span class="term-text"> SUPER+Shift+P   Power menu</span><br>
+                <span class="term-dim">  â”œâ”€â”€</span> <span style="color:var(--red);">âŠ•</span><span class="term-text"> SUPER+Space     Ara/Eng</span><br>
+                <span class="term-dim">  â””â”€â”€</span> <span style="color:var(--red);">âŠ•</span><span class="term-text"> Insert          Screenshot</span><br>
+                <br>
+                <div class="term-input-line">
+                    <span class="term-prompt">union@facility-04</span><span class="term-text">:</span><span class="term-path">~</span><span class="term-text">$ </span><span class="term-cursor"></span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- BTOP FLOAT -->
-    <div class="float-app btop">
-        <div class="header">btop â€” union@facility-04</div>
-        <div class="content">
-            <span style="color:#b85450;">CPU</span> <span style="color:#5c6370;">â”œâ”€</span>
-            <span class="bar" style="width:12px;background:#b85450;"></span>
-            <span class="bar" style="width:8px;background:#b85450;"></span>
-            <span class="bar" style="width:20px;background:#b85450;"></span>
-            <span class="bar" style="width:6px;background:#2d3140;"></span>
-            <span class="bar" style="width:14px;background:#2d3140;"></span>
-            <span style="color:#5c6370;"> 3.2%</span><br>
-            <span style="color:#5e81ac;">MEM</span> <span style="color:#5c6370;">â”œâ”€</span>
-            <span class="bar" style="width:40px;background:#5e81ac;"></span>
-            <span class="bar" style="width:24px;background:#2d3140;"></span>
-            <span style="color:#5c6370;"> 2.8G / 7.6G</span><br>
-            <span style="color:#6a9f78;">DSK</span> <span style="color:#5c6370;">â”œâ”€</span>
-            <span class="bar" style="width:30px;background:#6a9f78;"></span>
-            <span class="bar" style="width:34px;background:#2d3140;"></span>
-            <span style="color:#5c6370;"> 142G / 512G</span><br>
-            <span style="color:#8b7bab;">NET</span> <span style="color:#5c6370;">â””â”€</span>
-            <span style="color:#5c6370;"> wlan0: 87% â†‘ 2.1MB â†“ 15.4MB</span>
+    <!-- BTOP WINDOW -->
+    <div class="window" id="win-btop" style="left:420px;top:100px;width:300px;height:220px;">
+        <div class="win-titlebar" data-window="win-btop">
+            <div class="win-dots">
+                <button class="win-dot r" onclick="closeWindow('win-btop')"></button>
+                <button class="win-dot y" onclick="minimizeWindow('win-btop')"></button>
+                <button class="win-dot g" onclick="maximizeWindow('win-btop')"></button>
+            </div>
+            <span class="win-title">btop â€” union@facility-04</span>
+        </div>
+        <div class="win-body">
+            <div class="btop-body">
+                <div class="btop-section">
+                    <span class="btop-label" style="color:var(--red);">CPU</span><br>
+                    <span class="btop-bar" style="width:30px;background:var(--red);"></span>
+                    <span class="btop-bar" style="width:18px;background:var(--red);"></span>
+                    <span class="btop-bar" style="width:45px;background:var(--red);"></span>
+                    <span class="btop-bar" style="width:12px;background:var(--border);"></span>
+                    <span class="btop-bar" style="width:25px;background:var(--border);"></span>
+                    <span class="term-dim"> 3.2%</span>
+                </div>
+                <div class="btop-section">
+                    <span class="btop-label" style="color:var(--blue);">MEM</span><br>
+                    <span class="btop-bar" style="width:80px;background:var(--blue);"></span>
+                    <span class="btop-bar" style="width:50px;background:var(--border);"></span>
+                    <span class="term-dim"> 2.8G / 7.6G (38%)</span>
+                </div>
+                <div class="btop-section">
+                    <span class="btop-label" style="color:var(--green);">DSK</span><br>
+                    <span class="btop-bar" style="width:60px;background:var(--green);"></span>
+                    <span class="btop-bar" style="width:70px;background:var(--border);"></span>
+                    <span class="term-dim"> 142G / 512G (28%)</span>
+                </div>
+                <div class="btop-section">
+                    <span class="btop-label" style="color:var(--purple);">NET</span><br>
+                    <span class="term-dim"> wlan0: 87% signal</span><br>
+                    <span class="term-dim"> â†‘ 2.1 MB/s  â†“ 15.4 MB/s</span>
+                </div>
+                <div class="btop-section">
+                    <span class="btop-label" style="color:var(--cyan);">PROC</span><br>
+                    <span class="term-dim"> 124 running, 1 sleeping</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROFI LAUNCHER WINDOW -->
+    <div class="window" id="win-rofi" style="left:50%;top:40%;transform:translate(-50%,-50%);width:380px;z-index:600;">
+        <div class="win-titlebar" data-window="win-rofi" style="display:none;"></div>
+        <div class="win-body">
+            <div class="rofi-body">
+                <div class="rofi-search">
+                    <span class="rofi-search-icon">âŠ•</span>
+                    <input class="rofi-search-input" id="rofi-input" placeholder="Search applications..." autofocus>
+                </div>
+                <div class="rofi-items" id="rofi-items">
+                    <div class="rofi-item selected" onclick="launchApp('terminal')">
+                        <span class="rofi-item-icon">â–¸</span>
+                        <span>kitty</span>
+                    </div>
+                    <div class="rofi-item" onclick="launchApp('thunar')">
+                        <span class="rofi-item-icon">â–¸</span>
+                        <span>thunar</span>
+                    </div>
+                    <div class="rofi-item" onclick="launchApp('btop')">
+                        <span class="rofi-item-icon">â–¸</span>
+                        <span>btop</span>
+                    </div>
+                    <div class="rofi-item" onclick="launchApp('firefox')">
+                        <span class="rofi-item-icon">â–¸</span>
+                        <span>firefox</span>
+                    </div>
+                    <div class="rofi-item" onclick="launchApp('neovim')">
+                        <span class="rofi-item-icon">â–¸</span>
+                        <span>nvim</span>
+                    </div>
+                    <div class="rofi-item" onclick="closeWindow('win-rofi')">
+                        <span class="rofi-item-icon">â–¸</span>
+                        <span>power menu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THUNAR FILE MANAGER -->
+    <div class="window" id="win-thunar" style="left:200px;top:80px;width:560px;height:360px;">
+        <div class="win-titlebar" data-window="win-thunar">
+            <div class="win-dots">
+                <button class="win-dot r" onclick="closeWindow('win-thunar')"></button>
+                <button class="win-dot y" onclick="minimizeWindow('win-thunar')"></button>
+                <button class="win-dot g" onclick="maximizeWindow('win-thunar')"></button>
+            </div>
+            <span class="win-title">thunar â€” ~</span>
+        </div>
+        <div class="win-body">
+            <div class="thunar-body">
+                <div class="thunar-toolbar">
+                    <span class="thunar-btn">â†</span>
+                    <span class="thunar-btn">â†’</span>
+                    <span class="thunar-btn">â†‘</span>
+                    <span class="thunar-path">/home/union</span>
+                    <span class="thunar-btn">âŸ³</span>
+                </div>
+                <div class="thunar-content">
+                    <div class="thunar-sidebar">
+                        <div class="thunar-sidebar-item active"><span>âŒ‚</span> Home</div>
+                        <div class="thunar-sidebar-item"><span>~/</span> Desktop</div>
+                        <div class="thunar-sidebar-item"><span>~/</span> Documents</div>
+                        <div class="thunar-sidebar-item"><span>~/</span> Downloads</div>
+                        <div class="thunar-sidebar-item"><span>~/</span> Pictures</div>
+                        <div class="thunar-sidebar-item"><span>~/</span> Music</div>
+                        <div class="thunar-sidebar-item"><span>~/</span> Videos</div>
+                        <div class="thunar-sidebar-item"><span>/</span> Root</div>
+                        <div class="thunar-sidebar-item"><span>âŠ—</span> Trash</div>
+                    </div>
+                    <div class="thunar-files">
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>.config</div>
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>.local</div>
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>Documents</div>
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>Downloads</div>
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>Pictures</div>
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>Music</div>
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>Videos</div>
+                        <div class="thunar-file"><div class="thunar-file-icon file">â”€</div>.bashrc</div>
+                        <div class="thunar-file"><div class="thunar-file-icon code">âŒˆ</div>.zshrc</div>
+                        <div class="thunar-file"><div class="thunar-file-icon image">â—»</div>wallpaper.png</div>
+                        <div class="thunar-file"><div class="thunar-file-icon file">â”€</div>.gitconfig</div>
+                        <div class="thunar-file"><div class="thunar-file-icon folder">â–¸</div>Pictures/union</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- BOTTOM DOCK -->
-<div class="dock" id="dock">
-    <span class="logo">â—‰âŠ•â—‰</span>
-
-    <div class="workspaces">
-        <div class="ws">â—‹</div>
-        <div class="ws">â—‹</div>
-        <div class="ws active">â—</div>
-        <div class="ws">â—‹</div>
-        <div class="ws">â—‹</div>
-        <div class="ws">â—‹</div>
-    </div>
-
-    <div class="volume">VOL 75%</div>
-
-    <div class="sys">SYS</div>
-
-    <div class="tray">
-        <span>ðŸ“¶</span>
-        <span>ðŸ”Š</span>
-        <span>ðŸ”‹</span>
+<!-- DOCK -->
+<div class="dock-wrapper">
+    <div class="dock" id="dock">
+        <div class="dock-item" onclick="toggleRofi()" title="Launcher">
+            <span>âŠ•</span>
+            <div class="dock-tooltip">Launcher</div>
+        </div>
+        <div class="dock-separator"></div>
+        <div class="dock-item active" onclick="focusWindow('win-terminal')" title="Terminal">
+            <span>â–¸</span>
+            <div class="dock-tooltip">kitty</div>
+        </div>
+        <div class="dock-item" onclick="launchApp('thunar')" title="Files">
+            <span>â—†</span>
+            <div class="dock-tooltip">thunar</div>
+        </div>
+        <div class="dock-item" onclick="launchApp('firefox')" title="Firefox">
+            <span>â—Ž</span>
+            <div class="dock-tooltip">firefox</div>
+        </div>
+        <div class="dock-item" onclick="launchApp('btop')" title="btop">
+            <span>â—Š</span>
+            <div class="dock-tooltip">btop</div>
+        </div>
+        <div class="dock-item" onclick="launchApp('neovim')" title="Neovim">
+            <span>âŒˆ</span>
+            <div class="dock-tooltip">nvim</div>
+        </div>
     </div>
 </div>
 
 <!-- KEYBIND HINTS -->
-<div class="hint">
-    <span class="key">SUPER</span>+Return  Terminal<br>
-    <span class="key">SUPER</span>+D       Launcher<br>
-    <span class="key">SUPER</span>+V       Clipboard<br>
-    <span class="key">SUPER</span>+Shift+P Power<br>
-    <span class="key">SUPER</span>+Shift+W Wallpaper<br>
-    <span class="key">Insert</span>        Screenshot<br>
-    <span class="key">SUPER</span>+Space   Ara/Eng
+<div class="hints" id="hints">
+    <span class="key">âŠ•</span> SUPER+Return &nbsp; Terminal<br>
+    <span class="key">âŠ•</span> SUPER+D &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Launcher<br>
+    <span class="key">âŠ•</span> SUPER+V &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Clipboard<br>
+    <span class="key">âŠ•</span> SUPER+Shift+P &nbsp; Power<br>
+    <span class="key">âŠ•</span> SUPER+Shift+W &nbsp; Wallpaper<br>
+    <span class="key">âŠ•</span> Insert &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Screenshot
 </div>
 
+<script>
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// CLOCK
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function updateClock() {
+    const now = new Date();
+    const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const d = days[now.getDay()];
+    const day = String(now.getDate()).padStart(2,'0');
+    const m = months[now.getMonth()];
+    const h = String(now.getHours()).padStart(2,'0');
+    const min = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('topbar-clock').textContent = `${d} ${day} ${m} â€” ${h}:${min}:${s}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// WINDOWS
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+let zIndex = 100;
+
+function openWindow(id) {
+    const w = document.getElementById(id);
+    if (!w) return;
+    w.classList.add('open');
+    focusWindow(id);
+}
+
+function closeWindow(id) {
+    document.getElementById(id)?.classList.remove('open');
+}
+
+function minimizeWindow(id) {
+    document.getElementById(id)?.classList.remove('open');
+}
+
+function maximizeWindow(id) {
+    const w = document.getElementById(id);
+    if (!w) return;
+    if (w.style.width === '100%') {
+        w.style.left = w.dataset.origLeft;
+        w.style.top = w.dataset.origTop;
+        w.style.width = w.dataset.origWidth;
+        w.style.height = w.dataset.origHeight;
+        w.style.transform = w.dataset.origTransform || '';
+    } else {
+        w.dataset.origLeft = w.style.left;
+        w.dataset.origTop = w.style.top;
+        w.dataset.origWidth = w.style.width;
+        w.dataset.origHeight = w.style.height;
+        w.dataset.origTransform = w.style.transform;
+        w.style.left = '0';
+        w.style.top = '0';
+        w.style.width = '100%';
+        w.style.height = '100%';
+        w.style.transform = 'none';
+    }
+}
+
+function focusWindow(id) {
+    document.querySelectorAll('.window').forEach(w => w.classList.remove('focused'));
+    const w = document.getElementById(id);
+    if (w) {
+        w.classList.add('focused');
+        w.style.zIndex = ++zIndex;
+    }
+}
+
+// Drag windows
+document.querySelectorAll('.win-titlebar').forEach(bar => {
+    let isDragging = false, startX, startY, winX, winY;
+    const win = bar.closest('.window');
+
+    bar.addEventListener('mousedown', e => {
+        if (e.target.classList.contains('win-dot')) return;
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        winX = win.offsetLeft;
+        winY = win.offsetTop;
+        focusWindow(win.id);
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        win.style.left = (winX + e.clientX - startX) + 'px';
+        win.style.top = (winY + e.clientY - startY) + 'px';
+        win.style.transform = 'none';
+    });
+
+    document.addEventListener('mouseup', () => { isDragging = false; });
+});
+
+// Click window to focus
+document.querySelectorAll('.window').forEach(w => {
+    w.addEventListener('mousedown', () => focusWindow(w.id));
+});
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// APPS
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function launchApp(app) {
+    closeWindow('win-rofi');
+    if (app === 'terminal') openWindow('win-terminal');
+    else if (app === 'btop') openWindow('win-btop');
+    else if (app === 'thunar') openWindow('win-thunar');
+    else if (app === 'firefox') {
+        alert('Firefox would open here on real Hyprland.');
+    } else if (app === 'neovim') {
+        alert('Neovim would open here on real Hyprland.');
+    }
+}
+
+function toggleRofi() {
+    const r = document.getElementById('win-rofi');
+    if (r.classList.contains('open')) closeWindow('win-rofi');
+    else { openWindow('win-rofi'); document.getElementById('rofi-input').focus(); }
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// KEYBOARD SHORTCUTS
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+document.addEventListener('keydown', e => {
+    // Escape closes rofi
+    if (e.key === 'Escape') {
+        closeWindow('win-rofi');
+    }
+
+    // Ctrl+D or Meta+D = launcher
+    if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+        e.preventDefault();
+        toggleRofi();
+    }
+
+    // Ctrl+Return = new terminal
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        openWindow('win-terminal');
+    }
+});
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// WORKSPACE SWITCHING
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+let currentWs = 3;
+document.querySelectorAll('.topbar-ws').forEach(ws => {
+    ws.addEventListener('click', () => {
+        document.querySelector('.topbar-ws.active')?.classList.remove('active');
+        ws.classList.add('active');
+        currentWs = parseInt(ws.dataset.ws);
+    });
+});
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// HINTS TOGGLE
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+document.addEventListener('keydown', e => {
+    if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+        document.getElementById('hints').classList.toggle('show');
+    }
+});
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ROFI FILTER
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+document.getElementById('rofi-input')?.addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll('.rofi-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(q) ? 'flex' : 'none';
+    });
+});
+</script>
 </body>
 </html>
