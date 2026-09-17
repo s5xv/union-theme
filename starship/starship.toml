@@ -1,0 +1,99 @@
+# ═══════════════════════════════════════════════════════════════════
+# UNION THEME — STARSHIP PROMPT CONFIGURATION
+# Unified National Institute for Orbital and Nuclear Research
+# Государственный институт специальных исследований
+# Facility 04 — Terminal 7B-114
+# ═══════════════════════════════════════════════════════════════════
+
+format = """
+[]($background)\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$rust\
+$python\
+$cmd_duration\
+$line_break\
+$prompt_character\
+ """
+
+# ─── PROMPT CHARACTER ────────────────────────────────────────────
+[character]
+success_symbol = "[>](bold #6a9f78)"
+error_symbol = "[✗](bold #b85450)"
+
+# ─── DIRECTORY ───────────────────────────────────────────────────
+[directory]
+style = "bold #c8cdd5"
+format = "[$path]($style)"
+truncation_length = 4
+truncation_symbol = "…/"
+ substitutions = {
+     "RESEARCH" = "RESEARCH",
+     "ARCHIVE" = "ARCHIVE",
+     "ORBITAL" = "ORBITAL",
+     "LUNAR" = "LUNAR",
+     "DEEP SPACE" = "DEEP SPACE",
+     "CONTROL" = "CONTROL",
+ }
+
+# ─── GIT ─────────────────────────────────────────────────────────
+[git_branch]
+symbol = " "
+style = "bold #5e81ac"
+format = "[$symbol$branch]($style)"
+
+[git_status]
+style = "bold #d4a04a"
+format = "[$all_status$ahead_behind]($style)"
+modified = "M"
+untracked = "?"
+staged = "+"
+deleted = "D"
+stashed = "$"
+diverged = "!"
+
+# ─── LANGUAGES ───────────────────────────────────────────────────
+[nodejs]
+symbol = " "
+style = "bold #6a9f78"
+format = "[$symbol($version)]($style)"
+
+[rust]
+symbol = "🦀 "
+style = "bold #d4a04a"
+format = "[$symbol($version)]($style)"
+
+[python]
+symbol = " "
+style = "bold #5e81ac"
+format = "[$symbol($version)]($style)"
+
+# ─── COMMAND DURATION ────────────────────────────────────────────
+[cmd_duration]
+style = "bold #5c6370"
+format = "[$duration]($style)"
+min_time = 2000
+
+# ─── BATTERY ─────────────────────────────────────────────────────
+[battery]
+format = "[$symbol$percentage]($style)"
+charging_symbol = "⚡"
+discharging_symbol = " "
+full_symbol = " "
+unknown_symbol = "? "
+
+[battery.display]
+threshold = 30
+style = "bold #b85450"
+
+# ─── STATUS ──────────────────────────────────────────────────────
+[status]
+format = "[\\[$symbol$\\]](bold #b85450)"
+success_symbol = ""
+error_symbol = "✗"
+
+# ─── LINE BREAK ──────────────────────────────────────────────────
+[line_break]
+disabled = false
