@@ -1,0 +1,71 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 48,
+    "spacing": 0,
+    "margin-top": 0,
+    "margin-bottom": 4,
+    "margin-left": 100,
+    "margin-right": 100,
+
+    "modules-left": [
+        "custom/union-logo-dock"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+        "custom/union-sys-info",
+        "tray"
+    ],
+
+    "custom/union-logo-dock": {
+        "format": "â—‰âŠ•â—‰",
+        "tooltip": true,
+        "tooltip-format": "UNION // Click to open launcher",
+        "on-click": "rofi -show drun -show-icons"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "â—‹",
+            "2": "â—‹",
+            "3": "â—",
+            "4": "â—‹",
+            "5": "â—‹",
+            "6": "â—‹"
+        },
+        "active_workspace": {
+            "format": "â—",
+            "default": "â—"
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": []
+        },
+        "all-outputs": false,
+        "sort-by-number": true,
+        "on-click": "activate",
+        "tooltip-format": "{id}: {name}\n\n1: ARCHIVE\n2: RESEARCH\n3: ORBITAL\n4: LUNAR\n5: DEEP SPACE\n6: CONTROL",
+        "tooltip": true
+    },
+
+    "custom/union-sys-info": {
+        "format": "SYS",
+        "tooltip": true,
+        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick to open btop",
+        "on-click": "kitty btop"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 6
+    }
+}
