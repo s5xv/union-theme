@@ -13,64 +13,23 @@
     "modules": [
         "title",
         "separator",
-        {
-            "type": "custom",
-            "format": "┌─────────────────────────────────────────────┐\n│  {#custom UNION//ГИСС FACILITY 04}         │\n│  Unified National Institute for             │\n│  Orbital and Nuclear Research               │\n└─────────────────────────────────────────────┘"
-        },
+        "os",
+        "kernel",
+        "uptime",
+        "packages",
+        "shell",
+        "terminal",
+        "de",
+        "wm",
         "separator",
-        {
-            "type": "os",
-            "key": "OS"
-        },
-        {
-            "type": "kernel",
-            "key": "KERNEL"
-        },
-        {
-            "type": "uptime",
-            "key": "UPTIME"
-        },
-        {
-            "type": "packages",
-            "key": "PACKAGES"
-        },
-        {
-            "type": "shell",
-            "key": "SHELL"
-        },
-        {
-            "type": "terminal",
-            "key": "TERMINAL"
-        },
-        {
-            "type": "de",
-            "key": "DE"
-        },
-        {
-            "type": "wm",
-            "key": "WM"
-        },
-        "separator",
-        {
-            "type": "cpu",
-            "key": "CPU"
-        },
-        {
-            "type": "gpu",
-            "key": "GPU"
-        },
-        {
-            "type": "memory",
-            "key": "MEMORY"
-        },
-        {
-            "type": "disk",
-            "key": "DISK"
-        },
+        "cpu",
+        "gpu",
+        "memory",
+        "disk",
         "separator",
         {
             "type": "custom",
-            "format": "┌─────────────────────────────────────────────┐\n│  FACILITY: 04                               │\n│  DIRECTORATE: ORBITAL RESEARCH              │\n│  CLEARANCE: RESTRICTED                      │\n│  STATUS: OPERATIONAL                        │\n└─────────────────────────────────────────────┘"
+            "format": "┌─────────────────────────────────────────────┐\n│  FACILITY: 04                               │\n│  DIRECTORATE: ORBITAL RESEARCH              │\n│  CLEARANCE: RESTRICTED                      │\n│  STATUS: OPERATIONAL                        │\n│                                             │\n│  NOTE: Fictional metadata above.            │\n│  This is a theme, not a real organization.  │\n└─────────────────────────────────────────────┘"
         }
     ]
 }
