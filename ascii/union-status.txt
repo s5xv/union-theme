@@ -1,0 +1,15 @@
+╔═══════════════════════════════════════════════════════════════╗
+║  UNION // SYSTEM STATUS                                       ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  SYSTEM STATUS ............ NOMINAL                           ║
+║  ARCHIVE .................. ONLINE                            ║
+║  COMMUNICATIONS ........... ONLINE                            ║
+║  RESEARCH NETWORK ......... ONLINE                            ║
+║  ORBITAL RELAY ............ STANDBY                           ║
+║  NUCLEAR MONITOR .......... ACTIVE                            ║
+║                                                               ║
+║  FACILITY: 04  │  TERMINAL: 7B-114                            ║
+║  ACCESS LEVEL: ████████  │  DATE: 1986-11-04                 ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
