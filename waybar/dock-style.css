@@ -1,0 +1,117 @@
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* UNION THEME â€” WAYBAR DOCK (BOTTOM)                                 */
+/* Unified National Institute for Orbital and Nuclear Research       */
+/* Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹                 */
+/* Facility 04 â€” Terminal 7B-114                                     */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+* {
+    font-family: "JetBrains Mono", "IBM Plex Mono", "Source Code Pro", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #22262ee6;
+    color: #c8cdd5;
+    border: 1px solid #3d4250;
+    border-radius: 8px;
+}
+
+tooltip {
+    background: #22262e;
+    border: 1px solid #3d4250;
+    color: #c8cdd5;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+tooltip label {
+    color: #c8cdd5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+}
+
+/* â”€â”€â”€ LOGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+#custom-union-logo-dock {
+    color: #b85450;
+    font-size: 14px;
+    padding: 0 12px;
+    margin: 0;
+    font-weight: 700;
+}
+
+#custom-union-logo-dock:hover {
+    background-color: #2a2e37;
+    border-radius: 4px;
+}
+
+/* â”€â”€â”€ WORKSPACES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+#workspaces {
+    background-color: transparent;
+    color: #5c6370;
+    padding: 0 8px;
+    margin: 4px 0;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    margin: 0 2px;
+    color: #5c6370;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    min-width: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#workspaces button.active {
+    color: #b85450;
+    background-color: #2a2e37;
+    border-radius: 4px;
+}
+
+#workspaces button:hover {
+    background-color: #343842;
+    color: #c8cdd5;
+}
+
+#workspaces button.urgent {
+    color: #d4a04a;
+    background-color: #2a2e37;
+}
+
+/* â”€â”€â”€ SYS INFO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+#custom-union-sys-info {
+    color: #b85450;
+    padding: 0 10px;
+    margin: 0;
+    font-weight: 600;
+}
+
+#custom-union-sys-info:hover {
+    background-color: #2a2e37;
+    border-radius: 4px;
+}
+
+/* â”€â”€â”€ TRAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+#tray {
+    padding: 0 8px;
+    margin: 0;
+    color: #8891a0;
+}
+
+#tray > passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > needs-attention {
+    -gtk-icon-effect: highlight;
+    color: #d4a04a;
+}
