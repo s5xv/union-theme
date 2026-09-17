@@ -39,7 +39,9 @@
         "custom/separator-2",
         "clock",
         "custom/separator-2",
-        "tray"
+        "tray",
+        "custom/separator-2",
+        "custom/union-notif"
     ],
 
     "custom/union-logo": {
@@ -58,8 +60,9 @@
     "custom/union-status": {
         "format": "SYS",
         "tooltip": true,
-        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick to open btop\nCPU: {cpu}%\nRAM: {memory}%",
-        "on-click": "kitty btop"
+        "tooltip-format": "SYSTEM STATUS: NOMINAL\nClick: Toggle btop\nRight-click: Full status",
+        "on-click": "/usr/local/bin/union-toggle btop",
+        "on-click-right": "kitty /usr/local/bin/union-status --full"
     },
 
     "custom/separator-1": {
@@ -200,5 +203,16 @@
     "tray": {
         "icon-size": 14,
         "spacing": 4
+    },
+
+    "custom/union-notif": {
+        "format": "ðŸ””",
+        "tooltip": true,
+        "tooltip-format": "NOTIFICATION CENTER\nClick: Open dunst/mako history\nRight-click: Clear all",
+        "on-click": "dunstctl history | rofi -dmenu -p 'Notifications' || makoctl restore",
+        "on-click-right": "dunstctl close-all || makoctl dismiss --all",
+        "return-type": "json",
+        "exec": "echo '{\"text\": \"ðŸ””\"}'",
+        "interval": 5
     }
 }
