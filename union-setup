@@ -1,0 +1,361 @@
+#!/bin/bash
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” INTERACTIVE SETUP SCRIPT
+# Unified National Institute for Orbital and Nuclear Research
+# Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹
+# Facility 04 â€” Terminal 7B-114
+# Document: UN-04-SETUP-001  |  Classification: RESTRICTED
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+set -euo pipefail
+
+# â”€â”€â”€ COLORS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+C_RED='\033[0;31m'
+C_GREEN='\033[0;32m'
+C_AMBER='\033[0;33m'
+C_BLUE='\033[0;34m'
+C_CYAN='\033[0;36m'
+C_DIM='\033[2m'
+C_BOLD='\033[1m'
+C_RESET='\033[0m'
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# â”€â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+print_header() {
+    clear
+    echo ""
+    echo -e "${C_RED}${C_BOLD}"
+    echo "         â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—"
+    echo "         â•‘                                   â•‘"
+    echo "         â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘"
+    echo "         â•‘        â”‚ â•²     â˜…   â•± â”‚           â•‘"
+    echo "         â•‘        â”‚   â•²  â”‚  â•±   â”‚           â•‘"
+    echo "         â•‘   â—‰ â”€â”€â”€â”‚â”€â”€â”€â”€â”€âŠ•â”€â”€â”€â”€â”€â”€â”‚â”€â”€â”€ â—‰       â•‘"
+    echo "         â•‘        â”‚   â•±  â”‚  â•²   â”‚           â•‘"
+    echo "         â•‘        â”‚ â•±         â•² â”‚           â•‘"
+    echo "         â•‘        â—‰ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ â—‰           â•‘"
+    echo "         â•‘                                   â•‘"
+    echo "         â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£"
+    echo "         â•‘     UNION SETUP WIZARD            â•‘"
+    echo "         â•‘     FACILITY 04                   â•‘"
+    echo "         â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•"
+    echo -e "${C_RESET}"
+    echo ""
+    echo -e "  ${C_DIM}Unified National Institute for Orbital and Nuclear Research${C_RESET}"
+    echo -e "  ${C_DIM}Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹${C_RESET}"
+    echo ""
+}
+
+log_info() { echo -e "  ${C_BLUE}[INFO]${C_RESET} $1"; }
+log_ok() { echo -e "  ${C_GREEN}[OK]${C_RESET}   $1"; }
+log_warn() { echo -e "  ${C_AMBER}[WARN]${C_RESET} $1"; }
+log_err() { echo -e "  ${C_RED}[ERR]${C_RESET}  $1"; }
+
+# â”€â”€â”€ STEP 1: CHECK SYSTEM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_check_system() {
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 1: SYSTEM CHECK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+
+    # Check Arch
+    if [[ -f /etc/arch-release ]]; then
+        log_ok "Arch Linux detected"
+    else
+        log_warn "Not running Arch Linux (some features may differ)"
+    fi
+
+    # Check Hyprland
+    if command -v Hyprland &>/dev/null; then
+        log_ok "Hyprland installed"
+    else
+        log_err "Hyprland not found"
+    fi
+
+    # Check waybar
+    if command -v waybar &>/dev/null; then
+        log_ok "Waybar installed"
+    else
+        log_warn "Waybar not found (will be installed)"
+    fi
+
+    # Check kitty
+    if command -v kitty &>/dev/null; then
+        log_ok "Kitty installed"
+    else
+        log_warn "Kitty not found (will be installed)"
+    fi
+
+    # Check starship
+    if command -v starship &>/dev/null; then
+        log_ok "Starship installed"
+    else
+        log_warn "Starship not found (will be installed)"
+    fi
+
+    # Check sox
+    if command -v sox &>/dev/null; then
+        log_ok "Sox installed (sound effects enabled)"
+    else
+        log_warn "Sox not found (sound effects disabled)"
+    fi
+
+    # Check sox
+    if command -v nvim &>/dev/null; then
+        log_ok "Neovim installed"
+    else
+        log_warn "Neovim not found (will be installed)"
+    fi
+
+    # Check tmux
+    if command -v tmux &>/dev/null; then
+        log_ok "Tmux installed"
+    else
+        log_warn "Tmux not found (will be installed)"
+    fi
+
+    # Check btop
+    if command -v btop &>/dev/null; then
+        log_ok "btop installed"
+    else
+        log_warn "btop not found (will be installed)"
+    fi
+
+    echo ""
+    read -p "  Press Enter to continue..."
+}
+
+# â”€â”€â”€ STEP 2: INSTALL PACKAGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_install_packages() {
+    echo ""
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 2: INSTALL PACKAGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+
+    read -p "  Install missing packages via pacman? [Y/n] " -n 1 -r
+    echo ""
+
+    if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+        log_info "Updating package database..."
+        sudo pacman -Sy --noconfirm 2>/dev/null || true
+
+        PACKAGES=(
+            hyprland waybar kitty rofi-wayland mako swww starship jq
+            grimblast-git brightnessctl wireplumber
+            xdg-desktop-portal-hyprland polkit-gnome
+            sox playerctl thunar btop neovim tmux
+            swaylock swayidle grim slurp wl-clipboard
+            nm-applet blueman fzf fd
+        )
+
+        for pkg in "${PACKAGES[@]}"; do
+            if ! pacman -Qi "$pkg" &>/dev/null; then
+                log_info "Installing $pkg..."
+                sudo pacman -S --noconfirm "$pkg" 2>/dev/null || log_warn "Failed to install $pkg"
+            fi
+        done
+
+        log_ok "Package installation complete"
+    fi
+
+    echo ""
+    read -p "  Press Enter to continue..."
+}
+
+# â”€â”€â”€ STEP 3: INSTALL THEME â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_install_theme() {
+    echo ""
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 3: INSTALL THEME FILES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+
+    log_info "Installing UNION theme..."
+    chmod +x "$SCRIPT_DIR/install.sh"
+    "$SCRIPT_DIR/install.sh"
+
+    echo ""
+    read -p "  Press Enter to continue..."
+}
+
+# â”€â”€â”€ STEP 4: SETUP SHELL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_setup_shell() {
+    echo ""
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 4: SHELL SETUP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+
+    SHELL_RC=""
+    if [[ -f "$HOME/.bashrc" ]]; then
+        SHELL_RC="$HOME/.bashrc"
+        log_info "Detected bash"
+    elif [[ -f "$HOME/.zshrc" ]]; then
+        SHELL_RC="$HOME/.zshrc"
+        log_info "Detected zsh"
+    fi
+
+    if [[ -n "$SHELL_RC" ]]; then
+        if ! grep -q "union" "$SHELL_RC" 2>/dev/null; then
+            echo ""
+            echo "# UNION Theme â€” Shell Integration" >> "$SHELL_RC"
+            echo "source ~/.config/shell/aliases.sh 2>/dev/null" >> "$SHELL_RC"
+            log_ok "Added UNION to $SHELL_RC"
+        else
+            log_ok "UNION already in $SHELL_RC"
+        fi
+    fi
+
+    # Create wallpaper directory
+    mkdir -p "$HOME/Pictures/union"
+    log_ok "Wallpaper directory created: ~/Pictures/union/"
+
+    echo ""
+    read -p "  Press Enter to continue..."
+}
+
+# â”€â”€â”€ STEP 5: SDDM (OPTIONAL) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_sddm() {
+    echo ""
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 5: SDDM LOGIN THEME (OPTIONAL) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+
+    read -p "  Install SDDM UNION theme? [y/N] " -n 1 -r
+    echo ""
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        if [[ -d /usr/share/sddm ]]; then
+            sudo cp -r "$SCRIPT_DIR/sddm/union" /usr/share/sddm/themes/
+            mkdir -p /etc/sddm.conf.d
+            echo -e "[Theme]\nCurrent=union" | sudo tee /etc/sddm.conf.d/union.conf > /dev/null
+            log_ok "SDDM theme installed"
+        else
+            log_warn "SDDM not found (skipped)"
+        fi
+    fi
+
+    echo ""
+    read -p "  Press Enter to continue..."
+}
+
+# â”€â”€â”€ STEP 6: GRUB (OPTIONAL) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_grub() {
+    echo ""
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 6: GRUB BOOTLOADER THEME (OPTIONAL) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+
+    read -p "  Install GRUB UNION theme? [y/N] " -n 1 -r
+    echo ""
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        if [[ -d /boot/grub ]]; then
+            sudo cp -r "$SCRIPT_DIR/grub/" /boot/grub/themes/union/
+            if ! grep -q "UNION" /etc/default/grub 2>/dev/null; then
+                echo 'GRUB_THEME="/boot/grub/themes/union/theme.txt"' | sudo tee -a /etc/default/grub > /dev/null
+                sudo grub-mkconfig -o /boot/grub/grub.cfg 2>/dev/null || log_warn "Run grub-mkconfig manually"
+            fi
+            log_ok "GRUB theme installed"
+        else
+            log_warn "/boot/grub not found (skipped)"
+        fi
+    fi
+
+    echo ""
+    read -p "  Press Enter to continue..."
+}
+
+# â”€â”€â”€ STEP 7: SOUNDS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_sounds() {
+    echo ""
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 7: SOUND EFFECTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+
+    if command -v sox &>/dev/null; then
+        /usr/local/bin/union-sounds 2>/dev/null || true
+        log_ok "Sound effects generated"
+    else
+        log_warn "Sox not installed (no sound effects)"
+    fi
+
+    echo ""
+    read -p "  Press Enter to continue..."
+}
+
+# â”€â”€â”€ STEP 8: FINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+step_final() {
+    echo ""
+    echo -e "${C_BOLD}  â”€â”€â”€ STEP 8: SETUP COMPLETE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€${C_RESET}"
+    echo ""
+    echo -e "  ${C_GREEN}${C_BOLD}UNION THEME INSTALLED SUCCESSFULLY${C_RESET}"
+    echo ""
+    echo -e "  ${C_BOLD}Quick Reference:${C_RESET}"
+    echo -e "  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€"
+    echo -e "  SUPER+Return      Terminal"
+    echo -e "  SUPER+D           App launcher"
+    echo -e "  SUPER+W           Firefox"
+    echo -e "  SUPER+S           btop"
+    echo -e "  SUPER+SHIFT+P     Power menu"
+    echo -e "  SUPER+SHIFT+W     Wallpaper picker"
+    echo -e "  SUPER+L           Lock screen"
+    echo -e "  SUPER+Space       Toggle Arabic/English"
+    echo -e "  SUPER+1-6         Switch workspace"
+    echo -e "  SUPER+C           Clipboard history"
+    echo ""
+    echo -e "  ${C_BOLD}Bottom Dock:${C_RESET}"
+    echo -e "  Hover near bottom to show dock"
+    echo -e "  SYS button opens btop"
+    echo -e "  Volume bar in center"
+    echo ""
+    echo -e "  ${C_DIM}Restart Hyprland or log out/in to apply changes.${C_RESET}"
+    echo ""
+    echo -e "  ${C_DIM}FACILITY 04 â€” CLEARANCE: RESTRICTED${C_RESET}"
+    echo ""
+}
+
+# â”€â”€â”€ MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+main_menu() {
+    while true; do
+        echo ""
+        echo -e "${C_BOLD}  SELECT STEP:${C_RESET}"
+        echo -e "  â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€"
+        echo -e "  ${C_CYAN}1)${C_RESET} System check"
+        echo -e "  ${C_CYAN}2)${C_RESET} Install packages"
+        echo -e "  ${C_CYAN}3)${C_RESET} Install theme"
+        echo -e "  ${C_CYAN}4)${C_RESET} Setup shell"
+        echo -e "  ${C_CYAN}5)${C_RESET} SDDM theme (optional)"
+        echo -e "  ${C_CYAN}6)${C_RESET} GRUB theme (optional)"
+        echo -e "  ${C_CYAN}7)${C_RESET} Generate sounds"
+        echo -e "  ${C_CYAN}8)${C_RESET} Show final info"
+        echo -e "  ${C_CYAN}9)${C_RESET} Run ALL steps"
+        echo -e "  ${C_CYAN}0)${C_RESET} Exit"
+        echo ""
+        read -p "  Choice [0-9]: " choice
+        echo ""
+
+        case "$choice" in
+            1) step_check_system ;;
+            2) step_install_packages ;;
+            3) step_install_theme ;;
+            4) step_setup_shell ;;
+            5) step_sddm ;;
+            6) step_grub ;;
+            7) step_sounds ;;
+            8) step_final ;;
+            9)
+                step_check_system
+                step_install_packages
+                step_install_theme
+                step_setup_shell
+                step_sddm
+                step_grub
+                step_sounds
+                step_final
+                break
+                ;;
+            0|q|Q) exit 0 ;;
+            *) log_err "Invalid choice" ;;
+        esac
+    done
+}
+
+# â”€â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+main() {
+    print_header
+    main_menu
+}
+
+main "$@"
