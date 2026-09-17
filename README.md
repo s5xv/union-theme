@@ -5,6 +5,8 @@
 
 A complete Hyprland desktop environment theme for Arch Linux, designed to look like a classified Soviet scientific workstation from 1978–1988 that survived into the modern era and is now running Arch Linux + Hyprland.
 
+**This is a fictional organization for aesthetic purposes only. No real government agency is represented.**
+
 ---
 
 ## CONCEPT
@@ -21,37 +23,142 @@ The desktop should feel like an actual organization has existed for decades.
 
 | Component | Description |
 |-----------|-------------|
-| Hyprland | Window manager configuration with workspace system |
+| Hyprland | Window manager configuration with 6 workspaces |
 | Waybar | Status bar styled as scientific instrumentation |
-| Kitty | Terminal with UNION color scheme |
+| Kitty | Terminal with UNION color scheme and subtle CRT effects |
 | Starship | Shell prompt styled as scientific terminal |
 | Rofi | Application launcher styled as classified interface |
 | Mako | Notification daemon with institutional styling |
-| Scripts | Login banner, logo display, wallpaper management |
+| Scripts | Login banner, logo display, wallpaper management, notifications |
 | ASCII Art | Multiple versions of the UNION institutional emblem |
+| Fastfetch | Custom system info display with fictional metadata |
 
 ---
 
-## SCREENSHOTS
+## FEATURES
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ◉⊕◉  UNION // ГИСС          ○ ○ ● ○ ○ ○     CPU 18% · MEM 42% · 14:32   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│                    ◉ ─────────── ◉                                          │
-│                    │ ╲     ★   ╱ │                                          │
-│                    │   ╲  │  ╱   │                                          │
-│               ◉ ───│─────⊕──────│─── ◉                                      │
-│                    │   ╱  │  ╲   │                                          │
-│                    │ ╱         ╲ │                                          │
-│                    ◉ ─────────── ◉                                          │
-│                                                                             │
-│                    UNION // FACILITY 04                                     │
-│                    EST. 1963                                                │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+### Design
+- Dark graphite/charcoal base colors
+- Muted Soviet red, desaturated blue, amber, pale green, pale cyan accents
+- Subtle 4px border rounding
+- 1px thin borders
+- Subtle drop shadows
+- Subtle transparency (0.95 opacity)
+- Subtle blur (4px, 2 passes)
+- Dense technical information layout
+- JetBrains Mono monospace font
+- Consistent color palette across all apps
+- Industrial control panel aesthetic
+
+### Hyprland
+- 6 workspaces: ARCHIVE, RESEARCH, ORBITAL, LUNAR, DEEP SPACE, CONTROL
+- Workspace dot indicators (○○●○○○)
+- Smooth window open/close animations
+- Workspace switch animations
+- Gaps in: 4px, Gaps out: 8px
+- Dwindle tiling layout
+- Floating rules for dialogs
+- Per-app opacity rules
+- Per-app workspace assignments
+- Layer rules for Waybar and Mako blur
+
+### Keybindings
+| Key | Action |
+|-----|--------|
+| `SUPER` | Application launcher (Rofi) |
+| `SUPER + Return` | Open terminal |
+| `SUPER + Q` | Close window |
+| `SUPER + E` | File manager |
+| `SUPER + V` | Toggle floating |
+| `SUPER + D` | Application launcher |
+| `SUPER + Space` | Toggle Arabic/English keyboard |
+| `SUPER + h/j/k/l` | Focus left/down/up/right |
+| `SUPER + SHIFT + h/j/k/l` | Move window |
+| `SUPER + CTRL + arrows` | Resize window |
+| `SUPER + 1-6` | Switch workspace |
+| `SUPER + SHIFT + 1-6` | Move to workspace |
+| `Print` | Screenshot (area) |
+| `SHIFT + Print` | Screenshot (full screen) |
+| `SUPER + Print` | Screenshot and archive |
+| `SUPER + C` | Clipboard history |
+| `SUPER + F` | Fullscreen |
+| `SUPER + N` | Pin window |
+| `SUPER + T` | Toggle tiled |
+| `SUPER + SHIFT + L` | Lock screen |
+| `SUPER + SHIFT + M` | Exit Hyprland |
+
+### Waybar
+- UNION logo (◉⊕◉) with facility tooltip
+- "UNION // ГИСС" identifier
+- Workspace dots in center with name tooltips
+- CPU, RAM, Temperature, Network, Audio, Battery, Clock, Tray
+- Warning/critical color states
+- Blink animation on critical alerts
+- Technical separators (│, ·)
+
+### Terminal
+- Dark blue-gray background (#1a1d23)
+- Cold off-white foreground (#c8cdd5)
+- 16-color palette matching UNION theme
+- 95% background opacity
+- 4px window padding
+- Block cursor (no blink)
+- Powerline tab bar
+- Selection highlight
+- URL highlight in blue
+- Copy on select
+- Scrollback 10000 lines
+- No audio bell
+- Startup banner script
+- Facility/terminal identification
+
+### Launcher
+- Dark background matching theme
+- Red prompt badge
+- "SEARCH ARCHIVES..." placeholder
+- 2-column app grid
+- Papirus icon support
+- Custom display names (RESEARCH, EXECUTE, ARCHIVE, CALCULATOR, REMOTE)
+- Hover highlight
+- Selected state styling
+- 42% window width
+- Custom scrollbar
+
+### Notifications
+- Dark notification background
+- Border color by type (system/comms/audio/optical/application/transfer/warning)
+- 360x150px size
+- 5000ms timeout (critical: no auto-dismiss)
+- Top-right anchor
+- JetBrains Mono 10px font
+- Group by app name
+- Urgency color coding
+- Action border styling
+
+### Scripts
+- `union-login` — Terminal startup banner with animated status
+- `union-logo` — 7 ASCII art sizes (large, medium, small, boot, status, classified, facility)
+- `union-wallpaper` — Workspace auto-switch wallpaper system
+- `union-workspace` — Dot indicator display
+- `union-status` — System status panel
+- `union-notify` — Themed notifications with 17+ presets:
+  - Startup/Shutdown
+  - Headphones connected/disconnected
+  - Volume/Brightness changes
+  - App launch/close
+  - Screenshot
+  - Workspace change
+  - Screen lock
+  - Battery low/warning
+  - Network connected/disconnected
+  - Bluetooth connected/disconnected
+
+### Installation
+- `install.sh` with dependency checking
+- Timestamped config backups
+- `uninstall.sh` with cleanup
+- `--install/--uninstall/--backup/--restore` modes
+- Shell integration (optional login banner)
 
 ---
 
@@ -60,15 +167,15 @@ The desktop should feel like an actual organization has existed for decades.
 ### Required
 
 ```bash
-sudo pacman -S hyprland waybar kitty rofi-wayland mako swww starship jq
+sudo pacman -S hyprland waybar kitty rofi-wayland mako swww starship jq \
+  grimblast-git brightnessctl wireplumber xdg-desktop-portal-hyprland polkit-gnome
 ```
 
 ### Optional (recommended)
 
 ```bash
-sudo pacman -S fastfetch grimblast-git brightnessctl wireplumber
-sudo pacman -S ttf-jetbrains-mono-nerd papirus-icon-theme
-yay -S cliphist
+sudo pacman -S fastfetch papirus-icon-theme ttf-jetbrains-mono-nerd \
+  cliphist swaylock swayidle grim slurp wl-clipboard nm-applet blueman
 ```
 
 ---
@@ -77,7 +184,7 @@ yay -S cliphist
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/union-theme.git
+git clone https://github.com/s5xv/union-theme.git
 cd union-theme
 
 # Make installer executable
@@ -125,26 +232,6 @@ Workspace indicators appear as dots in Waybar:
 
 ---
 
-## KEYBINDINGS
-
-| Key | Action |
-|-----|--------|
-| `SUPER + Return` | Open terminal |
-| `SUPER + Q` | Close window |
-| `SUPER + Space` | Application launcher |
-| `SUPER + V` | Toggle floating |
-| `SUPER + E` | File manager |
-| `SUPER + 1-6` | Switch workspace |
-| `SUPER + SHIFT + 1-6` | Move window to workspace |
-| `SUPER + h/j/k/l` | Focus left/down/up/right |
-| `SUPER + SHIFT + h/j/k/l` | Move window left/down/up/right |
-| `SUPER + CTRL + arrows` | Resize window |
-| `Print` | Screenshot (area) |
-| `SHIFT + Print` | Screenshot (full screen) |
-| `SUPER + C` | Clipboard history |
-
----
-
 ## WALLPAPER SETUP
 
 Wallpapers are stored in `~/Pictures/union/`. Add your own images:
@@ -160,8 +247,6 @@ Wallpapers are stored in `~/Pictures/union/`. Add your own images:
 ```
 
 ### Auto-switching wallpapers
-
-The wallpaper script can automatically switch wallpapers based on active workspace:
 
 ```bash
 union-wallpaper --init     # Create directory with placeholders
@@ -181,15 +266,7 @@ exec-once = while true; do union-wallpaper --cycle; sleep 1; done
 
 ### Change Colors
 
-Edit `colors/palette.conf` to modify the color scheme. All components reference these colors:
-
-- `background` — Main background color
-- `foreground` — Main text color
-- `red` — Soviet red accent
-- `blue` — Research blue accent
-- `amber` — System amber accent
-- `green` — Terminal green accent
-- `cyan` — Instrument cyan accent
+Edit `colors/palette.conf` to modify the color scheme.
 
 ### Change Workspace Names
 
@@ -199,8 +276,6 @@ Edit the workspace names in:
 - `scripts/union-workspace` — `WS_NAMES` array
 
 ### Disable Startup ASCII
-
-To disable the terminal startup banner:
 
 ```bash
 # Option 1: Edit shell config
@@ -223,9 +298,17 @@ Edit `kitty/kitty.conf`:
 - `font_size` — Text size
 - Color values in the color scheme section
 
+### Change Keyboard Layout
+
+The theme defaults to US layout with Arabic toggle via `SUPER+Space`. To change:
+- Edit `input:kb_layout` in `hypr/hyprland.conf`
+- Edit `input:kb_options` for toggle method
+
 ---
 
 ## FICTIONAL LORE
+
+**DISCLAIMER: This is entirely fictional. UNION does not exist.**
 
 ### Organization Timeline
 
@@ -247,6 +330,14 @@ Edit `kitty/kitty.conf`:
 - **PROJECT-073** — Nuclear Propulsion
 - **PROJECT-███** — Classified
 
+### Facility Details
+
+- **Designation:** FACILITY 04
+- **Directorate:** ORBITAL RESEARCH
+- **Division:** DEEP-SPACE COMMUNICATIONS
+- **Terminal:** 7B-114
+- **Serial:** UN-04-7B-114
+
 ---
 
 ## TROUBLESHOOTING
@@ -260,31 +351,32 @@ waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css
 ### Notifications not working
 
 ```bash
-# Check mako is running
 makoctl status
-
-# Test notification
 makoctl invoke --summary "Test" --body "UNION system test"
 ```
 
 ### Wallpaper not changing
 
 ```bash
-# Check swww is running
 swww-daemon &
-
-# Test manually
 union-wallpaper --set 1
 ```
 
 ### Fonts not rendering
 
 ```bash
-# Install JetBrains Mono Nerd Font
 sudo pacman -S ttf-jetbrains-mono-nerd
-
-# Rebuild font cache
 fc-cache -fv
+```
+
+### Arabic keyboard not working
+
+```bash
+# Install Arabic layout
+sudo pacman -S xorg-xkb-utils
+
+# Test layout
+setxkbmap -layout us,ara -option grp:alt_shift_toggle
 ```
 
 ---
@@ -327,11 +419,12 @@ union-theme/
 │   └── union-facility.txt
 ├── colors/
 │   └── palette.conf
+├── fastfetch/
+│   ├── config.jsonc
+│   └── README.md
 ├── wallpapers/
 │   └── README.md
-├── assets/
-│   └── README.md
-└── fastfetch/
+└── assets/
     └── README.md
 ```
 
