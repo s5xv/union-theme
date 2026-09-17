@@ -10,6 +10,17 @@
 UNION_NOTIFY_ENABLED="${UNION_NOTIFY_ENABLED:-1}"
 UNION_NOTIFY_APP_NAME="UNION // SYSTEM"
 UNION_NOTIFY_TIMEOUT=5000
+UNION_NOTIFY_SOUND="${UNION_NOTIFY_SOUND:-1}"
+
+# â”€â”€â”€ SOUND EFFECTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+play_sound() {
+    if [[ "$UNION_NOTIFY_SOUND" != "1" ]]; then
+        return 0
+    fi
+    if [[ -x "/usr/local/bin/union-sounds" ]]; then
+        /usr/local/bin/union-sounds "$1" &
+    fi
+}
 
 # â”€â”€â”€ MESSAGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 send_notification() {
@@ -18,10 +29,13 @@ send_notification() {
     local body="$3"
     local urgency="${4:-normal}"
     local icon="${5:-}"
+    local sound="${6:-notify}"
 
     if [[ "$UNION_NOTIFY_ENABLED" != "1" ]]; then
         return 0
     fi
+
+    play_sound "$sound"
 
     if command -v makoctl &> /dev/null; then
         makoctl invoke --app-name "$app_name" --summary "$summary" --body "$body" --urgency "$urgency" 2>/dev/null
@@ -34,43 +48,43 @@ send_notification() {
 notify_system() {
     local message="$1"
     local body="${2:-}"
-    send_notification "UNION // SYSTEM" "$message" "$body" "normal"
+    send_notification "UNION // SYSTEM" "$message" "$body" "normal" "" "notify"
 }
 
 notify_communications() {
     local message="$1"
     local body="${2:-}"
-    send_notification "UNION // COMMUNICATIONS" "$message" "$body" "normal"
+    send_notification "UNION // COMMUNICATIONS" "$message" "$body" "normal" "" "notify"
 }
 
 notify_audio() {
     local message="$1"
     local body="${2:-}"
-    send_notification "UNION // AUDIO SYSTEM" "$message" "$body" "normal"
+    send_notification "UNION // AUDIO SYSTEM" "$message" "$body" "low" "" "vol-tick"
 }
 
 notify_optical() {
     local message="$1"
     local body="${2:-}"
-    send_notification "UNION // OPTICAL SYSTEM" "$message" "$body" "normal"
+    send_notification "UNION // OPTICAL SYSTEM" "$message" "$body" "normal" "" "notify"
 }
 
 notify_application() {
     local message="$1"
     local body="${2:-}"
-    send_notification "UNION // APPLICATION CONTROL" "$message" "$body" "normal"
+    send_notification "UNION // APPLICATION CONTROL" "$message" "$body" "normal" "" "notify"
 }
 
 notify_warning() {
     local message="$1"
     local body="${2:-}"
-    send_notification "UNION // WARNING" "$message" "$body" "critical"
+    send_notification "UNION // WARNING" "$message" "$body" "critical" "" "warning"
 }
 
 notify_transfer() {
     local message="$1"
     local body="${2:-}"
-    send_notification "UNION // DATA TRANSFER" "$message" "$body" "low"
+    send_notification "UNION // DATA TRANSFER" "$message" "$body" "low" "" "notify"
 }
 
 # â”€â”€â”€ PRESET NOTIFICATIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
