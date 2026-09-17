@@ -1,0 +1,135 @@
+/* ═══════════════════════════════════════════════════════════════════ */
+/* UNION THEME — ROFI LAUNCHER THEME                                  */
+/* Unified National Institute for Orbital and Nuclear Research       */
+/* Государственный институт специальных исследований                 */
+/* Facility 04 — Terminal 7B-114                                     */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+* {
+    bg:         #1a1d23;
+    bg-alt:     #22262e;
+    fg:         #c8cdd5;
+    fg-dim:     #8891a0;
+    fg-muted:   #5c6370;
+    border:     #3d4250;
+    active:     #b85450;
+    urgent:     #d4a04a;
+    selected:   #2a2e37;
+    transparent: rgba(26, 29, 35, 0);
+}
+
+window {
+    width: 42%;
+    border: 1px solid @border;
+    border-radius: 4px;
+    background-color: @bg;
+}
+
+mainbox {
+    children: [ inputbar, message, listview ];
+    background-color: @bg;
+}
+
+/* ─── INPUT BAR ─────────────────────────────────────────────────── */
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @bg-alt;
+    padding: 12px 16px;
+    spacing: 8px;
+}
+
+prompt {
+    background-color: @active;
+    text-color: @bg;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+entry {
+    text-color: @fg;
+    placeholder: "SEARCH...";
+    placeholder-color: @fg-muted;
+    font: "JetBrains Mono 11";
+}
+
+/* ─── MESSAGE ───────────────────────────────────────────────────── */
+
+message {
+    background-color: @bg;
+    padding: 0 16px 8px 16px;
+}
+
+textbox {
+    text-color: @fg-dim;
+    font: "JetBrains Mono 9";
+}
+
+/* ─── LIST VIEW ─────────────────────────────────────────────────── */
+
+listview {
+    lines: 8;
+    columns: 2;
+    fixed-height: false;
+    padding: 4px 8px 12px 8px;
+    spacing: 4px;
+}
+
+/* ─── ELEMENTS ──────────────────────────────────────────────────── */
+
+element {
+    padding: 8px 12px;
+    border-radius: 2px;
+    spacing: 12px;
+    background-color: transparent;
+}
+
+element normal.normal {
+    text-color: @fg;
+}
+
+element alternate.normal {
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color: @fg;
+}
+
+element selected.active {
+    background-color: @selected;
+    text-color: @active;
+}
+
+element selected.urgent {
+    background-color: @selected;
+    text-color: @urgent;
+}
+
+element-icon {
+    size: 20px;
+    background-color: transparent;
+}
+
+element-text {
+    highlight: bold #c8cdd5;
+    background-color: transparent;
+    font: "JetBrains Mono 10";
+}
+
+/* ─── SCROLLBAR ─────────────────────────────────────────────────── */
+
+scrollbar {
+    width: 4px;
+    background-color: @bg-alt;
+    handle-color: @fg-muted;
+    handle-width: 4px;
+}
+
+/* ─── INDICATOR ─────────────────────────────────────────────────── */
+
+indicator {
+    background-color: transparent;
+}
