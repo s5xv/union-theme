@@ -1,0 +1,86 @@
+#!/bin/bash
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” SOUND EFFECTS
+# Generates terminal/system sounds using sox or paplay
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+SOUND_DIR="/usr/share/union/sounds"
+GENERATE_SOUNDS=true
+
+# â”€â”€â”€ GENERATE SOUND FILES IF MISSING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+generate_sounds() {
+    if ! command -v sox &>/dev/null; then
+        return 1
+    fi
+    
+    mkdir -p "$SOUND_DIR" 2>/dev/null || return 1
+    
+    # Volume tick - short click
+    if [[ ! -f "$SOUND_DIR/volume-tick.wav" ]]; then
+        sox -n "$SOUND_DIR/volume-tick.wav" synth 0.03 sine 1200 vol 0.15 fade l 0.001 0.03 0.001 2>/dev/null
+    fi
+    
+    # Volume up - rising tone
+    if [[ ! -f "$SOUND_DIR/volume-up.wav" ]]; then
+        sox -n "$SOUND_DIR/volume-up.wav" synth 0.06 sine 800:1400 vol 0.12 fade l 0.001 0.06 0.01 2>/dev/null
+    fi
+    
+    # Volume down - falling tone
+    if [[ ! -f "$SOUND_DIR/volume-down.wav" ]]; then
+        sox -n "$SOUND_DIR/volume-down.wav" synth 0.06 sine 1400:800 vol 0.12 fade l 0.001 0.06 0.01 2>/dev/null
+    fi
+    
+    # Mute click
+    if [[ ! -f "$SOUND_DIR/mute.wav" ]]; then
+        sox -n "$SOUND_DIR/mute.wav" synth 0.04 sine 600 vol 0.1 fade l 0.001 0.04 0.005 2>/dev/null
+    fi
+    
+    # Notification ding
+    if [[ ! -f "$SOUND_DIR/notify.wav" ]]; then
+        sox -n "$SOUND_DIR/notify.wav" synth 0.12 sine 1000:1200:1000 vol 0.1 fade l 0.001 0.12 0.02 2>/dev/null
+    fi
+    
+    # Warning beep
+    if [[ ! -f "$SOUND_DIR/warning.wav" ]]; then
+        sox -n "$SOUND_DIR/warning.wav" synth 0.15 square 800 vol 0.08 fade l 0.001 0.15 0.03 2>/dev/null
+    fi
+    
+    # Error buzz
+    if [[ ! -f "$SOUND_DIR/error.wav" ]]; then
+        sox -n "$SOUND_DIR/error.wav" synth 0.2 square 400 vol 0.1 fade l 0.001 0.2 0.05 2>/dev/null
+    fi
+    
+    # Startup chime
+    if [[ ! -f "$SOUND_DIR/startup.wav" ]]; then
+        sox -n "$SOUND_DIR/startup.wav" synth 0.3 sine 800:1000:1200 vol 0.1 fade l 0.01 0.3 0.05 2>/dev/null
+    fi
+    
+    return 0
+}
+
+# â”€â”€â”€ PLAY SOUND â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+play_sound() {
+    local sound="$1"
+    local file="$SOUND_DIR/$sound.wav"
+    
+    if [[ ! -f "$file" ]] && $GENERATE_SOUNDS; then
+        generate_sounds
+    fi
+    
+    if [[ -f "$file" ]]; then
+        paplay "$file" 2>/dev/null || aplay "$file" 2>/dev/null || sox "$file" -d 2>/dev/null &
+    fi
+}
+
+# â”€â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+case "${1:-}" in
+    vol-up)     play_sound "volume-up" ;;
+    vol-down)   play_sound "volume-down" ;;
+    vol-tick)   play_sound "volume-tick" ;;
+    mute)       play_sound "mute" ;;
+    notify)     play_sound "notify" ;;
+    warning)    play_sound "warning" ;;
+    error)      play_sound "error" ;;
+    startup)    play_sound "startup" ;;
+    *)          echo "Usage: union-sounds {vol-up|vol-down|vol-tick|mute|notify|warning|error|startup}" ;;
+esac
