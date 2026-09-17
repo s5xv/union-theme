@@ -1,0 +1,77 @@
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION THEME â€” ZSH CONFIGURATION
+# Facility 04 â€” Terminal 7B-114
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+# â”€â”€â”€ OPTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+setopt CORRECT
+setopt CORRECT_ALL
+setopt INTERACTIVE_COMMENTS
+setopt NO_BEEP
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+
+# â”€â”€â”€ HISTORY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+
+# â”€â”€â”€ COMPLETION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+autoload -Uz compinit && compinit
+autoload -Uz colors && colors
+zstyle :completion::complete:* use-cache on
+zstyle :completion::complete:* cache-path ~/.cache/zsh/compcache
+zstyle :completion:* menu select
+zstyle :completion:* matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle :completion:* list-colors ${(s.:.)LS_COLORS}
+zstyle :completion:* list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle :completion:* prompt 'Completing:'
+zstyle :completion:* group-name ''
+zstyle ':completion:*:descriptions' format %F{yellow}-- %d --%f
+zstyle ':completion:*:warnings' format %F{red}-- no matches found --%f
+
+# â”€â”€â”€ KEY BINDINGS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+bindkey -e
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
+# â”€â”€â”€ PROMPT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+if command -v starship &>/dev/null; then
+    eval "$(starship init zsh)"
+else
+    PROMPT='%F{red}â—‰âŠ•â—‰%f %F{white}%n%f@%F{blue}%m%f %F{green}%~%f
+%# '
+fi
+
+# â”€â”€â”€ SOURCES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+[[ -f ~/.config/union/shell/aliases.sh ]] && source ~/.config/union/shell/aliases.sh
+[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+
+# â”€â”€â”€ FZF â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --color=bg+:#22262e,bg:#1a1d23,spinner:#b85450,hl:#b85450,fg:#c8cdd5,header:#5e81ac,info:#d4a04a,pointer:#b85450,marker:#6a9f78,fg+:#c8cdd5,prompt:#5e81ac,hl+:#b85450"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# â”€â”€â”€ ENVIRONMENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+export EDITOR='nvim'
+export VISUAL='nvim'
+export BROWSER='firefox'
+export TERMINAL='kitty'
+export UNION_FACILITY="04"
+export UNION_TERMINAL="7B-114"
+export UNION_CLASSIFICATION="RESTRICTED"
+export PATH="$HOME/.local/bin:$PATH"
