@@ -1,15 +1,36 @@
 # UNION THEME
 
 **Unified National Institute for Orbital and Nuclear Research**
-*Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹*
 
-A complete Hyprland desktop rice with a fictional Soviet scientific workstation aesthetic. Dark graphite base, muted institutional colors, JetBrains Mono throughout.
+A complete Hyprland desktop rice. Soviet scientific workstation aesthetic. Dark graphite, muted colors, JetBrains Mono.
 
-> **DISCLAIMER:** UNION is entirely fictional. All organization names, facilities, projects, dates, and classifications are made up for aesthetic purposes.
+> **DISCLAIMER:** UNION is fictional. All names, facilities, projects, and classifications are made up for aesthetic purposes.
 
 ---
 
-## Screenshot
+## Quick Start (Recommended)
+
+```bash
+git clone https://github.com/s5xv/union-theme
+cd union-theme
+./union-setup
+```
+
+This interactive wizard will:
+- Check your system for existing packages
+- Install all required and optional packages via pacman
+- Copy every config file to the right place
+- Set up shell aliases and completions
+- Install SDDM login theme (optional)
+- Install GRUB bootloader theme (optional)
+- Generate sound effects
+- Add the terminal login banner to your shell
+
+**That's it. Restart Hyprland or log out/in.**
+
+---
+
+## What You Get
 
 ```
 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
@@ -22,75 +43,74 @@ A complete Hyprland desktop rice with a fictional Soviet scientific workstation 
                              â—‹â—‹â—â—‹â—‹â—‹  (bottom dock, auto-hide)
 ```
 
----
+### Components
 
-## What's Included
-
-| Component | File(s) | Description |
-|-----------|---------|-------------|
-| **Hyprland** | `hypr/hyprland.conf` | 70+ keybindings, workspace labels, window rules |
-| **Waybar (top)** | `waybar/config.jsonc`, `style.css` | CPU/MEM/TEMP/DISK/NET/VOL/BAT/CLOCK/NOTIF, workspace dots |
-| **Waybar (dock)** | `waybar/dock.jsonc`, `dock-style.css` | macOS-style auto-hide dock with volume bar |
-| **Kitty** | `kitty/kitty.conf` | CRT effects, UNION colors, tab title |
-| **Starship** | `starship/starship.toml` | Git status, docker, ahead/behind, UNION prompt |
-| **Rofi** | `rofi/config.rasi`, `union.rasi`, `power.rasi` | Launcher, theme, power menu |
-| **Mako** | `mako/config` | Notifications with typed border colors |
-| **Dunst** | `dunst/dunstrc` | Fallback notification daemon |
-| **btop** | `btop/btop.conf` | UNION-themed system monitor |
-| **Neovim** | `nvim/init.lua` | UNION colorscheme, statusline |
-| **Tmux** | `tmux/tmux.conf` | Red statusbar, vim bindings |
-| **Swaylock** | `swaylock/config` | Lock screen theme |
-| **Swayidle** | `swaylock/idle` | Auto-lock/screen off timeouts |
-| **GRUB** | `grub/theme.txt` | Bootloader theme |
-| **SDDM** | `sddm/union/` | Login screen with UNION emblem |
-| **Shell** | `shell/aliases.sh`, `bashrc`, `zshrc` | 100+ aliases, starship, fzf |
-| **Neofetch** | `neofetch/` | System info with UNION metadata |
-| **Fastfetch** | `fastfetch/` | Alternative system info |
-| **systemd** | `systemd/` | Auto-start services |
-| **Sounds** | `scripts/union-sounds` | Volume ticks, notification dings |
-| **ASCII Art** | `ascii/` (10 files) | Logos, banners, boot sequence, errors |
+| What | Where it goes |
+|------|---------------|
+| Hyprland config (70+ keybindings) | `~/.config/hypr/` |
+| Waybar top bar (CPU/MEM/TEMP/DISK/NET/VOL/BAT/CLOCK) | `~/.config/waybar/` |
+| Waybar dock (macOS auto-hide, volume bar) | `~/.config/waybar/` |
+| Kitty terminal (CRT effects, UNION colors) | `~/.config/kitty/` |
+| Starship prompt (git, docker, UNION symbol) | `~/.config/starship.toml` |
+| Rofi launcher (app search, power menu, wallpaper picker) | `~/.config/rofi/` |
+| Mako notifications (typed colors) | `~/.config/mako/` |
+| btop (UNION theme) | `~/.config/btop/` |
+| Neovim (UNION colorscheme) | `~/.config/nvim/` |
+| Tmux (red statusbar) | `~/.tmux.conf` |
+| Swaylock (lock screen) | `~/.config/swaylock/` |
+| Swayidle (auto-lock) | `~/.config/swayidle/` |
+| Neofetch / Fastfetch | `~/.config/neofetch/`, `~/.config/fastfetch/` |
+| Shell aliases (100+) | `~/.config/shell/aliases.sh` |
+| GRUB bootloader theme | `/boot/grub/themes/union/` |
+| SDDM login screen | `/usr/share/sddm/themes/union/` |
+| Sound effects | `/usr/share/union/sounds/` |
+| Scripts (13 tools) | `/usr/local/bin/union-*` |
+| ASCII art (10 files) | `~/.config/union/ascii/` |
 
 ---
 
 ## Keybindings
 
-| Key | Action |
-|-----|--------|
-| `SUPER+Return` | Terminal (kitty) |
-| `SUPER+D` | App launcher (rofi) |
-| `SUPER+W` | Firefox |
-| `SUPER+E` | File manager (Thunar) |
-| `SUPER+S` | btop |
-| `SUPER+SHIFT+P` | Power menu |
+| Key | What it does |
+|-----|--------------|
+| `SUPER+Return` | Open terminal |
+| `SUPER+D` | Open app launcher |
+| `SUPER+W` | Open Firefox |
+| `SUPER+E` | Open file manager |
+| `SUPER+S` | Open btop |
+| `SUPER+SHIFT+P` | Power menu (shutdown/reboot/lock/logout) |
 | `SUPER+SHIFT+W` | Wallpaper picker |
-| `SUPER+Space` | Toggle Arabic/English |
+| `SUPER+Space` | Toggle Arabic/English keyboard |
 | `SUPER+L` | Lock screen |
 | `SUPER+C` | Clipboard history |
 | `SUPER+1-6` | Switch workspace |
 | `SUPER+SHIFT+1-6` | Move window to workspace |
-| `SUPER+H/J/K/L` | Focus window (vim) |
-| `SUPER+SHIFT+H/J/K/L` | Move window (vim) |
+| `SUPER+H/J/K/L` | Focus window |
+| `SUPER+SHIFT+H/J/K/L` | Move window |
 | `SUPER+CTRL+H/J/K/L` | Resize window |
 | `SUPER+F` | Fullscreen |
 | `SUPER+V` | Toggle floating |
-| `SUPER+T` | Toggle tiled |
 | `SUPER+G` | Toggle group |
-| `SUPER+APOSTROPHE` | Move into group |
-| `SUPER+PERIOD` | Next in group |
 | `Print` | Screenshot area |
-| `SHIFT+Print` | Screenshot screen |
-| `SUPER+Print` | Screenshot & save |
-| `SUPER+SHIFT+Print` | Screenshot & copy |
-| Volume keys | 5% steps + sound |
+| `SHIFT+Print` | Screenshot whole screen |
+| Volume keys | 5% steps with sound |
 | `SHIFT+Volume` | 1% fine-tune |
-
-Full list: `grep "^bind" hypr/hyprland.conf`
 
 ---
 
-## Installation
+## Installation Options
 
-### Quick Install
+### Option 1: Interactive Setup (Recommended)
+
+```bash
+git clone https://github.com/s5xv/union-theme
+cd union-theme
+./union-setup
+```
+
+Wizard walks you through: system check â†’ packages â†’ theme â†’ shell â†’ SDDM â†’ GRUB â†’ sounds.
+
+### Option 2: Quick Install (All at once)
 
 ```bash
 git clone https://github.com/s5xv/union-theme
@@ -99,10 +119,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
-### Manual Install
+Copies all files automatically. Run `union-setup` afterward for SDDM/GRUB.
+
+### Option 3: Manual Install
 
 ```bash
-# Copy configs
+# Core configs
 cp -r hypr/ ~/.config/hypr/
 cp -r waybar/ ~/.config/waybar/
 cp -r kitty/ ~/.config/kitty/
@@ -114,118 +136,85 @@ cp -r nvim/ ~/.config/nvim/
 cp tmux/tmux.conf ~/.tmux.conf
 cp -r swaylock/ ~/.config/swaylock/
 mkdir -p ~/.config/swayidle && cp swaylock/idle ~/.config/swayidle/config
+cp -r neofetch/ ~/.config/neofetch/
+cp -r fastfetch/ ~/.config/fastfetch/
 
-# Copy scripts
+# Scripts
 sudo cp scripts/* /usr/local/bin/
 chmod +x /usr/local/bin/union-*
 
-# Copy shell
+# Shell
 mkdir -p ~/.config/shell
 cp shell/aliases.sh ~/.config/shell/
-# Add to ~/.bashrc or ~/.zshrc:
-#   source ~/.config/shell/aliases.sh
-```
+cp shell/bashrc ~/.bashrc.union
+cp shell/zshrc ~/.zshrc.union
+echo "source ~/.config/shell/aliases.sh" >> ~/.bashrc
+echo "source ~/.config/shell/aliases.sh" >> ~/.zshrc
 
-### SDDM Theme (optional)
-
-```bash
-sudo cp -r sddm/union /usr/share/sddm/themes/
-echo "[Theme]
-Current=union" | sudo tee /etc/sddm.conf.d/union.conf
-```
-
-### GRUB Theme (optional)
-
-```bash
-sudo cp -r grub/ /boot/grub/themes/union/
-echo 'GRUB_THEME="/boot/grub/themes/union/theme.txt"' | sudo tee -a /etc/default/grub
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+# UNION assets
+mkdir -p ~/.config/union
+cp -r ascii/ ~/.config/union/
+cp colors/palette.conf ~/.config/union/
 ```
 
 ---
 
 ## Dependencies
 
-### Required
-`hyprland` `waybar` `kitty` `rofi-wayland` `mako` `swww` `starship` `jq` `grimblast-git` `brightnessctl` `wireplumber` `xdg-desktop-portal-hyprland` `polkit-gnome` `sox` `playerctl` `thunar` `btop` `neovim` `tmux`
+**Required:** hyprland waybar kitty rofi-wayland mako swww starship jq grimblast-git brightnessctl wireplumber xdg-desktop-portal-hyprland polkit-gnome sox playerctl thunar btop neovim tmux
 
-### Optional
-`fastfetch` `neofetch` `papirus-icon-theme` `ttf-jetbrains-mono-nerd` `cliphist` `swaylock` `swayidle` `grim` `slurp` `wl-clipboard` `nm-applet` `blueman` `fzf` `fd` `lazygit` `lazydocker` `ranger` `dunst` `wofi` `libnotify` `hyprpaper`
+**Optional:** fastfetch neofetch papirus-icon-theme ttf-jetbrains-mono-nerd cliphist swaylock swayidle grim slurp wl-clipboard nm-applet blueman fzf fd lazygit lazydocker ranger dunst wofi libnotify hyprpaper
 
 ---
 
-## Dock Mode
-
-The bottom dock is an alternative to the top bar with macOS-style auto-hide:
+## Switching Bar Styles
 
 ```bash
-# Switch to dock
-pkill waybar
-waybar -c ~/.config/waybar/dock.jsonc -s ~/.config/waybar/dock-style.css &
+# Top bar (default)
+pkill waybar && waybar &
 
-# Switch back to top bar
-pkill waybar
-waybar &
+# Bottom dock (macOS-style, auto-hide)
+pkill waybar && waybar -c ~/.config/waybar/dock.jsonc -s ~/.config/waybar/dock-style.css &
 ```
 
 ---
 
 ## Sound Effects
 
-Sounds are auto-generated via `sox` on first install. Files go to `/usr/share/union/sounds/`. Types:
+Auto-generated via `sox` on first install. 8 sounds: volume tick, volume up/down, mute, notify, warning, error, startup.
 
-| Sound | Trigger |
-|-------|---------|
-| `vol-up` | Volume increase |
-| `vol-down` | Volume decrease |
-| `vol-tick` | Fine-tune volume (1%) |
-| `mute` | Mute toggle |
-| `notify` | Notifications |
-| `warning` | Warning alerts |
-| `error` | Error alerts |
-| `startup` | System boot |
-
-Disable with: `export UNION_NOTIFY_SOUND=0`
+Disable: `export UNION_NOTIFY_SOUND=0` in your shell rc.
 
 ---
 
 ## Customization
 
-### Colors
-Edit `colors/palette.conf` or modify values directly in:
-- `hypr/hyprland.conf` (borders, decorations)
-- `waybar/style.css`
-- `kitty/kitty.conf`
-- `rofi/union.rasi`
-- `btop/btop.conf`
-
-### Workspaces
-Edit the workspace list in `hypr/hyprland.conf`:
-```
-workspace = 1, name:ARCHIVE, persistent:true
-workspace = 2, name:RESEARCH, persistent:true
-```
-
-### Wallpapers
-Place images in `~/Pictures/union/` and use `SUPER+SHIFT+W` to pick.
+- **Colors:** Edit `colors/palette.conf` or search/replace hex values in config files
+- **Workspaces:** Edit workspace list in `hypr/hyprland.conf`
+- **Wallpapers:** Drop images in `~/Pictures/union/`, press `SUPER+SHIFT+W`
 
 ---
 
-## File Count
+## Scripts
 
-**65+ files** across 15 directories.
-
----
-
-## Credits
-
-- **Font:** JetBrains Mono
-- **Icon Theme:** Papirus
-- **Base Framework:** Hyprland + Waybar + Kitty + Rofi + Starship
-- **Aesthetic:** Soviet-era scientific workstation / institutional terminal
+| Script | What it does |
+|--------|--------------|
+| `union-login` | Terminal login banner (runs on shell start) |
+| `union-logo` | Display ASCII art in terminal |
+| `union-status` | System status panel |
+| `union-notify` | Send themed notifications |
+| `union-sounds` | Play/generate sound effects |
+| `union-toggle` | Toggle apps open/closed |
+| `union-power` | Rofi power menu |
+| `union-wallpaper-picker` | Rofi wallpaper selector |
+| `union-wallpaper` | Set wallpaper via swww/hyprpaper/feh |
+| `union-workspace` | Show current workspace |
+| `union-custom` | Waybar helper (status, weather, disk, uptime) |
+| `union-rice-show` | Screenshot + system info display |
+| `union-splash` | Startup splash screen |
 
 ---
 
 ## License
 
-MIT â€” Do whatever you want with it.
+MIT
