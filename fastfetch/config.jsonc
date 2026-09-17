@@ -8,7 +8,7 @@
         }
     },
     "display": {
-        "separator": " ── "
+        "separator": " â”€â”€ "
     },
     "modules": [
         "title",
@@ -29,7 +29,7 @@
         "separator",
         {
             "type": "custom",
-            "format": "┌─────────────────────────────────────────────┐\n│  FACILITY: 04                               │\n│  DIRECTORATE: ORBITAL RESEARCH              │\n│  CLEARANCE: RESTRICTED                      │\n│  STATUS: OPERATIONAL                        │\n│                                             │\n│  NOTE: Fictional metadata above.            │\n│  This is a theme, not a real organization.  │\n└─────────────────────────────────────────────┘"
+            "format": "â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”\nâ”‚  FACILITY: 04                               â”‚\nâ”‚  DIRECTORATE: ORBITAL RESEARCH              â”‚\nâ”‚  CLEARANCE: RESTRICTED                      â”‚\nâ”‚  STATUS: OPERATIONAL                        â”‚\nâ”‚                                             â”‚\nâ”‚  NOTE: Fictional metadata above.            â”‚\nâ”‚  This is a theme, not a real organization.  â”‚\nâ””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜"
         }
     ]
 }
