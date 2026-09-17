@@ -120,7 +120,7 @@ print_status_panel() {
     echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}UPTIME${C_RESET} .............. ${C_DIM}${uptime}${C_RESET}                    ${C_DIM}â•‘${C_RESET}"
     echo -e "${C_DIM}â•‘${C_RESET}                                                             ${C_DIM}â•‘${C_RESET}"
     echo -e "${C_DIM}â• â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•£${C_RESET}"
-    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FACILITY:=$C_FG}FACILITY${C_RESET}: 04  â”‚  ${C_FG}TERMINAL${C_RESET}: 7B-114  â”‚  ${C_FG}DATE${C_RESET}: ${date}     ${C_DIM}â•‘${C_RESET}"
+    echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}FACILITY${C_RESET}: 04  â”‚  ${C_FG}TERMINAL${C_RESET}: 7B-114  â”‚  ${C_FG}DATE${C_RESET}: ${date}     ${C_DIM}â•‘${C_RESET}"
     echo -e "${C_DIM}â•‘${C_RESET}  ${C_FG}TIME${C_RESET}: ${time}  â”‚  ${C_FG}KERNEL${C_RESET}: ${kernel}        ${C_DIM}â•‘${C_RESET}"
     echo -e "${C_DIM}â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•${C_RESET}"
 }
