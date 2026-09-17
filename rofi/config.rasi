@@ -6,6 +6,8 @@
 /* Document: UN-04-ROF-001  |  Classification: RESTRICTED           */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
+@import "union.rasi"
+
 configuration {
     modi: "drun,run,window,filebrowser,calc,ssh";
     show-icons: true;
