@@ -1,8 +1,7 @@
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-/* UNION THEME â€” WAYBAR DOCK (DEFAULT TASKBAR)                        */
+/* UNION THEME â€” WAYBAR DOCK (BOTTOM TASKBAR)                         */
 /* Unified National Institute for Orbital and Nuclear Research       */
-/* Ð“Ð¾ÑÑƒÐ´Ð°Ñ€ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ð¹ Ð¸Ð½ÑÑ‚Ð¸Ñ‚ÑƒÑ‚ ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ÑÑÐ»ÐµÐ´Ð¾Ð²Ð°Ð½Ð¸Ð¹                 */
-/* Facility 04 â€” Terminal 7B-114                                     */
+/* Always visible â€” shows open apps, workspaces, volume, system     */
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 * {
@@ -13,21 +12,12 @@
 }
 
 window#waybar {
-    background-color: #22262ecc;
+    background-color: #22262e;
     color: #c8cdd5;
-    border: 1px solid #3d4250;
-    border-radius: 12px;
-    margin-bottom: 4px;
+    border-top: 1px solid #3d4250;
+    border-radius: 0;
+    margin-top: 0;
     padding: 0 8px;
-}
-
-/* â”€â”€â”€ AUTO-HIDE: Hidden by default, show on hover â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-window#waybar {
-    opacity: 0.15;
-}
-
-window#waybar:hover {
-    opacity: 1;
 }
 
 tooltip {
@@ -127,6 +117,34 @@ tooltip label {
 
 #custom-union-sys-info:hover {
     background-color: rgba(184, 84, 80, 0.15);
+}
+
+/* â”€â”€â”€ OPEN APPS (TASKBAR) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+#tasklist {
+    background-color: transparent;
+    padding: 0 4px;
+    margin: 2px;
+}
+
+#tasklist button {
+    padding: 2px 8px;
+    margin: 0 2px;
+    color: #8891a0;
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    min-width: 20px;
+}
+
+#tasklist button.active {
+    color: #b85450;
+    background-color: rgba(184, 84, 80, 0.12);
+}
+
+#tasklist button:hover {
+    background-color: rgba(200, 205, 213, 0.08);
+    color: #c8cdd5;
 }
 
 /* â”€â”€â”€ TRAY TOGGLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
