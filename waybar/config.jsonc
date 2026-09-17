@@ -31,13 +31,15 @@
         "custom/separator-2",
         "battery",
         "custom/separator-2",
-        "clock"
+        "clock",
+        "custom/separator-2",
+        "tray"
     ],
 
     "custom/union-logo": {
         "format": "◉⊕◉",
         "tooltip": true,
-        "tooltip-format": "UNIFIED NATIONAL INSTITUTE\nFOR ORBITAL AND NUCLEAR RESEARCH\n\nГИСС — FACILITY 04\nEST. 1963\nCLEARANCE: RESTRICTED",
+        "tooltip-format": "UNIFIED NATIONAL INSTITUTE\nFOR ORBITAL AND NUCLEAR RESEARCH\n\nГИСС — FACILITY 04\nEST. 1963\nCLEARANCE: RESTRICTED\n\nPROJECT-014 │ PROJECT-027 │ PROJECT-041",
         "on-click": "rofi -show drun -show-icons"
     },
 
@@ -82,7 +84,7 @@
         "all-outputs": false,
         "sort-by-number": true,
         "on-click": "activate",
-        "tooltip-format": "{id}: {name}",
+        "tooltip-format": "{id}: {name}\n\n1: ARCHIVE\n2: RESEARCH\n3: ORBITAL\n4: LUNAR\n5: DEEP SPACE\n6: CONTROL",
         "tooltip": true
     },
 
@@ -157,5 +159,10 @@
         "tooltip": true,
         "tooltip-format": "<tt>{calendar}</tt>",
         "interval": 1
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 4
     }
 }
