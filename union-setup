@@ -99,7 +99,7 @@ step_check_system() {
         log_warn "Sox not found (sound effects disabled)"
     fi
 
-    # Check sox
+    # Check neovim
     if command -v nvim &>/dev/null; then
         log_ok "Neovim installed"
     else
