@@ -1,0 +1,97 @@
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* UNION THEME â€” ROFI POWER MENU                                       */
+/* Facility 04 â€” Terminal 7B-114                                       */
+/* Document: UN-04-POW-001  |  Classification: RESTRICTED            */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+* {
+    bg:         #1a1d23;
+    bg-alt:     #22262e;
+    fg:         #c8cdd5;
+    fg-dim:     #8891a0;
+    fg-muted:   #5c6370;
+    border:     #3d4250;
+    red:        #b85450;
+    blue:       #5e81ac;
+    green:      #6a9f78;
+    amber:      #d4a04a;
+}
+
+window {
+    width: 320px;
+    border: 1px solid @border;
+    border-radius: 4px;
+    background-color: @bg;
+}
+
+mainbox {
+    children: [ message, listview ];
+    background-color: @bg;
+}
+
+message {
+    background-color: @bg-alt;
+    padding: 16px;
+}
+
+textbox {
+    text-color: @red;
+    font: "JetBrains Mono 14";
+    content: "â—‰âŠ•â—‰  UNION // POWER";
+}
+
+listview {
+    lines: 5;
+    columns: 1;
+    padding: 8px;
+    spacing: 4px;
+}
+
+element {
+    padding: 12px 16px;
+    border-radius: 2px;
+    spacing: 12px;
+}
+
+element normal.normal {
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element-icon {
+    size: 24px;
+}
+
+element-text {
+    font: "JetBrains Mono 11";
+    highlight: bold @fg;
+}
+
+/* â”€â”€â”€ INDIVIDUAL COLORS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+element selected.normal:first-child {
+    text-color: @amber;
+}
+
+/* Suspend */
+#suspend {
+    text-color: @blue;
+}
+
+/* Reboot */
+#reboot {
+    text-color: @amber;
+}
+
+/* Poweroff */
+#poweroff {
+    text-color: @red;
+}
+
+/* Logout */
+#logout {
+    text-color: @green;
+}
