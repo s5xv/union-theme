@@ -356,14 +356,24 @@ enable_shell_integration() {
     fi
 
     if [[ -n "$shell_rc" ]]; then
+        # Add aliases source
+        if ! grep -q "config/shell/aliases.sh" "$shell_rc" 2>/dev/null; then
+            echo "" >> "$shell_rc"
+            echo "# UNION Theme â€” Shell Aliases" >> "$shell_rc"
+            echo "source ~/.config/shell/aliases.sh 2>/dev/null" >> "$shell_rc"
+            log_success "Shell aliases added to: $shell_rc"
+        else
+            log_info "Shell aliases already present in: $shell_rc"
+        fi
+
+        # Add login banner (commented out by default, uncomment to enable)
         if ! grep -q "union-login" "$shell_rc" 2>/dev/null; then
             echo "" >> "$shell_rc"
-            echo "# UNION Theme â€” Terminal Login Banner" >> "$shell_rc"
-            echo "# Remove the line below to disable startup banner" >> "$shell_rc"
+            echo "# UNION Theme â€” Terminal Login Banner (uncomment to enable)" >> "$shell_rc"
             echo "# union-login" >> "$shell_rc"
-            log_success "Shell integration added to: $shell_rc"
+            log_success "Shell banner option added to: $shell_rc (uncomment to enable)"
         else
-            log_info "Shell integration already present in: $shell_rc"
+            log_info "Shell banner already present in: $shell_rc"
         fi
     fi
 
