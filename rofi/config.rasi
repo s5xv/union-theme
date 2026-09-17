@@ -1,0 +1,21 @@
+/* ═══════════════════════════════════════════════════════════════════ */
+/* UNION THEME — ROFI LAUNCHER CONFIGURATION                         */
+/* Unified National Institute for Orbital and Nuclear Research       */
+/* Государственный институт специальных исследований                 */
+/* Facility 04 — Terminal 7B-114                                     */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+configuration {
+    modi: "drun,run,window,filebrowser,calc";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "kitty";
+    font: "JetBrains Mono 11";
+    display-drun: "RESEARCH";
+    display-run: "EXECUTE";
+    display-window: "WINDOWS";
+    display-filebrowser: "ARCHIVE";
+    display-calc: "CALCULATOR";
+    drun-display-format: "{name}";
+    click-to-exit: true;
+}
