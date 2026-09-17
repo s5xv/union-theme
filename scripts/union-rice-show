@@ -1,0 +1,44 @@
+#!/bin/bash
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UNION â€” RICE SHOWCASE
+# Unified National Institute for Orbital and Nuclear Research
+# Facility 04 â€” Terminal 7B-114
+# Takes a screenshot + displays system info
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+SCREENSHOT_DIR="$HOME/Pictures/union/rice"
+DATE=$(date +%Y%m%d-%H%M%S)
+SCREENSHOT="$SCREENSHOT_DIR/rice-$DATE.png"
+
+mkdir -p "$SCREENSHOT_DIR"
+
+# â”€â”€â”€ SCREENSHOT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+if command -v grimblast &>/dev/null; then
+    grimblast copy area "$SCREENSHOT"
+elif command -v grim &>/dev/null; then
+    grim -g "$(slurp)" "$SCREENSHOT"
+fi
+
+# â”€â”€â”€ SYSTEM INFO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+echo ""
+echo -e "\033[0;31mâ—‰âŠ•â—‰\033[0m \033[1mUNION // RICE SHOWCASE\033[0m"
+echo -e "\033[2mâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•\033[0m"
+echo ""
+echo -e "  \033[0;31mOS:\033[0m       $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
+echo -e "  \033[0;31mKernel:\033[0m   $(uname -r)"
+echo -e "  \033[0;31mWM:\033[0m       Hyprland $(hyprctl version 2>/dev/null | head -1)"
+echo -e "  \033[0;31mBar:\033[0m      Waybar"
+echo -e "  \033[0;31mTerminal:\033[0m $(kitty --version 2>/dev/null || echo 'kitty')"
+echo -e "  \033[0;31mShell:\033[0m    $SHELL"
+echo -e "  \033[0;31mEditor:\033[0m   $(nvim --version 2>/dev/null | head -1 || echo 'nvim')"
+echo -e "  \033[0;31mLauncher:\033[0m rofi"
+echo -e "  \033[0;31mGTK Theme:\033[0m $(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null || echo 'N/A')"
+echo -e "  \033[0;31mIcons:\033[0m    $(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null || echo 'N/A')"
+echo -e "  \033[0;31mFont:\033[0m     JetBrains Mono"
+echo ""
+echo -e "  \033[2mScreenshot saved to: $SCREENSHOT\033[0m"
+echo -e "  \033[2mScreenshot copied to clipboard.\033[0m"
+echo ""
+
+# Upload to a host if desired
+# curl -F "file=@$SCREENSHOT" https://0x0.st 2>/dev/null
